@@ -21,7 +21,7 @@ class iquidusExplorer():
 
 	def getBlockContentByHash(self, blockHash):
 		result = list(self.r.get(chainProvider+getBlockwithHashMethod+blockHash))
-		print (result[0])
+		print (result[0])s
 		
 
 
