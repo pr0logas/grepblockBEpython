@@ -2,7 +2,7 @@
 
 import sys
 from adeptio import *
-sys.path.append('../../')
+sys.path.append('../../../')
 from mongoDB import *
 from parseWallets import * 
 from performance import perfResult, setTimeCommand, time

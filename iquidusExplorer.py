@@ -9,7 +9,7 @@ import sys
 import os
 import json
 import requests
-from adeptio.adeptio import *
+from adeptio import *
 
 class iquidusExplorer():
 	def __init__ (self):
@@ -21,9 +21,8 @@ class iquidusExplorer():
 
 	def getBlockContentByHash(self, blockHash):
 		result = list(self.r.get(chainProvider+getBlockwithHashMethod+blockHash))
-		print (result[0])s
-		
-
+		print (result[0])
+	
 
 """
 r.status_code
