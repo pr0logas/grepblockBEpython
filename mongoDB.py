@@ -2,7 +2,6 @@
 
 """
 Install modules:
-	apt install python-pip
 	pip install pymongo
 """
 
@@ -12,15 +11,13 @@ from pymongo.errors import AutoReconnect
 mongoAuth = {
 	"host" : "127.0.0.1",
 	"port" : ":27017",
-	"db" : "adeptio",
-	"col" : "blocks"
 }
 
 class mongoConnection():
-	def __init__ (self, mongoAuth):
+	def __init__ (self, mongoAuth, database, collection):
 		self.mongoConn = pymongo.MongoClient(mongoAuth['host'] + mongoAuth['port'])
-		self.mongoDB = self.mongoConn[mongoAuth["db"]]
-		self.mongoCol = self.mongoDB[mongoAuth["col"]]
+		self.mongoDB = self.mongoConn[database]
+		self.mongoCol = self.mongoDB[collection]
 
 	def autoreconnect_retry(fn, retries=10):
 	    def db_op_wrapper(*args, **kwargs):
@@ -51,4 +48,17 @@ class mongoConnection():
 	def findLastBlock(self):
 		searchLastBlock = list(self.mongoCol.find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
 		lastBlock = searchLastBlock[0]['block']
-  		return lastBlock
+  		return int(lastBlock)
+
+	@autoreconnect_retry
+	def findLastTxidProgress(self):
+		searchLastTxidProg = list(self.mongoCol.find({},{ "_id": 0, "lastblock": 1}).sort([( '$natural', -1 )] ).limit(1))
+		lastTxidProgress = searchLastTxidProg[0]['lastblock']
+  		return int(lastTxidProgress)
+
+ 	@autoreconnect_retry
+	def updateLastTxidProgress(self, lastTxidProgress):
+		decrease = int(lastTxidProgress - 1)
+		current = { "lastblock": lastTxidProgress }
+		decreasing = { "$set": { "lastblock": decrease } }
+		self.mongoCol.update_one(current, decreasing)
