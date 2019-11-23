@@ -6,8 +6,6 @@ Install modules:
 """
 
 import sys
-import os
-import json
 import requests
 from adeptio import *
 
