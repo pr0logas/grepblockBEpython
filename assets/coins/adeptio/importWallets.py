@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
-import sys
+import sys, time
 from adeptio import *
 sys.path.append('../../../')
 from mongoDB import *
-import time
 from parseWallets import * 
 from explorer import iquidusExplorer
 from parseWallets import aggregateWalletsData
@@ -27,18 +26,20 @@ EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod,
 AG = aggregateWalletsData()
 
 # Decrease txidsProgress value in case of previous failure;
-MC.updateLastTxidProgress(collectionTxidProgress, currentLastTxidProgress)
+MC.updateLastTxidProgressMinusOne(collectionTxidProgress, currentLastTxidProgress)
 
 if int(MC.findLastTxidProgress(collectionTxidProgress)) == int(currentLastTxidProgress):
 	print ("FAIL: Unable to decrease lastblock value in txidsProgress!")
 	sys.exit(1)
 else:
-	print ("OK: txidsProgress value succesfully decreased.")
+	print ("OK: txidsProgress value succesfully decreased to:" + ' ' + str(MC.findLastTxidProgress(collectionTxidProgress)))
 
 # Start Parsing for unique Wallets and push to MongoDB;
-while currentLastTxidProgress<currentLastBlock:
+whileprogress = currentLastTxidProgress
+while whileprogress<currentLastBlock:
+
 	setProcStart = int(round(time.time() * 1000))
-	blockData = MC.findByBlock(collectionForBlocks, currentLastTxidProgress+1)
+	blockData = MC.findByBlock(collectionForBlocks, whileprogress)
 	blockTime = blockData['time']
 	blockNumber = blockData['height']
 	for txid in blockData['tx']:
@@ -50,5 +51,10 @@ while currentLastTxidProgress<currentLastBlock:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 				setProcEnd = int(round(time.time() * 1000))
 				performanceResult = str(setProcEnd - setProcStart)
-				MC.upsertUniqueWallets(collectionForWallets, createJSON)
 				#print (performanceResult) + ' ms'
+				MC.upsertUniqueWallets(collectionForWallets, createJSON)
+	# Increase txidsProgress to move forward;
+	print "check current", currentLastTxidProgress
+	MC.updateLastTxidProgressPlusOne(collectionTxidProgress, currentLastTxidProgress)
+	currentLastTxidProgress += 1
+	print currentLastTxidProgress

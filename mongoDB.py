@@ -4,6 +4,7 @@ import pymongo
 import json
 import ast
 from pymongo.errors import AutoReconnect
+from pymongo import errors as mongoerrors
 
 mongoAuth = {
 	"host" : "127.0.0.1",
@@ -53,7 +54,14 @@ class mongoConnection():
   		return int(lastTxidProgress)
 
  	@autoreconnect_retry
-	def updateLastTxidProgress(self, toCollection, lastTxidProgress):
+	def updateLastTxidProgressPlusOne(self, toCollection, lastTxidProgress):
+		increasing = int(lastTxidProgress) + 1
+		current = { "lastblock": lastTxidProgress }
+		new = { "$set": { "lastblock": increasing } }
+		self.mongoDB[toCollection].update_one(current, new)
+
+ 	@autoreconnect_retry
+	def updateLastTxidProgressMinusOne(self, toCollection, lastTxidProgress):
 		decrease = int(lastTxidProgress - 1)
 		current = { "lastblock": lastTxidProgress }
 		decreasing = { "$set": { "lastblock": decrease } }
@@ -61,6 +69,10 @@ class mongoConnection():
 
  	@autoreconnect_retry
 	def upsertUniqueWallets(self, toCollection, jsonOfWallets):
-		#rint toCollection, (jsonOfWallets)
 		data = ast.literal_eval(jsonOfWallets)
-		self.mongoDB[toCollection].insert_one(data)
+		#print(mongoerrors.__dict__.keys())
+		try:	
+			self.mongoDB[toCollection].insert(data)
+			print "Inserted:" + ' ' + str(data)
+		except pymongo.errors.DuplicateKeyError:
+			pass
