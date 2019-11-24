@@ -37,3 +37,22 @@ class aggregateWalletsData():
      			resultList.append(i)
  			
      		return resultList
+
+	def createJsonForWallet(self, blockNum, blockTime, wallet):
+	    json = '{ "block" : ' + blockNum + ' "walletTime" : ' + blockTime + ' "wallet" : ' + '"'+wallet+'"' + '}'
+	    print json
+
+	def setBlockTime(self, blockData):
+		firstObj = json.loads(blockData)
+		time = firstObj['time']
+		return time
+
+	def setBlockTimeByMedianTime(self, blockData):
+		firstObj = json.loads(blockData)
+		time = firstObj['mediantime']
+		return time
+
+	def setBlockNumber(self, blockData):
+		firstObj = json.loads(blockData)
+		blockNumber = firstObj['height']
+		return blockNumber

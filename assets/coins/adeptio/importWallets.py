@@ -35,7 +35,7 @@ AG = aggregateWalletsData(EX.getTxContentByTxid('61fb082ec47b267f02345bb2e171b67
 #uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
 #print uniqWlts
 
-# Decrease txidsProgress value in case of previuos failure;
+# Decrease txidsProgress value in case of previous failure;
 MC.updateLastTxidProgress(currentLastTxidProgress)
 
 if int(MC.findLastTxidProgress()) == int(currentLastTxidProgress):
@@ -44,10 +44,19 @@ if int(MC.findLastTxidProgress()) == int(currentLastTxidProgress):
 else:
 	print ("OK: txidsProgress value succesfully decreased.")
 
-while currentLastTxidProgress <=currentLastBlock:
-	hashID = EX.getBlockHash(str(currentLastTxidProgress))
+while currentLastTxidProgress<currentLastBlock:
+	hashID = EX.getBlockHash(str(currentLastTxidProgress+1))
+	print hashID
 	blockData = EX.getBlockContentByHash(str(hashID))
+	print blockData
+	blockTime = AG.setBlockTime(blockData)
+	print blockTime
+	blockNumber = AG.setBlockNumber(blockData)
+	print blockNumber
 	txidHashes = AG.aggregateOnlyTxidHashes(blockData)
+	print txidHashes
 	for i in txidHashes:
 		AG = aggregateWalletsData(EX.getTxContentByTxid(i))
 		print i 
+		#randomWlts = AG.findAllWalletsAddr(i)
+		#print randomWlts
