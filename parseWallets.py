@@ -2,15 +2,14 @@
 
 import json
 from mongoDB import mongoAuth, mongoConnection
-from performance import perfResult
 from explorer import *
 
 class aggregateWalletsData():
-	def __init__(self, data):
-		self.data = data
+	def __init__(self):
+		pass
 	
-	def findAllWalletsAddr(self):
-		firstObj = json.loads(self.data)
+	def findAllWalletsAddr(self, data):
+		firstObj = json.loads(data)
 		nestedData = firstObj['vout']
 		resultList = []
 		for i in nestedData:
@@ -29,6 +28,7 @@ class aggregateWalletsData():
 
 		return output
 
+	# Works only data from Explorer
 	def aggregateOnlyTxidHashes(self, blockData):
 		firstObj = json.loads(blockData)
 		nestedData = firstObj['tx']
@@ -39,8 +39,8 @@ class aggregateWalletsData():
      		return resultList
 
 	def createJsonForWallet(self, blockNum, blockTime, wallet):
-	    json = '{ "block" : ' + blockNum + ' "walletTime" : ' + blockTime + ' "wallet" : ' + '"'+wallet+'"' + '}'
-	    print json
+	    json = '{ "block" : ' + blockNum + ', "walletTime" : ' + blockTime + ', "wallet" : ' + '"'+wallet+'"' + '}'
+	    return json
 
 	def setBlockTime(self, blockData):
 		firstObj = json.loads(blockData)

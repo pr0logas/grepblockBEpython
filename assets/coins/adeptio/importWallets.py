@@ -4,59 +4,51 @@ import sys
 from adeptio import *
 sys.path.append('../../../')
 from mongoDB import *
+import time
 from parseWallets import * 
-from performance import perfResult, setTimeCommand, time
 from explorer import iquidusExplorer
 from parseWallets import aggregateWalletsData
 
 collectionTxidProgress = "txidsProgress"
 collectionForBlocks = "blocks"
-setProcStart = setTimeCommand
+collectionForWallets = "wallets"
 
-# Init Mongo Connection
+# Init Mongo Connection to Class;
 MC = mongoConnection(mongoAuth, database, collectionTxidProgress)
 
 # Set current progress;
-currentLastTxidProgress = MC.findLastTxidProgress()
+currentLastTxidProgress = MC.findLastTxidProgress(collectionTxidProgress)
 currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
-#print currentLastBlock
-#print currentLastTxidProgress
-
-# Init Explorer params
+# Init Explorer params to Class;
 EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
 
-#print EX.getBlockHash('5')
-#print EX.getBlockContentByHash('00000ffa49117a1763cbd558eab797dd6f046acf3d058f4ce1ee1ab53e926191')
-#print EX.getTxContentByTxid('890531d6773d1fb716422a2bdf9e1b561dd727b77edabe19e50ea59153b747bb')
-
-AG = aggregateWalletsData(EX.getTxContentByTxid('61fb082ec47b267f02345bb2e171b671d3f54ff0d07fd39dc38777569fe5d851'))
-#randomWlts = AG.findAllWalletsAddr()
-#uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
-#print uniqWlts
+# Init Data Aggregation Class;
+AG = aggregateWalletsData()
 
 # Decrease txidsProgress value in case of previous failure;
-MC.updateLastTxidProgress(currentLastTxidProgress)
+MC.updateLastTxidProgress(collectionTxidProgress, currentLastTxidProgress)
 
-if int(MC.findLastTxidProgress()) == int(currentLastTxidProgress):
+if int(MC.findLastTxidProgress(collectionTxidProgress)) == int(currentLastTxidProgress):
 	print ("FAIL: Unable to decrease lastblock value in txidsProgress!")
 	sys.exit(1)
 else:
 	print ("OK: txidsProgress value succesfully decreased.")
 
+# Start Parsing for unique Wallets and push to MongoDB;
 while currentLastTxidProgress<currentLastBlock:
-	hashID = EX.getBlockHash(str(currentLastTxidProgress+1))
-	print hashID
-	blockData = EX.getBlockContentByHash(str(hashID))
-	print blockData
-	blockTime = AG.setBlockTime(blockData)
-	print blockTime
-	blockNumber = AG.setBlockNumber(blockData)
-	print blockNumber
-	txidHashes = AG.aggregateOnlyTxidHashes(blockData)
-	print txidHashes
-	for i in txidHashes:
-		AG = aggregateWalletsData(EX.getTxContentByTxid(i))
-		print i 
-		#randomWlts = AG.findAllWalletsAddr(i)
-		#print randomWlts
+	setProcStart = int(round(time.time() * 1000))
+	blockData = MC.findByBlock(collectionForBlocks, currentLastTxidProgress+1)
+	blockTime = blockData['time']
+	blockNumber = blockData['height']
+	for txid in blockData['tx']:
+		getTxData = EX.getTxContentByTxid(txid)
+		randomWlts = AG.findAllWalletsAddr(getTxData)
+		if randomWlts != []:
+			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
+			for uw in uniqWlts:
+				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
+				setProcEnd = int(round(time.time() * 1000))
+				performanceResult = str(setProcEnd - setProcStart)
+				MC.upsertUniqueWallets(collectionForWallets, createJSON)
+				#print (performanceResult) + ' ms'

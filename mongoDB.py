@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import pymongo
+import json
+import ast
 from pymongo.errors import AutoReconnect
 
 mongoAuth = {
@@ -12,7 +14,6 @@ class mongoConnection():
 	def __init__ (self, mongoAuth, database, collection):
 		self.mongoConn = pymongo.MongoClient(mongoAuth['host'] + mongoAuth['port'])
 		self.mongoDB = self.mongoConn[database]
-		self.mongoCol = self.mongoDB[collection]
 
 	def autoreconnect_retry(fn, retries=10):
 	    def db_op_wrapper(*args, **kwargs):
@@ -30,13 +31,13 @@ class mongoConnection():
 	    return db_op_wrapper
 
 	@autoreconnect_retry
-	def findByBlock(self, blockNum):
-		searchBlock = list(self.mongoCol.find({'block' : blockNum}))
-		return searchBlock
+	def findByBlock(self, fromCollection, blockNum):
+		searchBlock = list(self.mongoDB[fromCollection].find({'block' : blockNum}))
+		return searchBlock[0]
 
 	@autoreconnect_retry
-	def findByTx(self, blockTx):
-		searchTx = list(self.mongoCol.find({'tx' : blockTx}))
+	def findByTx(self, fromCollection, blockTx):
+		searchTx = list(self.mongoDB[fromCollection].find({'tx' : blockTx}))
 		return searchTx
 
 	@autoreconnect_retry
@@ -46,14 +47,20 @@ class mongoConnection():
   		return int(lastBlock)
 
 	@autoreconnect_retry
-	def findLastTxidProgress(self):
-		searchLastTxidProg = list(self.mongoCol.find({},{ "_id": 0, "lastblock": 1}).sort([( '$natural', -1 )] ).limit(1))
+	def findLastTxidProgress(self, fromCollection):
+		searchLastTxidProg = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "lastblock": 1}).sort([( '$natural', -1 )] ).limit(1))
 		lastTxidProgress = searchLastTxidProg[0]['lastblock']
   		return int(lastTxidProgress)
 
  	@autoreconnect_retry
-	def updateLastTxidProgress(self, lastTxidProgress):
+	def updateLastTxidProgress(self, toCollection, lastTxidProgress):
 		decrease = int(lastTxidProgress - 1)
 		current = { "lastblock": lastTxidProgress }
 		decreasing = { "$set": { "lastblock": decrease } }
-		self.mongoCol.update_one(current, decreasing)
+		self.mongoDB[toCollection].update_one(current, decreasing)
+
+ 	@autoreconnect_retry
+	def upsertUniqueWallets(self, toCollection, jsonOfWallets):
+		#rint toCollection, (jsonOfWallets)
+		data = ast.literal_eval(jsonOfWallets)
+		self.mongoDB[toCollection].insert_one(data)
