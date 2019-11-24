@@ -12,9 +12,28 @@ class aggregateWalletsData():
 	def findAllWalletsAddr(self):
 		firstObj = json.loads(self.data)
 		nestedData = firstObj['vout']
+		resultList = []
 		for i in nestedData:
 			try:
 				for y in i['scriptPubKey']['addresses']:
-     					print y
+     					resultList.append(y)
  			except KeyError:
      				continue
+
+     		return resultList
+
+	def aggregateOnlyUniqueWallets(self, wallets):
+		output = set()
+		for x in wallets:
+    			output.add(x)
+
+		return output
+
+	def aggregateOnlyTxidHashes(self, blockData):
+		firstObj = json.loads(blockData)
+		nestedData = firstObj['tx']
+		resultList = []
+		for i in nestedData:
+     			resultList.append(i)
+ 			
+     		return resultList

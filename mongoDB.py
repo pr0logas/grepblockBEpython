@@ -1,10 +1,5 @@
 #!/usr/bin/env python
 
-"""
-Install modules:
-	pip install pymongo
-"""
-
 import pymongo
 from pymongo.errors import AutoReconnect
 
@@ -45,8 +40,8 @@ class mongoConnection():
 		return searchTx
 
 	@autoreconnect_retry
-	def findLastBlock(self):
-		searchLastBlock = list(self.mongoCol.find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
+	def findLastBlock(self, fromCollection):
+		searchLastBlock = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
 		lastBlock = searchLastBlock[0]['block']
   		return int(lastBlock)
 
