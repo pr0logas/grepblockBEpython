@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
+import json ,re
 from mongoDB import mongoAuth, mongoConnection
 from performance import perfResult
+from explorer import *
 
-database = "adeptio"
-collection = "txidsProgress"
-
-#MC = mongoConnection(mongoAuth, database, collection)
-#print MC.findByBlock(2);
-#print MC.findByTx('49f40027e05960fe15f58874926331b170a9af1ff8ccee28ee0c9161ae8c9f88');
-#print MC.findLastBlock()
-#print MC.findLastTxidProgress()
-
+class aggregateWalletsData():
+	def __init__(self, data):
+		self.data = data
+	
+	def findAllWalletsAddr(self):
+		firstObj = json.loads(self.data)
+		print firstObj
+		nestedData = str(firstObj['vout'])
+		print nestedData
+		#result = re.search('addresses(.*)OP_CHECKSIG', nestedData)
+		#print(result.group(1))
