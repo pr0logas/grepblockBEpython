@@ -31,25 +31,36 @@ else:
 
 # Start Parsing for unique Wallets and push to MongoDB;
 whileprogress = currentLastTxidProgress
-while whileprogress < currentLastBlock:
+while whileprogress<currentLastBlock:
 
 	setProcStart = int(round(time.time() * 1000))
+	print "whileprogress: ", whileprogress
 	blockData = MC.findByBlock(collectionForBlocks, whileprogress)
+	print "blockData: ", blockData
 	blockTime = blockData['time']
 	blockNumber = blockData['height']
+	print "BlockNumber", blockNumber
 	for txid in blockData['tx']:
 		getTxData = EX.getTxContentByTxid(txid)
+		print "TXcontent: ", getTxData
 		randomWlts = AG.findAllWalletsAddr(getTxData)
+		print "RandomWlrts: ", randomWlts
 		if randomWlts != []:
 			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
+			print "unique wallets: ", uniqWlts
 			for uw in uniqWlts:
+				print "Unique one wallet", uw
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
+				print "Created JSON: ", createJSON
+
+				setProcEnd = int(round(time.time() * 1000))
+				performanceResult = str(setProcEnd - setProcStart)
+				#print (performanceResult) + ' ms'
 				MC.upsertUniqueWallets(collectionForWallets, createJSON)
 	# Increase txidsProgress to move forward;
-	print "check current", currentLastTxidProgress
+	print "check the end. And what block was ?", currentLastTxidProgress
 	MC.updateLastTxidProgressPlusOne(collectionTxidProgress, currentLastTxidProgress)
 	currentLastTxidProgress += 1
-	print currentLastTxidProgress
-	setProcEnd = int(round(time.time() * 1000))
-	performanceResult = str(setProcEnd - setProcStart)
-	#print (performanceResult) + ' ms'
+	qq = MC.findLastTxidProgress(collectionTxidProgress)
+	print "Whats is last Block after increase? ", qq
+	print "Whats is block after += increase?", currentLastTxidProgress
