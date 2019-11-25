@@ -5,11 +5,11 @@ class aggregateBlocksData():
 		self.db = db
 		self.col = col
 
-	def parseBlocks(currentBlock, explorerBlock):
+	def parseBlocks(self, currentBlock, explorerBlock):
 		whileprogress = currentBlock
 		while whileprogress < explorerBlock:
 
-	def parseBlocksInRange(currentBlock, parseBlocksInRangeValue):
+	def parseBlocksInRange(self, currentBlock, parseBlocksInRangeValue):
 		whileprogress = currentBlock
 		while whileprogress < parseBlocksInRangeValue:
 
