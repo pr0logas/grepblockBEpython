@@ -11,18 +11,14 @@ collectionTxidProgress = "txidsProgress"
 collectionForBlocks = "blocks"
 collectionForWallets = "wallets"
 
-# Init Mongo Connection to Class;
+# Init Classes;
 MC = mongoConnection(mongoAuth, database, collectionTxidProgress)
+EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
+AG = aggregateWalletsData()
 
 # Set current progress;
 currentLastTxidProgress = MC.findLastTxidProgress(collectionTxidProgress)
 currentLastBlock = MC.findLastBlock(collectionForBlocks)
-
-# Init Explorer params to Class;
-EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
-
-# Init Data Aggregation Class;
-AG = aggregateWalletsData()
 
 # Decrease txidsProgress value in case of previous failure;
 MC.updateLastTxidProgressMinusOne(collectionTxidProgress, currentLastTxidProgress)
