@@ -4,7 +4,6 @@ import sys, time
 from adeptio import *
 sys.path.append('../../../')
 from mongoDB import *
-from parseWallets import * 
 from explorer import iquidusExplorer
 from parseWallets import aggregateWalletsData
 
@@ -12,18 +11,14 @@ collectionTxidProgress = "txidsProgress"
 collectionForBlocks = "blocks"
 collectionForWallets = "wallets"
 
-# Init Mongo Connection to Class;
+# Init Classes;
 MC = mongoConnection(mongoAuth, database, collectionTxidProgress)
+EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
+AG = aggregateWalletsData()
 
 # Set current progress;
 currentLastTxidProgress = MC.findLastTxidProgress(collectionTxidProgress)
 currentLastBlock = MC.findLastBlock(collectionForBlocks)
-
-# Init Explorer params to Class;
-EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
-
-# Init Data Aggregation Class;
-AG = aggregateWalletsData()
 
 # Decrease txidsProgress value in case of previous failure;
 MC.updateLastTxidProgressMinusOne(collectionTxidProgress, currentLastTxidProgress)
@@ -36,7 +31,7 @@ else:
 
 # Start Parsing for unique Wallets and push to MongoDB;
 whileprogress = currentLastTxidProgress
-while whileprogress<currentLastBlock:
+while whileprogress < currentLastBlock:
 
 	setProcStart = int(round(time.time() * 1000))
 	blockData = MC.findByBlock(collectionForBlocks, whileprogress)
@@ -49,12 +44,12 @@ while whileprogress<currentLastBlock:
 			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
 			for uw in uniqWlts:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
-				setProcEnd = int(round(time.time() * 1000))
-				performanceResult = str(setProcEnd - setProcStart)
-				#print (performanceResult) + ' ms'
 				MC.upsertUniqueWallets(collectionForWallets, createJSON)
 	# Increase txidsProgress to move forward;
 	print "check current", currentLastTxidProgress
 	MC.updateLastTxidProgressPlusOne(collectionTxidProgress, currentLastTxidProgress)
 	currentLastTxidProgress += 1
 	print currentLastTxidProgress
+	setProcEnd = int(round(time.time() * 1000))
+	performanceResult = str(setProcEnd - setProcStart)
+	#print (performanceResult) + ' ms'
