@@ -44,12 +44,12 @@ while whileprogress < currentLastBlock:
 			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
 			for uw in uniqWlts:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
-				setProcEnd = int(round(time.time() * 1000))
-				performanceResult = str(setProcEnd - setProcStart)
-				#print (performanceResult) + ' ms'
 				MC.upsertUniqueWallets(collectionForWallets, createJSON)
 	# Increase txidsProgress to move forward;
 	print "check current", currentLastTxidProgress
 	MC.updateLastTxidProgressPlusOne(collectionTxidProgress, currentLastTxidProgress)
 	currentLastTxidProgress += 1
 	print currentLastTxidProgress
+	setProcEnd = int(round(time.time() * 1000))
+	performanceResult = str(setProcEnd - setProcStart)
+	#print (performanceResult) + ' ms'

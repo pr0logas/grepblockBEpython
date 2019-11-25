@@ -33,12 +33,9 @@ parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
 # Check if our progress is near by Explorer blocks?
 diff = currentExplBlock - currentLastBlock
 
-# Init parseBlocks Class;
-
-
 if diff <= 100
 	# Start Parsing blocks and push to MongoDB;
-	PB.parseBlocks()
+	PB.parseBlocks(currentLastBlock, currentExplBlock)
 else:
 	# Start Parsing blocks ::in range:: and push to MongoDB;
-	PB.parseBlocksInRange()
+	PB.parseBlocksInRange(currentLastBlock, parsingBlocksInRange)
