@@ -55,8 +55,9 @@ class mongoConnection():
 
  	@autoreconnect_retry
 	def updateLastTxidProgressPlusOne(self, toCollection, lastTxidProgress):
-		increasing = int(lastTxidProgress) + 1
-		current = { "lastblock": lastTxidProgress }
+		increasing = int(lastTxidProgress)
+		decresing = int(lastTxidProgress -1)
+		current = { "lastblock": decresing }
 		new = { "$set": { "lastblock": increasing } }
 		self.mongoDB[toCollection].update_one(current, new)
 
@@ -75,12 +76,20 @@ class mongoConnection():
 			self.mongoDB[toCollection].insert(data)
 			print "Inserted:" + ' ' + str(data)
 		except pymongo.errors.DuplicateKeyError:
+			print "MongoDB found a duplicate wallet, skipping..."
 			pass
 
  	@autoreconnect_retry
 	def insertInitValueForBlocks(self, toCollection):
 		data = '{ "block" : 0 }'
-		self.mongoDB[toCollection].insert(data)
+		setData = ast.literal_eval(data)
+		self.mongoDB[toCollection].insert(setData)
+
+ 	@autoreconnect_retry
+	def insertInitValueForWalletsProgress(self, toCollection):
+		data = '{ "lastblock" : 0 }'
+		setData = ast.literal_eval(data)
+		self.mongoDB[toCollection].insert(setData)
 
 	@autoreconnect_retry
 	def insertBlocksData(self, toCollection, aggregatedBlockData):
@@ -94,8 +103,11 @@ class mongoConnection():
 	@autoreconnect_retry
 	def checkIfBlocksColEmpty(self, fromCollection):
 		check = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
-		lastBlock = check[0]['block']
-		if lastBlock < 0:
+		if check == []:
 			return "Empty"
-		else:
-			return "NonEmpty"
+
+	@autoreconnect_retry
+	def checkIfTxidProgressColEmpty(self, fromCollection):	
+		check = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "lastblock": 1}).sort([( '$natural', -1 )] ).limit(1))
+		if check == []:
+			return "Empty"
