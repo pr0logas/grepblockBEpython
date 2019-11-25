@@ -4,7 +4,6 @@ import sys, time
 from adeptio import *
 sys.path.append('../../../')
 from mongoDB import *
-from parseWallets import * 
 from explorer import iquidusExplorer
 from parseWallets import aggregateWalletsData
 

@@ -4,9 +4,9 @@ import sys, time
 from adeptio import *
 sys.path.append('../../../')
 from mongoDB import *
-from parseWallets import * 
-from explorer import iquidusExplorer
 from parseWallets import aggregateWalletsData
+from explorer import iquidusExplorer
+
 
 collectionForBlocks = "blocks"
 
@@ -22,3 +22,5 @@ EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod,
 # Init Data Aggregation Class;
 AG = aggregateWalletsData()
 
+# Check if blocks col empty or not?
+print MC.checkIfBlocksColEmpty(collectionForBlocks)
