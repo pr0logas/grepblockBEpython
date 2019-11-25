@@ -4,23 +4,41 @@ import sys, time
 from adeptio import *
 sys.path.append('../../../')
 from mongoDB import *
-from parseWallets import aggregateWalletsData
 from explorer import iquidusExplorer
+from parseBlocks import aggregateBlocksData
 
-
+db = database
 collectionForBlocks = "blocks"
 
-# Init Mongo Connection to Class;
-MC = mongoConnection(mongoAuth, database, collectionTxidProgress)
+# Init Classes;
+MC = mongoConnection(mongoAuth, db, collectionForBlocks)
+EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)\
+PB = aggregateBlocksData(db, collectionForBlocks)
+AG = aggregateWalletsData()
 
 # Set current progress;
 currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
-# Init Explorer params to Class;
-EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
-
-# Init Data Aggregation Class;
-AG = aggregateWalletsData()
-
 # Check if blocks col empty or not?
-print MC.checkIfBlocksColEmpty(collectionForBlocks)
+if MC.checkIfBlocksColEmpty(collectionForBlocks) == "Empty":
+	MC.insertInitValueForBlocks(collectionForBlocks)
+
+# Check last Explorer block:
+currentExplBlock = EX.
+currentExplBlock -= 1
+
+# Set how much blocks we want to sync from current point +- ~99
+parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
+
+# Check if our progress is near by Explorer blocks?
+diff = currentExplBlock - currentLastBlock
+
+# Init parseBlocks Class;
+
+
+if diff <= 100
+	# Start Parsing blocks and push to MongoDB;
+	PB.parseBlocks()
+else:
+	# Start Parsing blocks ::in range:: and push to MongoDB;
+	PB.parseBlocksInRange()

@@ -48,15 +48,6 @@ class mongoConnection():
   		return int(lastBlock)
 
 	@autoreconnect_retry
-	def checkIfBlocksColEmpty(self, fromCollection):
-		check = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
-		lastBlock = check[0]['block']
-		if lastBlock < 0:
-			return "Empty"
-		else:
-			return "NonEmpty"
-
-	@autoreconnect_retry
 	def findLastTxidProgress(self, fromCollection):
 		searchLastTxidProg = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "lastblock": 1}).sort([( '$natural', -1 )] ).limit(1))
 		lastTxidProgress = searchLastTxidProg[0]['lastblock']
@@ -85,3 +76,26 @@ class mongoConnection():
 			print "Inserted:" + ' ' + str(data)
 		except pymongo.errors.DuplicateKeyError:
 			pass
+
+ 	@autoreconnect_retry
+	def insertInitValueForBlocks(self, toCollection):
+		data = '{ "block" : 0 }'
+		self.mongoDB[toCollection].insert(data)
+
+	@autoreconnect_retry
+	def insertBlocksData(self, toCollection, aggregatedBlockData):
+		data = ast.literal_eval(aggregatedBlockData)
+		try:	
+			self.mongoDB[toCollection].insert(data)
+			print "Inserted block data:" + ' ' + str(data)
+		except pymongo.errors.DuplicateKeyError:
+			pass
+
+	@autoreconnect_retry
+	def checkIfBlocksColEmpty(self, fromCollection):
+		check = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
+		lastBlock = check[0]['block']
+		if lastBlock < 0:
+			return "Empty"
+		else:
+			return "NonEmpty"

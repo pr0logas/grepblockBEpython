@@ -35,7 +35,7 @@ else:
 
 # Start Parsing for unique Wallets and push to MongoDB;
 whileprogress = currentLastTxidProgress
-while whileprogress<currentLastBlock:
+while whileprogress < currentLastBlock:
 
 	setProcStart = int(round(time.time() * 1000))
 	blockData = MC.findByBlock(collectionForBlocks, whileprogress)
