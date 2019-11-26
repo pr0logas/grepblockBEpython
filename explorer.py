@@ -44,3 +44,14 @@ class iquidusExplorer():
 
 		content = page.read()
 		return content
+
+	def getLastBlock(self):
+		url = (self.chainProvider+'/api/getblockcount')
+		req = self.u.Request(url, headers=self.header)
+		try:
+		    page = self.u.urlopen(req)
+		except urllib2.HTTPError, e:
+		    print e.fp.read()
+
+		content = page.read()
+		return content
