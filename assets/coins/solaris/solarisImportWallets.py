@@ -60,8 +60,6 @@ while whileprogress<currentLastBlock:
 				t = int(round(time.time() * 1000))
 				setProcEnd = t
 
-	print setProcEnd
-	print setProcStart
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	if str(status) != 'None':
