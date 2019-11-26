@@ -49,8 +49,6 @@ while whileprogress<currentLastBlock:
 	for txid in blockData['tx']:
 		getTxData = EX.getTxContentByTxid(txid)
 		randomWlts = AG.findAllWalletsAddr(getTxData)
-		t = int(round(time.time() * 1000)) # Set time in case where are no wallets?
-		setProcEnd = t
 		if randomWlts != []:
 			setProcEnd = t
 			for uw in uniqWlts:
