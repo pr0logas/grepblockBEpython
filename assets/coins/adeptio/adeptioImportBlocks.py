@@ -47,8 +47,6 @@ if diff >= 100:
 		bH = EX.getBlockHash(str(whileprogress))
 		bD = EX.getBlockContentByHash(bH)
 		pretty_data = json.dumps(bD.json(), indent=4)
-		print pretty_data
-		aggregatedBlockData = AG.aggregateInsertBlockNumber(pretty_data)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 		setProcEnd = int(round(time.time() * 1000))
@@ -68,8 +66,6 @@ else:
 		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
 		bD = EX.getBlockContentByHash(bH)
-		pretty_data = json.dumps(bD.json(), indent=4)
-		print pretty_data
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
