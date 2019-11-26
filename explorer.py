@@ -58,5 +58,5 @@ class iquidusExplorer():
 		return content
 
 	def getLastBlockSolarisDirty(self):
-		result = subprocess.call(["curl", self.chainProvider, "|", "grep", "rows", "|", "head", "-1" "|", "grep", "-o", "[0-9]*"])
+		result = subprocess.check_output("curl https://explorer.solarisplatform.com | grep 'row rows' | head -1 | grep -o '[0-9]*'", shell=True)
 		print result
