@@ -15,7 +15,9 @@ class aggregateBlocksData():
 		check = isinstance(findBlockNum, (int, long))
 
 		if check == True:
-			firstObj['block'] = str(findBlockNum)
+			firstObj['block'] = int(findBlockNum)
+			firstObj['time'] = int(firstObj['time'])
+			firstObj['mediantime'] = int(firstObj['mediantime'])
 			return json.dumps(firstObj)
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"
