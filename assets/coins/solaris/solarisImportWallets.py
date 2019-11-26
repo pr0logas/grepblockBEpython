@@ -55,7 +55,6 @@ while whileprogress<currentLastBlock:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 				result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
 				status = result
-				print result
 				t = int(round(time.time() * 1000))
 				setProcEnd = t
 
