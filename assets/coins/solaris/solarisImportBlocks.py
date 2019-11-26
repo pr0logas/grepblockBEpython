@@ -66,7 +66,8 @@ else:
 		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
 		bD = EX.getBlockContentByHash(bH)
-		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
+		correction = json.dumps(bD, sort_keys=True, indent=4)
+		aggregatedBlockData = AG.aggregateInsertBlockNumber(correction)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 		setProcEnd = int(round(time.time() * 1000))
