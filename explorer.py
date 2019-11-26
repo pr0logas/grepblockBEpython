@@ -1,4 +1,4 @@
-import sys, requests, time
+import sys, requests, time, re
 import urllib2, cookielib, json
 import subprocess
 from time import gmtime, strftime
@@ -59,5 +59,5 @@ class iquidusExplorer():
 
 	def getLastBlockSolarisDirty(self):
 		dirtyResult = subprocess.check_output("curl -s https://explorer.solarisplatform.com | grep 'row rows' | head -1 | grep -o '[0-9]*'", shell=True)
-		result = ' '.join(dirtyResult.split())
+		result = re.sub('\s+',' ',dirtyResult)
 		return result
