@@ -26,7 +26,7 @@ class iquidusExplorer():
 		req = self.u.Request(url, headers=self.header)
 		try:
 		    page = self.u.urlopen(req)
-		except httplib.InvalidURL:
+		except:
 			print "No new Blocks found. Sleeping..."
 			sys.exit(0)
 
