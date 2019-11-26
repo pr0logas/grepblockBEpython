@@ -51,6 +51,8 @@ while whileprogress<currentLastBlock:
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
 			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
+			t = int(round(time.time() * 1000)) # Set time in case where are no wallets?
+			setProcEnd = t
 			for uw in uniqWlts:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 				result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
@@ -61,7 +63,10 @@ while whileprogress<currentLastBlock:
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	if str(status) != 'None':
-		print timeSet + " Wallet inserted : " + str(status)
+		if str(status) != '':
+			print timeSet + " Wallet inserted : " + str(status)
+		else:
+			print timeSet + " Warning! Txid don't have any vout Wallets!"
 	
 	print timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
 

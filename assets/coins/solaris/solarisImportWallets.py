@@ -51,13 +51,15 @@ while whileprogress<currentLastBlock:
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
 			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
+			t = int(round(time.time() * 1000)) # Set time in case where are no wallets?
+			setProcEnd = t
 			for uw in uniqWlts:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 				result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
 				status = result
 				t = int(round(time.time() * 1000))
 				setProcEnd = t
-				
+
 	print setProcEnd
 	print setProcStart
 	performanceResult = str(setProcEnd - setProcStart)
