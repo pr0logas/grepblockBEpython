@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import pymongo
 import json, ast, time
 from time import gmtime, strftime

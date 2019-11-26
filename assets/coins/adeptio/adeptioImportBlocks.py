@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import sys, time
 from time import gmtime, strftime
 from adeptio import *

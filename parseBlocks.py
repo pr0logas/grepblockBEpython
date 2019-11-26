@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import json, fileinput
 from explorer import iquidusExplorer
 import os
@@ -13,7 +11,7 @@ class aggregateBlocksData():
 		firstObj = json.loads(blockData)
 		findBlockNum = int(firstObj['height'])
 		check = isinstance(findBlockNum, (int, long))
-		
+
 		if check == True:
 			append = '{\n  "block" : ' + str(findBlockNum) + ','
 			inserted = originalData.replace('{', append)
