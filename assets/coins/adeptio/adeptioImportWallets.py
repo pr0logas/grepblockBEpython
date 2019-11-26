@@ -58,8 +58,8 @@ while whileprogress<currentLastBlock:
 
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-	print timeSet + " Inserted Wallet: " + str(status)
-	print timeSet + " Finished Block: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
+	print timeSet + " Wallet inserted : " + str(status)
+	print timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
 
 	# Increase txidsProgress to move forward;
 	MC.updateLastTxidProgressPlusOne(collectionTxidProgress, whileprogress)
