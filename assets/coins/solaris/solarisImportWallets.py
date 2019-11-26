@@ -1,6 +1,6 @@
 import sys, time
 from time import gmtime, strftime
-from adeptio import *
+from solaris import *
 sys.path.append('../../../')
 from mongoDB import *
 from explorer import iquidusExplorer
