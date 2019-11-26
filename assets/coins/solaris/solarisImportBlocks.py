@@ -52,7 +52,6 @@ if diff >= 100:
 		setProcEnd = int(round(time.time() * 1000))
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print status
 		if str(status) != 'None':
 			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
 
@@ -73,6 +72,5 @@ else:
 		setProcEnd = int(round(time.time() * 1000))
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print status
 		if str(status) != 'None':
 			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
