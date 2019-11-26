@@ -96,8 +96,9 @@ class mongoConnection():
 		data = ast.literal_eval(aggregatedBlockData)
 		try:	
 			self.mongoDB[toCollection].insert(data)
-			print "Inserted block data:" + ' ' + str(data)
+			print "Inserted Block: " + str(data['block'])
 		except pymongo.errors.DuplicateKeyError:
+			print "MongoDB found a duplicate block, skipping..."
 			pass
 
 	@autoreconnect_retry

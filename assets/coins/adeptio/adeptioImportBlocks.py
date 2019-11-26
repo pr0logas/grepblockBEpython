@@ -44,7 +44,8 @@ if diff >= 100:
 	while whileprogress < parsingBlocksInRange:
 		bH = EX.getBlockHash(str(whileprogress))
 		bD = EX.getBlockContentByHash(bH)
-		AG.aggregateInsertBlockNumber(bD)
+		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
+		MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
 else: 
