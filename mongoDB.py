@@ -98,7 +98,7 @@ class mongoConnection():
 			return str(data['block'])
 		except pymongo.errors.DuplicateKeyError:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " MongoDB found a duplicate block, skipping..."
+			print timeSet + " MongoDB found a duplicate block: " + str(data['block']) + ', skipping...'
 			pass
 
 	@autoreconnect_retry
