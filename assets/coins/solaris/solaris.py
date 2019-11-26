@@ -17,7 +17,7 @@ rpcpassword = 'tothemoon'
 parseBlocksInRangeFor = 99
 
 chainProvider = 'https://explorer.solarisplatform.com'
-getBlockHashMethod = '/api/getblockhash?index='
+getBlockIndexMethod = '/api/getblockhash?index='
 getBlockwithHashMethod = '/api/getblock?hash='
 getTx = '/api/getrawtransaction?txid='
 
