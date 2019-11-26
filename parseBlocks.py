@@ -20,5 +20,3 @@ class aggregateBlocksData():
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"
 			sys.exit(1)
-
-
