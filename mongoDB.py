@@ -69,7 +69,6 @@ class mongoConnection():
  	@autoreconnect_retry
 	def upsertUniqueWallets(self, toCollection, jsonOfWallets):
 		data = eval(jsonOfWallets)
-		print data
 		#print(mongoerrors.__dict__.keys())
 		try:	
 			self.mongoDB[toCollection].insert(data)

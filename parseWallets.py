@@ -40,7 +40,6 @@ class aggregateWalletsData():
 
 	def createJsonForWallet(self, blockNum, blockTime, wallet):
 	    json = '{ "block" : ' + blockNum + ', "walletTime" : ' + blockTime + ', "wallet" : ' + '"'+wallet+'"' + '}'
-	    print json
 	    return json
 
 	def setBlockTime(self, blockData):
