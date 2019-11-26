@@ -7,6 +7,8 @@ class aggregateBlocksData():
 		pass
 
 	def aggregateInsertBlockNumber(self, blockData):
+		pretty_data = json.dumps(blockData.json(), indent=4)
+		print pretty_data
 		originalData = blockData
 		firstObj = json.loads(blockData)
 		findBlockNum = int(firstObj['height'])
