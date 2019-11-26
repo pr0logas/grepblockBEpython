@@ -61,7 +61,7 @@ while whileprogress<currentLastBlock:
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	if str(status) != 'None':
-		if not str(status).strip():
+		if str(status) != '':
 			print timeSet + " Wallet inserted : " + str(status)
 		else:
 			print timeSet + " Txid don't have any vout Wallets."
