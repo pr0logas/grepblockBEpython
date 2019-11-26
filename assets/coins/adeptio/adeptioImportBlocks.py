@@ -33,11 +33,28 @@ parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
 # Check if our progress is near by Explorer blocks?
 diff = str(currentExplBlock - currentLastBlock)
 
-if diff <= 100:
-	# Start Parsing blocks and push to MongoDB;
-	setProcStart = int(round(time.time() * 1000))
-	AG.parseBlocks(currentLastBlock, currentExplBlock)
-else:
-	# Start Parsing blocks ::in range:: and push to MongoDB;
-	setProcStart = int(round(time.time() * 1000))
-	AG.parseBlocksInRange(currentLastBlock, parsingBlocksInRange)
+# We have two choises here, parse the blocks in range for +- ~100 block (last block too far anyway) or until last Explorer block -2 //
+# We don't wanna to parse up to last block, because in case of wrong chain parsing node could rewrite the latest few blocks;
+if diff >= 100:
+	whileprogress = currentLastBlock # Start Parsing blocks ::in range:: and push to MongoDB;
+
+	if whileprogress == 0:
+		whileprogress += 1
+
+	while whileprogress < parsingBlocksInRange:
+		bH = EX.getBlockHash(str(whileprogress))
+		bD = EX.getBlockContentByHash(bH)
+		AG.aggregateInsertBlockNumber(bD)
+		whileprogress += 1
+
+else: 
+	whileprogress = currentLastBlock # Start Parsing blocks until last Explorer block -2 and push to MongoDB;
+
+	if whileprogress == 0:
+		whileprogress += 1
+
+	while whileprogress < currentExplBlock:
+		bH = EX.getBlockHash(str(whileprogress))
+		bD = EX.getBlockContentByHash(bH)
+		AG.aggregateInsertBlockNumber(bD)
+		whileprogress += 1

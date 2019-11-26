@@ -1,20 +1,24 @@
 #!/usr/bin/env python
 
+import json, fileinput
 from explorer import iquidusExplorer
+import os
 
-class aggregateBlocksData(iquidusExplorer):
+class aggregateBlocksData():
 	def __init__(self):
-		super(iquidusExplorer, self).__init__
-
-	def parseBlocks(self, currentBlock, explorerBlock):
-		whileprogress = currentBlock
-		while whileprogress < explorerBlock:
-			pass
-
-	def parseBlocksInRange(self, currentBlock, parseBlocksInRangeValue):
-		whileprogress = currentBlock
-		while whileprogress < parseBlocksInRangeValue:
-			pass
-
-	def appendBlockNumbertoJSON(blockData):
 		pass
+
+	def aggregateInsertBlockNumber(self, blockData):
+		originalData = blockData
+		firstObj = json.loads(blockData)
+		findBlockNum = int(firstObj['height'])
+		check = isinstance(findBlockNum, (int, long))
+		if check == True:
+			append = '{\n  "block" : ' + str(findBlockNum) + ','
+			inserted = originalData.replace('{', append)
+			return inserted
+		else:
+			print "FAIL! Looks like we can't aggregate Block Number!?"
+			sys.exit(1)
+
+
