@@ -57,14 +57,16 @@ while whileprogress<currentLastBlock:
 				status = result
 				t = int(round(time.time() * 1000))
 				setProcEnd = t
-
+				
+	print setProcEnd
+	print setProcStart
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	if str(status) != 'None':
 		if str(status) != '':
 			print timeSet + " Wallet inserted : " + str(status)
 		else:
-			print timeSet + " Txid don't have any vout Wallets."
+			print timeSet + " Warning! Txid don't have any vout Wallets!"
 	
 	print timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
 
