@@ -1,7 +1,6 @@
 import json, fileinput
 from explorer import iquidusExplorer
-import os, pprint
-from pprint import pprint
+import os
 
 class aggregateBlocksData():
 	def __init__(self):
