@@ -8,6 +8,7 @@ class aggregateBlocksData():
 
 	def aggregateInsertBlockNumber(self, blockData):
 		originalData = blockData
+		print originalData
 		firstObj = json.loads(blockData)
 		findBlockNum = int(firstObj['height'])
 		check = isinstance(findBlockNum, (int, long))
@@ -15,6 +16,7 @@ class aggregateBlocksData():
 		if check == True:
 			append = '{\n  "block" : ' + str(findBlockNum) + ','
 			inserted = originalData.replace('{', append)
+			print inserted
 			return inserted
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"

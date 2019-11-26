@@ -47,9 +47,7 @@ if diff >= 100:
 	while whileprogress < parsingBlocksInRange:
 		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
-		print bH
 		bD = EX.getBlockContentByHash(bH)
-		print bD
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
