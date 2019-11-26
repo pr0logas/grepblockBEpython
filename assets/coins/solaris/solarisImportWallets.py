@@ -55,12 +55,12 @@ while whileprogress<currentLastBlock:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 				result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
 				status = result
+				print result
 				t = int(round(time.time() * 1000))
 				setProcEnd = t
 
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-	print str(status)
 	if str(status) != 'None':
 		print timeSet + " Wallet inserted : " + str(status)
 	
