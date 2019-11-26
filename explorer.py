@@ -26,8 +26,10 @@ class iquidusExplorer():
 		req = self.u.Request(url, headers=self.header)
 		try:
 		    page = self.u.urlopen(req)
-		except urllib2.HTTPError, e:
+		except urllib2.HTTPError, e: or httplib.InvalidURL:
+			print "No new Blocks found. Sleeping..."
 		    print e.fp.read()
+
 
 		content = page.read()
 		return content
