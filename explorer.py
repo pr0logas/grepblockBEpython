@@ -45,8 +45,10 @@ class iquidusExplorer():
 		req = self.u.Request(url, headers=self.header)
 		try:
 		    page = self.u.urlopen(req)
-		except urllib2.HTTPError, e:
-		    print e.fp.read()
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " No new TXids found. Sleeping..."
+			sys.exit(0)
 
 		content = page.read()
 		return content
@@ -56,8 +58,10 @@ class iquidusExplorer():
 		req = self.u.Request(url, headers=self.header)
 		try:
 		    page = self.u.urlopen(req)
-		except urllib2.HTTPError, e:
-		    print e.fp.read()
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " Can't get last block?"
+			sys.exit(1)
 
 		content = page.read()
 		return content
