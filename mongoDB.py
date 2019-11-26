@@ -69,12 +69,11 @@ class mongoConnection():
  	@autoreconnect_retry
 	def upsertUniqueWallets(self, toCollection, jsonOfWallets):
 		data = ast.literal_eval(jsonOfWallets)
+		print data
+		print str(data['wallet'])
 		#print(mongoerrors.__dict__.keys())
 		try:	
 			self.mongoDB[toCollection].insert(data)
-			print data
-			print str(data['wallet'])
-			return str(data['wallet'])
 		except pymongo.errors.DuplicateKeyError:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " MongoDB found a duplicate wallet, skipping..."
