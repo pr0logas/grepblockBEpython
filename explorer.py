@@ -1,6 +1,7 @@
 import sys, requests, time
+import urllib2, cookielib, json
+import subprocess
 from time import gmtime, strftime
-import urllib2,cookielib,json
 
 class iquidusExplorer():
 	def __init__ (self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
@@ -55,3 +56,7 @@ class iquidusExplorer():
 
 		content = page.read()
 		return content
+
+	def getLastBlockSolarisDirty(self):
+		result = subprocess.run(["curl", chainProvider, "|", "grep", "rows", "|", "head", "-1" "|", "grep", "-o", "[0-9]*"])
+		print result
