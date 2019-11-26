@@ -15,12 +15,8 @@ class aggregateBlocksData():
 		check = isinstance(findBlockNum, (int, long))
 
 		if check == True:
-			print firstObj
 			firstObj['block'] = str(findBlockNum)
-			print firstObj
-			append = '{\n  "block" : ' + str(findBlockNum) + ','
-			inserted = originalData.replace('{', append)
-			return inserted
+			return json.dumps(firstObj)
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"
 			sys.exit(1)
