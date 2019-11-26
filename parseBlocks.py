@@ -15,6 +15,9 @@ class aggregateBlocksData():
 		check = isinstance(findBlockNum, (int, long))
 
 		if check == True:
+			print firstObj
+			firstObj['block'] = str(findBlockNum)
+			print firstObj
 			append = '{\n  "block" : ' + str(findBlockNum) + ','
 			inserted = originalData.replace('{', append)
 			return inserted
