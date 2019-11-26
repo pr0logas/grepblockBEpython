@@ -15,6 +15,7 @@ class aggregateBlocksData():
 
 		if check == True:
 			append = '{\n  "block" : ' + str(findBlockNum) + ','
+			print append
 			inserted = originalData.replace('{', append)
 			print inserted
 			return inserted

@@ -94,7 +94,6 @@ class mongoConnection():
 	def insertBlocksData(self, toCollection, aggregatedBlockData):
 		data = ast.literal_eval(aggregatedBlockData)
 		try:
-			print "This is to mongoDB", data
 			self.mongoDB[toCollection].insert(data)
 			return str(data['block'])
 		except pymongo.errors.DuplicateKeyError:
