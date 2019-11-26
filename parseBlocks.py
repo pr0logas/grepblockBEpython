@@ -7,6 +7,7 @@ class aggregateBlocksData():
 		pass
 
 	def aggregateInsertBlockNumber(self, blockData):
+		print blockData
 		pretty_data = json.dumps(blockData.json(), indent=4)
 		print pretty_data
 		originalData = blockData
