@@ -40,6 +40,7 @@ if currentLastTxidProgress == 0:
 whileprogress = currentLastTxidProgress
 while whileprogress<currentLastBlock:
 
+	setProcEnd = 0
 	status = ''
 	setProcStart = int(round(time.time() * 1000))
 	blockData = MC.findByBlock(collectionForBlocks, whileprogress)
@@ -54,7 +55,8 @@ while whileprogress<currentLastBlock:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 				result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
 				status = result
-				setProcEnd = int(round(time.time() * 1000))
+				t = int(round(time.time() * 1000))
+				setProcEnd = t
 
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())

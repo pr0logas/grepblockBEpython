@@ -74,6 +74,7 @@ class mongoConnection():
 		#print(mongoerrors.__dict__.keys())
 		try:	
 			self.mongoDB[toCollection].insert(data)
+			return str(data['wallet'])
 		except pymongo.errors.DuplicateKeyError:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " MongoDB found a duplicate wallet, skipping..."
