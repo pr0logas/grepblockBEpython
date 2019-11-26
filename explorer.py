@@ -19,8 +19,13 @@ class iquidusExplorer():
 		       'Connection': 'keep-alive'}
 
 	def getBlockHash(self, blockNum):
-		result = list(self.r.get(self.chainProvider+self.getBlockIndexMethod+blockNum))
-		return result[0]
+		try:
+		    result = list(self.r.get(self.chainProvider+self.getBlockIndexMethod+blockNum))
+		    return result[0]
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " No new Blocks found. Sleeping..."
+			sys.exit(0)		
 
 	def getBlockContentByHash(self, blockHash):
 		url = (self.chainProvider+self.getBlockwithHashMethod+blockHash)
