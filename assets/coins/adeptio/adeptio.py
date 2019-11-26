@@ -14,7 +14,7 @@ rpcport = 9078
 rpcuser = "grepblock"
 rpcpassword = "tothemoon"
 
-parseBlocksInRangeFor=99
+parseBlocksInRangeFor=299
 
 chainProvider = 'https://explorer.adeptio.cc'
 getBlockIndexMethod = '/api/getblockhash?index='
