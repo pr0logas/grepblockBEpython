@@ -1,5 +1,5 @@
-import sys
-import requests
+import sys, requests, time
+from time import gmtime, strftime
 import urllib2,cookielib,json
 
 class iquidusExplorer():
@@ -27,7 +27,8 @@ class iquidusExplorer():
 		try:
 		    page = self.u.urlopen(req)
 		except:
-			print "No new Blocks found. Sleeping..."
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " No new Blocks found. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
