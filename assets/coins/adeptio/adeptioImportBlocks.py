@@ -21,7 +21,6 @@ if MC.checkIfBlocksColEmpty(collectionForBlocks) == "Empty":
 
 # Set current progress;
 currentLastBlock = MC.findLastBlock(collectionForBlocks)
-print currentLastBlock
 
 # Check last Explorer block:
 currentExplBlock = int(EX.getLastBlock())
@@ -32,7 +31,6 @@ parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
 
 # Check if our progress is near by Explorer blocks?
 diff = str(currentExplBlock - currentLastBlock)
-print diff
 
 # We have two choises here, parse the blocks in range for +- ~100 block (last block too far anyway) or until last Explorer block -2 //
 # We don't wanna to parse up to last block, because in case of wrong chain parsing node could rewrite the latest few blocks;

@@ -17,8 +17,11 @@ class aggregateBlocksData():
 		if check == True:
 			firstObj['block'] = int(findBlockNum)
 			firstObj['time'] = int(firstObj['time'])
+			firstObj['nextblockhash'] = str("null")
+
 			if 'mediantime' in firstObj:
 				firstObj['mediantime'] = int(firstObj['mediantime'])
+				
 			return json.dumps(firstObj)
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"
