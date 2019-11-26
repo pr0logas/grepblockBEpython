@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import pymongo
-import json
-import ast
+import json, ast, time
+from time import gmtime, strftime
 from pymongo.errors import AutoReconnect
 from pymongo import errors as mongoerrors
 
@@ -74,9 +74,10 @@ class mongoConnection():
 		#print(mongoerrors.__dict__.keys())
 		try:	
 			self.mongoDB[toCollection].insert(data)
-			print "Inserted:" + ' ' + str(data)
+			return str(data['wallet'])
 		except pymongo.errors.DuplicateKeyError:
-			print "MongoDB found a duplicate wallet, skipping..."
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " MongoDB found a duplicate wallet, skipping..."
 			pass
 
  	@autoreconnect_retry
@@ -96,9 +97,10 @@ class mongoConnection():
 		data = ast.literal_eval(aggregatedBlockData)
 		try:	
 			self.mongoDB[toCollection].insert(data)
-			print "Inserted Block: " + str(data['block'])
+			return str(data['block'])
 		except pymongo.errors.DuplicateKeyError:
-			print "MongoDB found a duplicate block, skipping..."
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " MongoDB found a duplicate block, skipping..."
 			pass
 
 	@autoreconnect_retry

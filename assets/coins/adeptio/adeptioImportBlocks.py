@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys, time
+from time import gmtime, strftime
 from adeptio import *
 sys.path.append('../../../')
 from mongoDB import *
@@ -35,27 +36,41 @@ diff = str(currentExplBlock - currentLastBlock)
 
 # We have two choises here, parse the blocks in range for +- ~100 block (last block too far anyway) or until last Explorer block -2 //
 # We don't wanna to parse up to last block, because in case of wrong chain parsing node could rewrite the latest few blocks;
+
+# Start Parsing blocks ::in range:: and push to MongoDB;
 if diff >= 100:
-	whileprogress = currentLastBlock # Start Parsing blocks ::in range:: and push to MongoDB;
+	whileprogress = currentLastBlock 
 
 	if whileprogress == 0:
 		whileprogress += 1
 
 	while whileprogress < parsingBlocksInRange:
+		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
 		bD = EX.getBlockContentByHash(bH)
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
-		MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
+		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
+		setProcEnd = int(round(time.time() * 1000))
+		performanceResult = str(setProcEnd - setProcStart)
+		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+		print timeSet + " Finished Block: " + str(status) + ' // ' + (performanceResult) + ' ms'
 
+# Start Parsing blocks until last Explorer block -2 and push to MongoDB;
 else: 
-	whileprogress = currentLastBlock # Start Parsing blocks until last Explorer block -2 and push to MongoDB;
+	whileprogress = currentLastBlock 
 
 	if whileprogress == 0:
 		whileprogress += 1
 
 	while whileprogress < currentExplBlock:
+		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
 		bD = EX.getBlockContentByHash(bH)
-		AG.aggregateInsertBlockNumber(bD)
+		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
+		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
+		setProcEnd = int(round(time.time() * 1000))
+		performanceResult = str(setProcEnd - setProcStart)
+		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+		print timeSet + " Finished Block: " + str(status) + ' // ' + (performanceResult) + ' ms'
