@@ -52,7 +52,8 @@ if diff >= 100:
 		setProcEnd = int(round(time.time() * 1000))
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
+		if str(status) != 'None':
+			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
 
 # Start Parsing blocks until last Explorer block -2 and push to MongoDB;
 else: 
