@@ -8,7 +8,6 @@ class aggregateBlocksData():
 		pass
 
 	def aggregateInsertBlockNumber(self, blockData):
-		print blockData
 		originalData = blockData
 		firstObj = json.loads(blockData)
 		findBlockNum = int(firstObj['height'])
@@ -21,7 +20,7 @@ class aggregateBlocksData():
 
 			if 'mediantime' in firstObj:
 				firstObj['mediantime'] = int(firstObj['mediantime'])
-				
+
 			return json.dumps(firstObj)
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"
