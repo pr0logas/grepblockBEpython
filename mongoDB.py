@@ -5,7 +5,7 @@ from pymongo.errors import AutoReconnect
 from pymongo import errors as mongoerrors
 
 mongoAuth = {
-	"host" : "127.0.0.1",
+	"host" : "mongoHostIP",
 	"port" : ":27017",
 }
 
