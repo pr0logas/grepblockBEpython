@@ -94,6 +94,7 @@ class mongoConnection():
 	@autoreconnect_retry
 	def insertBlocksData(self, toCollection, aggregatedBlockData):
 		data = eval(aggregatedBlockData)
+		print data
 		#data = ast.literal_eval(aggregatedBlockData)
 		try:
 			self.mongoDB[toCollection].insert(data)
