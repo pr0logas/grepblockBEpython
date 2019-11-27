@@ -36,8 +36,7 @@ diff = str(currentExplBlock - currentLastBlock)
 # We don't wanna to parse up to last block, because in case of wrong chain parsing node could rewrite the latest few blocks;
 
 # Start Parsing blocks ::in range:: and push to MongoDB;
-if diff <= 100:
-	print diff
+if (diff >= 100):
 	whileprogress = currentLastBlock 
 
 	if whileprogress == 0:
@@ -62,7 +61,6 @@ if diff <= 100:
 
 # Start Parsing blocks until last Explorer block -2 and push to MongoDB;
 else: 
-	print diff
 	whileprogress = currentLastBlock 
 
 	if whileprogress == 0:
