@@ -83,3 +83,5 @@ else:
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 		if str(status) != 'None':
 			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
+
+	print " No new blocks found, last one: " + str(currentExplBlock)
