@@ -24,7 +24,7 @@ currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Check last Explorer block:
 currentExplBlock = int(EX.getLastBlockSolarisDirty())
-currentExplBlock -= 3
+currentExplBlock -= 2
 
 # Set how much blocks we want to sync from current point +- ~99
 parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
@@ -59,6 +59,9 @@ if diff <= 100:
 		if str(status) != 'None':
 			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
 
+	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	print timeSet + " No new blocks found, last one: " + str(parsingBlocksInRange)
+
 # Start Parsing blocks until last Explorer block -2 and push to MongoDB;
 else: 
 	whileprogress = currentLastBlock 
@@ -84,4 +87,5 @@ else:
 		if str(status) != 'None':
 			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
 
-	print " No new blocks found, last one: " + str(currentExplBlock)
+	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	print timeSet + " No new blocks found, last one: " + str(currentExplBlock)
