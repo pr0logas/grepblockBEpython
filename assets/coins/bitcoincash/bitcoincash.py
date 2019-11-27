@@ -1,22 +1,22 @@
 # Defaults
-database = bitcoin-cash
-assetTicker = "BCH"
-assetName = "bitcoin-cash"
+database = 'bitcoin-cash'
+assetTicker = 'BCH'
+assetName = 'bitcoin-cash'
 genesisBlock = 1231469665
-coinGeckoStartUnixTime = "1501718400"
+coinGeckoStartUnixTime = 1501718400
 blockTime = 600
 
 # RPC
-rpcconnect = 10.10.100.201
+rpcconnect = '10.10.100.201'
 rpcport = 18332
-rpcuser = grepblockuser
-rpcpassword = grepblocktothemoon
+rpcuser = 'grepblockuser'
+rpcpassword = 'grepblocktothemoon'
 
 parseBlocksInRangeFor = 99
 
-chainProvider = "https://blockdozer.com"
-getBlockIndexMethod = "api/block-index/"
-getBlockwithHashMethod = "/api/block/"
+chainProvider = 'https://blockdozer.com'
+getBlockIndexMethod = 'api/block-index/'
+getBlockwithHashMethod = '/api/block/'
 getTx = '/api/tx/'
 
 apiProvider = 'api.coingecko.com'

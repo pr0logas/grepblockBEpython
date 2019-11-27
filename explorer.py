@@ -3,6 +3,7 @@ import urllib2, cookielib, json
 import subprocess
 from time import gmtime, strftime
 
+__metaclass__ = type
 class iquidusExplorer():
 	def __init__ (self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
 		self.chainProvider = chainProvider
@@ -24,7 +25,7 @@ class iquidusExplorer():
 		    return result[0]
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new Blocks found. Sleeping..."
+			print timeSet + " No new Blocks found1. Sleeping..."
 			sys.exit(0)		
 
 	def getBlockContentByHash(self, blockHash):
@@ -34,7 +35,7 @@ class iquidusExplorer():
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new Blocks found. Sleeping..."
+			print timeSet + " No new Blocks found2. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
@@ -47,7 +48,7 @@ class iquidusExplorer():
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new TXids found. Sleeping..."
+			print timeSet + " No new TXids found2. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
@@ -76,7 +77,57 @@ class iquidusExplorer():
 			print timeSet + " Can't get last block?"
 			sys.exit(1)
 
-#class insightExplorer(iquidusExplorer):
-#	def __init__ (self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
-#		iquidusExplorer.__init__(self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
-#		pass
+
+class insightExplorer(iquidusExplorer):
+	def __init__ (self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
+		iquidusExplorer.__init__(self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
+
+	def getBlockHash(self, blockNum):
+		try:
+		    result = list(self.r.get(self.chainProvider+self.getBlockIndexMethod+blockNum))
+		    return result[0]
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " No new Blocks found1. Sleeping..."
+			sys.exit(0)		
+
+	def getBlockContentByHash(self, blockHash):
+		url = (self.chainProvider+self.getBlockwithHashMethod+blockHash)
+		req = self.u.Request(url, headers=self.header)
+		try:
+		    page = self.u.urlopen(req)
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " No new Blocks found2. Sleeping..."
+			sys.exit(0)
+
+		content = page.read()
+		return content
+
+	def getTxContentByTxid(self, txid):
+		url = (self.chainProvider+self.getTx+txid+'&decrypt=1')
+		req = self.u.Request(url, headers=self.header)
+		try:
+		    page = self.u.urlopen(req)
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " No new TXids found. Sleeping..."
+			sys.exit(0)
+
+		content = page.read()
+		return content
+
+	def getLastBlock(self):
+		url = (self.chainProvider+'/api/status?q=getBlockCount')
+		req = self.u.Request(url, headers=self.header)
+		try:
+		    page = self.u.urlopen(req)
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " Can't get last block?"
+			sys.exit(1)
+
+		content = page.read()
+		firstObj = json.loads(content)
+		findBlockNum = int(firstObj['info']['blocks'])
+		return findBlockNum
