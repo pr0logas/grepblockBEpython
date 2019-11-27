@@ -36,7 +36,8 @@ diff = str(currentExplBlock - currentLastBlock)
 # We don't wanna to parse up to last block, because in case of wrong chain parsing node could rewrite the latest few blocks;
 
 # Start Parsing blocks ::in range:: and push to MongoDB;
-if diff >= 100:
+if diff <= 100:
+	print diff
 	whileprogress = currentLastBlock 
 
 	if whileprogress == 0:
@@ -49,11 +50,15 @@ if diff >= 100:
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
+
 		setProcEnd = int(round(time.time() * 1000))
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 		if str(status) != 'None':
 			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
+
+	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	print timeSet + " No new blocks found, last one: " + str(parsingBlocksInRange)
 
 # Start Parsing blocks until last Explorer block -2 and push to MongoDB;
 else: 
@@ -69,8 +74,12 @@ else:
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
+
 		setProcEnd = int(round(time.time() * 1000))
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 		if str(status) != 'None':
 			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
+
+	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	print timeSet + " No new blocks found, last one: " + str(currentExplBlock)
