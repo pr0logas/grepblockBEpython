@@ -50,7 +50,6 @@ while whileprogress<currentLastBlock:
 		getTxData = EX.getTxContentByTxid(txid)
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
-			setProcEnd = t
 			for uw in uniqWlts:
 				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 				result = MC.upsertUniqueWallets(collectionForWallets, createJSON)

@@ -24,7 +24,7 @@ currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Check last Explorer block:
 currentExplBlock = int(EX.getLastBlockSolarisDirty())
-currentExplBlock -= 2
+currentExplBlock -= 3
 
 # Set how much blocks we want to sync from current point +- ~99
 parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
