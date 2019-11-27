@@ -37,6 +37,7 @@ diff = str(currentExplBlock - currentLastBlock)
 
 # Start Parsing blocks ::in range:: and push to MongoDB;
 if diff >= 100:
+	print diff
 	whileprogress = currentLastBlock 
 
 	if whileprogress == 0:
