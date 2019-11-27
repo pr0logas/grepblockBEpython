@@ -66,6 +66,8 @@ else:
 	if whileprogress == 0:
 		whileprogress += 1
 
+	print whileprogress
+	print currentExplBlock
 	while whileprogress < currentExplBlock:
 		print "while", whileprogress
 		print "expl", currentExplBlock
