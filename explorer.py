@@ -69,8 +69,8 @@ class iquidusExplorer():
 	def getLastBlockSolarisDirty(self):
 		result = subprocess.check_output("curl -s https://explorer.solarisplatform.com | grep 'row rows' | head -1 | grep -o '[0-9]*'", shell=True).strip()
 		try:
-			test = result
-    		test += 1
+			t = result
+    		t += 1
     		return result
 		except TypeError:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
