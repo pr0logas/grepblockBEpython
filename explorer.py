@@ -68,7 +68,7 @@ class iquidusExplorer():
 
 	def getLastBlockSolarisDirty(self):
 		result = subprocess.check_output("curl -s https://explorer.solarisplatform.com | grep 'row rows' | head -1 | grep -o '[0-9]*'", shell=True).strip()
-		t = any(result.isdigit())
+		t = any(char.isdigit() for char in result)
 		if t == True:
 			return result
 		else:
