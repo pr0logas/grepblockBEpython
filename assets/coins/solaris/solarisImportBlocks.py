@@ -62,6 +62,7 @@ if diff <= 100:
 
 # Start Parsing blocks until last Explorer block -2 and push to MongoDB;
 else: 
+	print diff
 	whileprogress = currentLastBlock 
 
 	if whileprogress == 0:

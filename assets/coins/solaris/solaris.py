@@ -24,4 +24,4 @@ getTx = '/api/getrawtransaction?txid='
 apiProvider = 'api.coingecko.com'
 
 #
-daemonCli="solaris-cli"
+daemonCli = "solaris-cli"

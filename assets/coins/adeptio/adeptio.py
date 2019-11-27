@@ -14,7 +14,7 @@ rpcport = 9078
 rpcuser = "grepblock"
 rpcpassword = "tothemoon"
 
-parseBlocksInRangeFor=99
+parseBlocksInRangeFor = 99
 
 chainProvider = 'https://explorer.adeptio.cc'
 getBlockIndexMethod = '/api/getblockhash?index='
@@ -24,4 +24,4 @@ getTx = '/api/getrawtransaction?txid='
 apiProvider = 'api.coingecko.com'
 
 #
-daemonCli="adeptio-cli"
+daemonCli = "adeptio-cli"
