@@ -49,6 +49,7 @@ if diff >= 100:
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
+
 		setProcEnd = int(round(time.time() * 1000))
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
@@ -63,12 +64,15 @@ else:
 		whileprogress += 1
 
 	while whileprogress < currentExplBlock:
+		print "while", whileprogress
+		print "expl", currentExplBlock
 		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
 		bD = EX.getBlockContentByHash(bH)
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(correction)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
+
 		setProcEnd = int(round(time.time() * 1000))
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
