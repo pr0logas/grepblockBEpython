@@ -75,3 +75,8 @@ class iquidusExplorer():
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " Can't get last block?"
 			sys.exit(1)
+
+class insightExplorer(iquidusExplorer):
+	def __init__ (self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
+		iquidusExplorer.__init__(self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
+		pass
