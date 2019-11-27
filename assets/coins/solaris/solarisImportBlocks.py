@@ -43,6 +43,8 @@ if diff >= 100:
 		whileprogress += 1
 
 	while whileprogress < parsingBlocksInRange:
+		print "while2", whileprogress
+		print "expl2", currentExplBlock
 		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
 		bD = EX.getBlockContentByHash(bH)
