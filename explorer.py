@@ -76,7 +76,7 @@ class iquidusExplorer():
 			print timeSet + " Can't get last block?"
 			sys.exit(1)
 
-class insightExplorer(iquidusExplorer):
-	def __init__ (self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
-		iquidusExplorer.__init__(self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
-		pass
+#class insightExplorer(iquidusExplorer):
+#	def __init__ (self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
+#		iquidusExplorer.__init__(self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
+#		pass
