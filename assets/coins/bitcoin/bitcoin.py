@@ -7,7 +7,7 @@ coinGeckoStartUnixTime = 1532088000
 blockTime = 60
 
 # RPC
-rpcconnect = "10.10.100.201"
+rpcconnect = "127.0.0.1"
 rpcport = 8332
 rpcuser = "grepblockuser"
 rpcpassword = "grepblocktothemoon"

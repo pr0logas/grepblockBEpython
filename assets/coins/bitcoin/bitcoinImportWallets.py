@@ -1,9 +1,9 @@
 import sys, time
 from time import gmtime, strftime
-from adeptio import *
+from bitcoin import *
 sys.path.append('../../../')
 from mongoDB import *
-from explorer import iquidusExplorer
+from rpc import nodeRpcCaller
 from parseWallets import aggregateWalletsData
 
 collectionTxidProgress = "txidsProgress"
@@ -12,7 +12,7 @@ collectionForWallets = "wallets"
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, database, collectionTxidProgress)
-EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
+RPC = nodeRpcCaller(daemonCli, rpcconnect, rpcport, rpcuser, rpcpassword)
 AG = aggregateWalletsData()
 
 # Check if txidProgress col empty or not?
@@ -47,7 +47,7 @@ while whileprogress<currentLastBlock:
 	blockTime = blockData['time']
 	blockNumber = blockData['height']
 	for txid in blockData['tx']:
-		getTxData = EX.getTxContentByTxid(txid)
+		getTxData = RPC.getTxContentByTxid(txid)
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
 			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)

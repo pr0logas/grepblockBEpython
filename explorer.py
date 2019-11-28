@@ -52,7 +52,7 @@ class iquidusExplorer():
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new TXids found2. Sleeping..."
+			print timeSet + " No new TXids found1. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
@@ -108,7 +108,7 @@ class insightExplorer(iquidusExplorer):
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new TXids found2. Sleeping..."
+			print timeSet + " No new TXids found1. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
