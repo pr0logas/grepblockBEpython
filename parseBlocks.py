@@ -24,7 +24,7 @@ class aggregateBlocksData():
 				firstObj['isMainChain'] = str(firstObj['isMainChain'])
 
 			if 'stakemod' in firstObj:
-				firstObj['stakemod'] = str(firstObj['isMainChain'])
+				firstObj['stakemod'] = str(firstObj['stakemod'])
 
 			return json.dumps(firstObj)
 		else:
