@@ -115,7 +115,7 @@ class insightExplorer(iquidusExplorer):
 		return content
 
 	def getLastBlock(self):
-		url = (self.chainProvider+'api/status?q=getBlockCount')
+		url = (self.chainProvider+'api/status?q=getInfo')
 		req = self.u.Request(url, headers=self.header)
 		try:
 		    page = self.u.urlopen(req)
