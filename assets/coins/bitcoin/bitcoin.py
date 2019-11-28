@@ -2,9 +2,9 @@
 database = "bitcoin"
 assetTicker="BTC"
 assetName = "bitcoin"
-genesisBlock = 1527710105
-coinGeckoStartUnixTime = 1532088000
-blockTime = 60
+genesisBlock = 1231469665
+coinGeckoStartUnixTime = 1367280000
+blockTime = 600
 
 # RPC
 rpcconnect = "10.10.100.201"
