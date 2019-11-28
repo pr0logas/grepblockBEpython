@@ -26,6 +26,9 @@ class aggregateBlocksData():
 			if 'stakemod' in firstObj:
 				firstObj['stakemod'] = str(firstObj['stakemod'])
 
+			if 'chainlock' in firstObj:
+				firstObj['chainlock'] = str(firstObj['chainlock'])
+
 			return json.dumps(firstObj)
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"
