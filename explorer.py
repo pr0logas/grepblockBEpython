@@ -128,3 +128,31 @@ class insightExplorer(iquidusExplorer):
 		firstObj = json.loads(content)
 		findBlockNum = int(firstObj['info']['blocks'])
 		return findBlockNum
+
+	def getLastBlockAlternative(self):
+		url = (self.chainProvider+'api/status?q=getLastBlockHash')
+		req = self.u.Request(url, headers=self.header)
+		try:
+		    page = self.u.urlopen(req)
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " Can't get last block?"
+			sys.exit(1)
+
+		content = page.read()
+		firstObj = json.loads(content)
+		h = str(firstObj['lastblockhash'])
+
+		s = (self.chainProvider+self.getBlockwithHashMethod+h)
+		r = self.u.Request(s, headers=self.header)
+		try:
+		    page = self.u.urlopen(r)
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " Can't get last block Alternative?"
+			sys.exit(0)
+
+		content = page.read()
+		sObj = json.loads(content)
+		res = int(sObj['height'])
+		return res
