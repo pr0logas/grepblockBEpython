@@ -57,3 +57,20 @@ class nodeRpcCaller():
 			print timeSet + " Can't get last block?"
 			sys.exit(1)
 
+
+class nodeRpcCallerDash(nodeRpcCaller):
+	def __init__ (self, daemonCli, IP, port, user, password):
+		nodeRpcCaller.__init__(self, daemonCli, IP, port, user, password)
+
+	def getLastBlock(self):
+		fullcall = self.command + ' getinfo'
+		res = subprocess.check_output(fullcall, shell=True).strip()
+		t = any(char.isdigit() for char in res)
+		if t == True:
+			firstObj = json.loads(res)
+			result = str(firstObj['blocks'])
+			return result
+		else:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " Can't get last block?"
+			sys.exit(1)
