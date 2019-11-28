@@ -14,10 +14,10 @@ rpcpassword = 'grepblocktothemoon'
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://blockdozer.com'
+chainProvider = 'https://blockdozer.com/'
 getBlockIndexMethod = 'api/block-index/'
-getBlockwithHashMethod = '/api/block/'
-getTx = '/api/tx/'
+getBlockwithHashMethod = 'api/block/'
+getTx = 'api/tx/'
 
 apiProvider = 'api.coingecko.com'
 

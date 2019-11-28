@@ -20,6 +20,9 @@ class aggregateBlocksData():
 			if 'mediantime' in firstObj:
 				firstObj['mediantime'] = int(firstObj['mediantime'])
 
+			if 'isMainChain' in firstObj:
+				firstObj['isMainChain'] = str(firstObj['isMainChain'])
+
 			return json.dumps(firstObj)
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"

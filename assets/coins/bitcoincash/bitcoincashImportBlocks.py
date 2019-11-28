@@ -29,7 +29,7 @@ currentExplBlock -= 2
 # Set how much blocks we want to sync from current point +- ~99
 parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
 
-# Check if our progress is near by Explorer blocks?
+# Check if our progress is near by Explorer bloapi/status?q=getBlockCountcks?
 diff = str(currentExplBlock - currentLastBlock)
 
 # We have two choises here, parse the blocks in range for +- ~100 block (last block too far anyway) or until last Explorer block -2 //
@@ -45,6 +45,7 @@ if (int(diff) >= 100):
 	while whileprogress < parsingBlocksInRange:
 		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
+		time.sleep(1) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
@@ -69,6 +70,7 @@ else:
 	while whileprogress < currentExplBlock:
 		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
+		time.sleep(1) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
