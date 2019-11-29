@@ -3,7 +3,7 @@ from time import gmtime, strftime
 from ravencoin import *
 sys.path.append('../../../')
 from mongoDB import *
-from rpc import nodeRpcCallerDash
+from rpc import nodeRpcCaller
 from parseBlocks import aggregateBlocksData
 
 db = database
@@ -11,7 +11,7 @@ collectionForBlocks = "blocks"
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
-RPC = nodeRpcCallerDash(daemonCli, rpcconnect, rpcport, rpcuser, rpcpassword)
+RPC = nodeRpcCaller(daemonCli, rpcconnect, rpcport, rpcuser, rpcpassword)
 AG = aggregateBlocksData()
 
 # Check if blocks col empty or not?
