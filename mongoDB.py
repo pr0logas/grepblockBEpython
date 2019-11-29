@@ -89,18 +89,34 @@ class mongoConnection():
 		data = '{ "block" : 0 }'
 		setData = ast.literal_eval(data)
 		self.mongoDB[toCollection].insert(setData)
+		print "**Creating required indexes for MongoDB**"
+		self.mongoDB[toCollection].create_index([('block', pymongo.ASCENDING)], unique=True)
+		self.mongoDB[toCollection].create_index([('tx', pymongo.ASCENDING)])
+		self.mongoDB[toCollection].create_index([('hash', pymongo.ASCENDING)])
+		self.mongoDB[toCollection].create_index([('merkleroot', pymongo.ASCENDING)])
+		self.mongoDB[toCollection].create_index([('time', pymongo.ASCENDING)])
+		self.mongoDB[toCollection].create_index([('mediantime', pymongo.ASCENDING)])
 
  	@autoreconnect_retry
 	def insertInitValueForWalletsProgress(self, toCollection):
 		data = '{ "lastblock" : 0 }'
 		setData = ast.literal_eval(data)
+		print "**Creating required indexes for MongoDB**"
 		self.mongoDB[toCollection].insert(setData)
+		self.mongoDB[toCollection].create_index([('lastblock', pymongo.ASCENDING)], unique=True)
+		self.mongoDB['wallets'].create_index([('walletTime', pymongo.ASCENDING)])
+		self.mongoDB['wallets'].create_index([('block', pymongo.ASCENDING)])
+		self.mongoDB['wallets'].create_index([('wallet', pymongo.ASCENDING)], unique=True)
 
  	@autoreconnect_retry
 	def insertInitValueForHP(self, toCollection, time):
 		data = '{ "unix_time" : ' + str(time) + ' }'
 		setData = ast.literal_eval(data)
 		self.mongoDB[toCollection].insert(setData)
+		print "**Creating required indexes for MongoDB**"
+		self.mongoDB[toCollection].create_index([('unix_time', pymongo.ASCENDING)], unique=True)
+		self.mongoDB['priceDataUSD'].create_index([('unix_time', pymongo.ASCENDING)], unique=True)
+
 		
 	@autoreconnect_retry
 	def insertBlocksData(self, toCollection, aggregatedBlockData):
