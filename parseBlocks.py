@@ -30,7 +30,7 @@ class aggregateBlocksData():
 				firstObj['chainlock'] = str(firstObj['chainlock'])
 
 			if 'monitored' in firstObj:
-				firstObj['monitored'] = str("true")
+				firstObj['monitored'] = str("null")
 
 			return json.dumps(firstObj)
 		else:
