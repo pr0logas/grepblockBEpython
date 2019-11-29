@@ -1,5 +1,3 @@
-
-
 # Defaults
 database = "adeptio"
 assetTicker="ADE"
@@ -21,7 +19,8 @@ getBlockIndexMethod = '/api/getblockhash?index='
 getBlockwithHashMethod = '/api/getblock?hash='
 getTx = '/api/getrawtransaction?txid='
 
-apiProvider = 'api.coingecko.com'
+apiProvider = 'https://api.coingecko.com'
+vsCurrencyUSD = 'usd'
 
 #
 daemonCli = "adeptio-cli"

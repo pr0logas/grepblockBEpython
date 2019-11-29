@@ -1,4 +1,4 @@
-import sys, requests, time, re
+import sys, time, re
 import urllib2, cookielib, json
 import subprocess
 from time import gmtime, strftime
@@ -10,7 +10,6 @@ class iquidusExplorer():
 		self.getBlockIndexMethod = getBlockIndexMethod
 		self.getBlockwithHashMethod = getBlockwithHashMethod
 		self.getTx = getTx
-		self.r = requests
 		self.u = urllib2
 		self.header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (INFO, GrepBlock.com) Chrome/23.0.1271.64 Safari/537.11',
 		       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',

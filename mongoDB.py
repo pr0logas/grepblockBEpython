@@ -103,6 +103,18 @@ class mongoConnection():
 			pass
 
 	@autoreconnect_retry
+	def insertPricesData(self, toCollection, aggregatedPricesData):
+		data = eval(aggregatedPricesData)
+		#data = ast.literal_eval(aggregatedBlockData)
+		try:
+			self.mongoDB[toCollection].insert(data)
+			return str(data['current_price'])
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " MongoDB failed to insert Price Data!"
+			sys.exit(1)
+
+	@autoreconnect_retry
 	def checkIfBlocksColEmpty(self, fromCollection):
 		check = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
 		if check == []:
