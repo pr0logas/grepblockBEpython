@@ -47,6 +47,7 @@ while whileprogress<currentLastBlock:
 	blockTime = blockData['time']
 	blockNumber = blockData['height']
 	for txid in blockData['tx']:
+		time.sleep(5) # Sleep otherwise rate-limit occur
 		getTxData = EX.getTxContentByTxid(txid)
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
