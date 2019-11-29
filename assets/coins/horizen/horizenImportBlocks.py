@@ -46,9 +46,7 @@ if (int(diff) >= 100):
 		setProcStart = int(round(time.time() * 1000))
 		bH = RPC.getBlockHash(str(whileprogress))
 		bD = RPC.getBlockContentByHash(bH)
-		print bD
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
-		print aggregatedBlockData
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
@@ -72,9 +70,7 @@ else:
 		setProcStart = int(round(time.time() * 1000))
 		bH = RPC.getBlockHash(str(whileprogress))
 		bD = RPC.getBlockContentByHash(bH)
-		print bD
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
-		print aggregatedBlockData
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
