@@ -49,4 +49,4 @@ class parseCoinGeckoPrices():
 		if secObj['price_change_24h'] is None:
 			secObj['price_change_24h'] = int('0')
 
-		return json.dumps(firstObj[0])
+		return json.dumps(secObj[0])
