@@ -132,6 +132,8 @@ class insightExplorer(iquidusExplorer):
 	def getLastBlockAlternative(self):
 		url = (self.chainProvider+'api/status?q=getLastBlockHash')
 		req = self.u.Request(url, headers=self.header)
+		page = self.u.urlopen(req)
+		print page
 		try:
 		    page = self.u.urlopen(req)
 		except:
