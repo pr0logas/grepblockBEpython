@@ -21,6 +21,7 @@ getTx = '/api/getrawtransaction?txid='
 
 apiProvider = 'https://api.coingecko.com'
 vsCurrencyUSD = 'usd'
-
+collectionForPricesUSD = 'priceDataUSD'
+collectionForHistoricalPricesUSD = 'historicalPriceData'
 #
 daemonCli = "adeptio-cli"

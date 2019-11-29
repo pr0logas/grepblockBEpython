@@ -1,5 +1,5 @@
 import pymongo
-import json, ast, time
+import json, ast, time, sys
 from time import gmtime, strftime
 from pymongo.errors import AutoReconnect
 from pymongo import errors as mongoerrors
@@ -51,6 +51,12 @@ class mongoConnection():
 		lastTxidProgress = searchLastTxidProg[0]['lastblock']
   		return int(lastTxidProgress)
 
+	@autoreconnect_retry
+	def findLastHistoricalPrices(self, fromCollection):
+		s = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "unix_time": 1}).sort([( '$natural', -1 )] ).limit(1))
+		r = s[0]['unix_time']
+  		return int(r)
+
  	@autoreconnect_retry
 	def updateLastTxidProgressPlusOne(self, toCollection, lastTxidProgress):
 		increasing = int(lastTxidProgress)
@@ -90,6 +96,12 @@ class mongoConnection():
 		setData = ast.literal_eval(data)
 		self.mongoDB[toCollection].insert(setData)
 
+ 	@autoreconnect_retry
+	def insertInitValueForHP(self, toCollection, time):
+		data = '{ "unix_time" : ' + str(time) + ' }'
+		setData = ast.literal_eval(data)
+		self.mongoDB[toCollection].insert(setData)
+		
 	@autoreconnect_retry
 	def insertBlocksData(self, toCollection, aggregatedBlockData):
 		data = eval(aggregatedBlockData)
@@ -115,6 +127,19 @@ class mongoConnection():
 			sys.exit(1)
 
 	@autoreconnect_retry
+	def insertHistoricalPricesData(self, toCollection, aggregatedHPData):
+		data = eval(aggregatedHPData)
+		#data = ast.literal_eval(aggregatedBlockData)
+		try:
+			self.mongoDB[toCollection].insert(data)
+			return str(data['market_data']['current_price']['usd'])
+		except:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " MongoDB failed to insert Historical Price Data!"
+			sys.exit(1)
+
+
+	@autoreconnect_retry
 	def checkIfBlocksColEmpty(self, fromCollection):
 		check = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
 		if check == []:
@@ -123,5 +148,11 @@ class mongoConnection():
 	@autoreconnect_retry
 	def checkIfTxidProgressColEmpty(self, fromCollection):	
 		check = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "lastblock": 1}).sort([( '$natural', -1 )] ).limit(1))
+		if check == []:
+			return "Empty"
+
+	@autoreconnect_retry
+	def checkIfHistoricalPricesColEmpty(self, fromCollection):	
+		check = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "unix_time": 1}).sort([( '$natural', -1 )] ).limit(1))
 		if check == []:
 			return "Empty"

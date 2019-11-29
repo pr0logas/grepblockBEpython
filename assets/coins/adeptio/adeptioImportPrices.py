@@ -6,10 +6,10 @@ from mongoDB import *
 from parsePrices import parseCoinGeckoPrices
 
 db = database
-collectionForPricesUSD = 'priceDataUSD'
+col = collectionForPricesUSD
 
 # Init Classes;
-MC = mongoConnection(mongoAuth, db, collectionForPricesUSD)
+MC = mongoConnection(mongoAuth, db, col)
 PP = parseCoinGeckoPrices(apiProvider, vsCurrencyUSD, assetName)
 
 # CoinGecko
