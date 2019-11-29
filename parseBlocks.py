@@ -28,9 +28,10 @@ class aggregateBlocksData():
 
 			if 'chainlock' in firstObj:
 				firstObj['chainlock'] = str(firstObj['chainlock'])
-
-			if 'monitored' in firstObj:
-				firstObj['monitored'] = str("null")
+				
+			# Horizen
+			if 'monitored' in firstObj['valuePools']:
+				firstObj['valuePools']['monitored'] = str(firstObj['valuePools']['monitored'])
 
 			return json.dumps(firstObj)
 		else:
