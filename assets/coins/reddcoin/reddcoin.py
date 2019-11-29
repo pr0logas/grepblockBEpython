@@ -14,7 +14,7 @@ rpcpassword = 'grepblocktothemoon'
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://live.reddcoin.com'
+chainProvider = 'https://live.reddcoin.com/'
 getBlockIndexMethod = 'api/block-index/'
 getBlockwithHashMethod = 'api/block/'
 getTx = 'api/tx/'
