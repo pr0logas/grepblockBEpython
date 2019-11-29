@@ -46,11 +46,8 @@ while whileprogress<currentLastBlock:
 	blockData = MC.findByBlock(collectionForBlocks, whileprogress)
 	blockTime = blockData['time']
 	blockNumber = blockData['height']
-	print blockNumber
 	for txid in blockData['tx']:
-		print txid
 		getTxData = EX.getTxContentByTxid(txid)
-		print getTxData
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
 			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
