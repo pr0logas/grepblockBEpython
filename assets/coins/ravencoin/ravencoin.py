@@ -22,4 +22,4 @@ getTx = ''
 apiProvider = 'api.coingecko.com'
 
 #
-daemonCli = "ravencoin-cli"
+daemonCli = "raven-cli"
