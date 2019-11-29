@@ -17,6 +17,7 @@ class aggregateBlocksData():
 			firstObj['time'] = int(firstObj['time'])
 			firstObj['nextblockhash'] = str("null")
 
+			# Solaris sets a string. Changing to int <
 			if 'mediantime' in firstObj:
 				firstObj['mediantime'] = int(firstObj['mediantime'])
 

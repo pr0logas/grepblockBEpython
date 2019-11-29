@@ -75,7 +75,7 @@ class mongoConnection():
 			return str(data['wallet'])
 		except pymongo.errors.DuplicateKeyError:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " MongoDB found a duplicate wallet, skipping..."
+			print timeSet + " MongoDB dup wlt, skip"
 			pass
 
  	@autoreconnect_retry
