@@ -20,4 +20,5 @@ aggregatedData = PP.aggregateInsertUnixTime(result)
 
 #Insert to MongoDB
 res = MC.insertPricesData(collectionForPricesUSD, aggregatedData)
-print res
+timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+print timeSet + " Succefully inserted asset price: $" + res

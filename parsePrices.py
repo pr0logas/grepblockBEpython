@@ -31,25 +31,22 @@ class parseCoinGeckoPrices():
 	def aggregateInsertUnixTime(self, priceData):
 		firstObj = json.loads(priceData)
 		secObj = firstObj[0]
-		print secObj
 		unixTime = int(time.time())
 		secObj['unix_time'] = int(unixTime)
 
-		print secObj['roi']
-		# Check for any nulls;
-		if None in secObj['roi']:
-			secObj['roi'] = str(secObj['None'])
+		if secObj['roi'] is None:
+			secObj['roi'] = str('null')
+		
+		if secObj['high_24h'] is None:
+			secObj['high_24h'] = str('null')
 
-		if 'null' in secObj['high_24h']:
-			secObj['high_24h'] = str(secObj['null'])
+		if secObj['low_24h'] is None:
+			secObj['low_24h'] = str('null')
 
-		if 'null' in secObj['low_24h']:
-			secObj['low_24h'] = str(secObj['null'])
+		if secObj['price_change_percentage_24h'] is None:
+			secObj['price_change_percentage_24h'] = str('null')
 
-		if 'null' in secObj['price_change_percentage_24h']:
-			secObj['price_change_percentage_24h'] = str(secObj['null'])
-
-		if 'null' in secObj['price_change_24h']:
-			secObj['price_change_24h'] = str(secObj['null'])
+		if secObj['price_change_24h'] is None:
+			secObj['price_change_24h'] = str('null')
 
 		return json.dumps(firstObj[0])
