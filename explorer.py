@@ -26,7 +26,7 @@ class iquidusExplorer():
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new Blocks found1. Sleeping..."
+			print timeSet + " EX.Class. No new Blocks found1. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
@@ -39,7 +39,7 @@ class iquidusExplorer():
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new Blocks found2. Sleeping..."
+			print timeSet + " EX.Class. No new Blocks found2. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
@@ -52,7 +52,7 @@ class iquidusExplorer():
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new TXids found1. Sleeping..."
+			print timeSet + " EX.Class. No new TXids found1. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
@@ -65,7 +65,7 @@ class iquidusExplorer():
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Can't get last block?"
+			print timeSet + " EX.Class. Can't get last block?"
 			sys.exit(1)
 
 		content = page.read()
@@ -78,7 +78,7 @@ class iquidusExplorer():
 			return result
 		else:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Can't get last block?"
+			print timeSet + " EX.Class. Can't get last block?"
 			sys.exit(1)
 
 
@@ -93,7 +93,7 @@ class insightExplorer(iquidusExplorer):
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new Blocks found1. Sleeping..."
+			print timeSet + " EX.Class. No new Blocks found1. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
@@ -108,7 +108,7 @@ class insightExplorer(iquidusExplorer):
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " No new TXids found1. Sleeping..."
+			print timeSet + " EX.Class. No new TXids found1. Sleeping..."
 			sys.exit(0)
 
 		content = page.read()
@@ -121,7 +121,7 @@ class insightExplorer(iquidusExplorer):
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Can't get last block?"
+			print timeSet + " EX.Class. Can't get last block?"
 			sys.exit(1)
 
 		content = page.read()
@@ -136,7 +136,7 @@ class insightExplorer(iquidusExplorer):
 		    page = self.u.urlopen(req)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Can't get last block?"
+			print timeSet + " EX.Class. Can't get last block Alternative?"
 			sys.exit(1)
 
 		content = page.read()
@@ -149,7 +149,7 @@ class insightExplorer(iquidusExplorer):
 		    page = self.u.urlopen(r)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Can't get last block Alternative?"
+			print timeSet + " EX.Class. Can't get last block Alternative 2?"
 			sys.exit(0)
 
 		content = page.read()
