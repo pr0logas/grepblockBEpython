@@ -15,9 +15,9 @@ rpcpassword = "grepblocktothemoon"
 parseBlocksInRangeFor = 99
 
 chainProvider = 'https://explorer.horizen.cc'
-getBlockIndexMethod = '/api/getblockhash?index='
-getBlockwithHashMethod = ''
-getTx = ''
+getBlockIndexMethod = 'api/block-index/'
+getBlockwithHashMethod = 'api/block/'
+getTx = 'api/tx/'
 
 apiProvider = 'api.coingecko.com'
 
