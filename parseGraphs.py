@@ -13,19 +13,20 @@ class parseGraph():
 
 	def parseBlocksFindLastValue(self):
 		if os.path.isfile('JSON/' + self.file):
+			lastValue = ''
 			print "Found data in file. All Good. Continuing progress and appending only new data..."
 			readFile = open(self.path, "r") 
 			content = (readFile.read())
 			cjson = json.loads(content)
-			lastValue = 0
-			index = 1
-			try:
-				while 0 <= index:
-					lastValue = cjson['values'][index]['x']
-					index += 1
-			except IndexError:
-				pass
-				return lastValue
+			result = ''
+			i = 0
+			while True:
+				try:
+					result = cjson['values'][i]['x']
+					i =+ 1
+				except:
+					return result
+					break
 		else:
 			try: 
 				os.makedirs("JSON")

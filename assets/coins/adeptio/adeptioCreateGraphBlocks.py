@@ -18,39 +18,42 @@ PG = parseGraph(fileForBlockCount, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 
 # Find Last unixTime value in a working json file;
-lUTinJSON = PG.parseBlocksFindLastValue()
-if lUTinJSON == 'FileWasEmpty!':
-	lUTinJSON = PG.parseBlocksFindLastValue()
+lU = PG.parseBlocksFindLastValue()
+if lU == 'FileWasEmpty!':
+	lU = PG.parseBlocksFindLastValue()
 	print "Warning, file was empty, init zero params!"
 
-print lUTinJSON
-
 # Find the same but in MongoDB;
-lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lUTinJSON)
-
-# Increase number to move forward;
-lastBlockByUnixTime += 1
+lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
 
 # Last Block value in mongoDB;
 findLastBlock = MC.findLastBlock(collectionForBlocks)
 
-#nextDay = (datetime.fromtimestamp(lUTinJSON) + timedelta(hours=24)).strftime('%Y-%m-%d')
-#print nextDay
+# Init Global while vars;
+nextDayTime = (datetime.fromtimestamp(lU) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 sumBlocks = 0
-setWorkingValue = lastBlockByUnixTime
-while setWorkingValue <= findLastBlock:
-	lB = MC.findByBlock(collectionForBlocks, setWorkingValue)
-	if lB != []:
-		print lB
+nextDayTimeWhileProgress = nextDayTime
+
+whileprogress = lastBlockByUnixTime
+while whileprogress <= findLastBlock:
+	lB = MC.findByBlock(collectionForBlocks, whileprogress)
+	if lB != []: # This should never happen!
 		count = lB['block']
 		unixTime = lB['time']
-		reqNum = (count - count) + 1
-		sumBlocks = (reqNum + sumBlocks)
-		print sumBlocks
-		dt = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-		print (dt)
-		break
+		reqNum = (count - count) + 1 # How to get count? Change this :DD
+		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
+		print currBlkTime, nextDayTimeWhileProgress
+
+		if currBlkTime != nextDayTimeWhileProgress:
+			sumBlocks = (reqNum + sumBlocks)
+			print "SumBlocks nelygu: ", sumBlocks
+		else:
+			sumBlocks = 0
+			nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
+			print "SumBlocks lygu: ", sumBlocks
+
 	else:
 		print "Fatal something went wrong while counting Blocks Graph!"
 		sys.exit(1)
 
+	whileprogress += 1
