@@ -59,7 +59,6 @@ class iquidusExplorer():
 			sys.exit(0)
 
 		content = page.read()
-		print content
 		return content
 
 	def getLastBlock(self):
