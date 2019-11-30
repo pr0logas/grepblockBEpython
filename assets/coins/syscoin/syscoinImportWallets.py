@@ -1,3 +1,7 @@
+#:: By GrepBlock.com developers // pr0logas
+#:: Modified date: 2019-11-30
+#:: Description: This file is a workspace for wallets importation.
+
 import sys, time
 from time import gmtime, strftime
 from syscoin import *

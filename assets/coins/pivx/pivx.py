@@ -1,4 +1,6 @@
-
+#:: By GrepBlock.com developers // pr0logas
+#:: Modified date: 2019-11-30
+#:: Description: This file contains default values of the asset
 
 # Defaults
 database = "pivx"

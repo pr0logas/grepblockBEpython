@@ -1,3 +1,7 @@
+#:: By GrepBlock.com developers // pr0logas
+#:: Modified date: 2019-11-30
+#:: Description: This file is a workspace for block importation.
+
 import sys, time
 from time import gmtime, strftime
 from polis import *
@@ -32,8 +36,8 @@ parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
 # Check if our progress is near by Explorer blocks?
 diff = str(currentExplBlock - currentLastBlock)
 
-# We have two choises here, parse the blocks in range for +- ~100 block (last block too far anyway) or until last Explorer block -2 //
-# We don't wanna to parse up to last block, because in case of wrong chain parsing node could rewrite the latest few blocks;
+# We have two choises here, parse the blocks in range for +- ~100 blocks (last block too far anyway) or until last Explorer block -2 //
+# We don't wanna to parse up to last block in case of wrong chain.
 
 # Start Parsing blocks ::in range:: and push to MongoDB;
 if (int(diff) >= 100):

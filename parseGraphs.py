@@ -1,3 +1,7 @@
+#:: By GrepBlock.com developers // pr0logas, mrNemo
+#:: Modified date: 2019-11-30
+#:: Description: This file contains core graphs related methods.
+
 import os, json, sys
 from mongoDB import *
 
