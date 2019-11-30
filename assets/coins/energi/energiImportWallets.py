@@ -52,7 +52,6 @@ while whileprogress<currentLastBlock:
 	blockNumber = blockData['height']
 	for txid in blockData['tx']:
 		getTxData = EX.getTxContentByTxid(txid)
-		print getTxData
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
 			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
