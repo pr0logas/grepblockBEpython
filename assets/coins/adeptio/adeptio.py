@@ -23,5 +23,17 @@ apiProvider = 'https://api.coingecko.com'
 vsCurrencyUSD = 'usd'
 collectionForPricesUSD = 'priceDataUSD'
 collectionForHistoricalPricesUSD = 'historicalPriceData'
-#
+
+# Stats related
+fileForBlockCount="assetBlocks.json"
+fileForActiveWalletsCount="assetActiveWallets.json"
+fileForBlockchainSize="assetBlockchainSize.json"
+fileForDifficulty="assetDifficulty.json"
+
+# Money related
+fileForMarketCap="assetMarketCap.json"
+fileForPrice="assetPrice.json"
+fileForTransactions="assetTransactions.json"
+fileForVolume="assetVolume.json"
+
 daemonCli = "adeptio-cli"
