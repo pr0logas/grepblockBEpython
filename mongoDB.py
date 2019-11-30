@@ -61,6 +61,18 @@ class mongoConnection():
 		r = s[0]['unix_time']
   		return int(r)
 
+	@autoreconnect_retry
+	def findLastBlockMedianTime(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'mediantime' : unixTime}))
+		r = s[0]['block']
+  		return int(r)
+
+	@autoreconnect_retry
+	def findLastBlockTime(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time' : unixTime}))
+		r = s[0]['block']
+  		return int(r)
+
  	@autoreconnect_retry
 	def updateLastTxidProgressPlusOne(self, toCollection, lastTxidProgress):
 		increasing = int(lastTxidProgress)

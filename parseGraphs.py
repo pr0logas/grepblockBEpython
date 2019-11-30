@@ -8,12 +8,11 @@ from mongoDB import *
 class parseGraph():
 	def __init__ (self, file, genesisTime):
 		self.file = file
-		self.check = os.path.isfile('JSON/' + self.file)
 		self.path = 'JSON/' + self.file
 		self.genesisTime = genesisTime
 
 	def parseBlocksFindLastValue(self):
-		if self.check:
+		if os.path.isfile('JSON/' + self.file):
 			print "Found data in file. All Good. Continuing progress and appending only new data..."
 			readFile = open(self.path, "r") 
 			content = (readFile.read())
@@ -38,7 +37,8 @@ class parseGraph():
 			try:	
 				file = open(self.path, "w") 
 				file.write(str(initJSON)) 
-				file.close() 
+				file.close()
+				return "FileWasEmpty!"
 			except:
 				print "FATAL failed to write to the file init data!"
 				sys.exit(1)
