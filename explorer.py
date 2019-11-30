@@ -1,3 +1,7 @@
+#:: By GrepBlock.com developers // pr0logas, mrNemo
+#:: Modified date: 2019-11-30
+#:: Description: This file contains all explorer related methods (getting the raw data) from foreign sources.
+
 import sys, time, re
 import urllib2, cookielib, json
 import subprocess

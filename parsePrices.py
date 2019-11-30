@@ -1,3 +1,7 @@
+#:: By GrepBlock.com developers // pr0logas, mrNemo
+#:: Modified date: 2019-11-30
+#:: Description: This file contains methods which gives us current prices for the assets.
+
 import urllib2, cookielib, json, time, sys
 from time import gmtime, strftime
 

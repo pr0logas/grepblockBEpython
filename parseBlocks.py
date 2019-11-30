@@ -1,3 +1,7 @@
+#:: By GrepBlock.com developers // pr0logas, mrNemo
+#:: Modified date: 2019-11-30
+#:: Description: This file contains block aggregation methods.
+
 import json, fileinput
 from explorer import iquidusExplorer
 import os
