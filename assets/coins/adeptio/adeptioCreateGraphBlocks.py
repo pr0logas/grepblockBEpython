@@ -36,42 +36,33 @@ nextDayTimeWhileProgress = nextDayTime
 
 whileprogress = lastBlockByUnixTime
 while whileprogress <= findLastBlock:
-
 	setProcStart = int(round(time.time() * 1000))
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
-
 	if lB != []: # This should never happen!
-
 		count = lB['block']
 		unixTime = lB['time']
-
 		reqNum = (count - count) + 1 # How to get count? Change this :DD
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 		print timeSet + " Counting blocks: " + str(sumBlocks)
 		print whileprogress
+		print lB
 		print currBlkTime, nextDayTimeWhileProgress
 
 		if currBlkTime != nextDayTimeWhileProgress:
-
 			sumBlocks = (reqNum + sumBlocks)
-
 		else:
-
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
-
 			if resWrite == 'OK':
-
 				setProcEnd = int(round(time.time() * 1000))
 				performanceResult = str(setProcEnd - setProcStart)
 				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime) + ' // ' + str(performanceResult) + ' ms'
 				sumBlocks = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
-
 			else:
 				print "FATAL!"
 				sys.exit(1)
