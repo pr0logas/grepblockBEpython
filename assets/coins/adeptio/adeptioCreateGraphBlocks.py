@@ -49,13 +49,14 @@ while whileprogress <= findLastBlock:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, unixTime)
-			print resJSON
-			PG.writeJSONtoFile(resJSON)
-
-			print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime)
-			sumBlocks = 0
-			nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
-
+			resWrite = PG.writeJSONtoFile(resJSON)
+			if resWrite == 'OK':
+				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime)
+				sumBlocks = 0
+				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
+			else:
+				print "FATAL!"
+				sys.exit(1)
 
 	else:
 		print "FATAL! Something went wrong while counting Blocks Graph!"

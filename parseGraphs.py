@@ -47,7 +47,7 @@ class parseGraph():
 
 	def appendNewContentToBlocksGraph(self, sumBlocks, unixTime):
 		try:
-			new = '{"y":' + str(sumBlocks) + ',"x":' + str(unixTime) + '}'
+			new = "{'y':" + str(sumBlocks) +",'x':" + str(unixTime) +"}"
 			file = open(self.path, "r") 
 			content = (file.read())
 			cjson = json.loads(content)
@@ -63,6 +63,7 @@ class parseGraph():
 			file = open(self.path, "w") 
 			file.write(jsonFile)
 			file.close()
+			return "OK"
 		except:
 			print "FATAL failed to write blocks graph to the JSON file."
 			sys.exit(1)
