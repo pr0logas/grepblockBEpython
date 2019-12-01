@@ -23,8 +23,6 @@ if lU == 'FileWasEmpty!':
 	lU = PG.parseBlockchainSizeFindLastValueTime()
 	print "Warning, file was empty, init zero params!"
 
-sumSize = PG.parseBlockchainSizeFindLastValueSize()
-
 # Find the same but in MongoDB;
 lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
 
@@ -33,7 +31,7 @@ findLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Init Global while vars;
 nextDayTime = (datetime.fromtimestamp(float(lU)) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
-sumSize = 0
+sumSize = PG.parseBlockchainSizeFindLastValueSize()
 nextDayTimeWhileProgress = nextDayTime
 
 whileprogress = lastBlockByUnixTime
