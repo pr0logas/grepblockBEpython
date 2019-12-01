@@ -62,8 +62,9 @@ class parseGraph():
 			sys.exit(1)
 
 	def sendJSONtoFronend(self):
-		print "qq"
 		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:/usr/share/nginx/grepblockcom/apidata/' + self.assetTicker + '/' + self.file
-		res = subprocess.check_output(command, shell=True).strip()
-		print res
-		return res
+		try:
+			res = subprocess.check_output(command, shell=True).strip()
+		except:
+			print "FATAL! Failed to copy JSON to FE websiteHostIP"
+			sys.exit(1)

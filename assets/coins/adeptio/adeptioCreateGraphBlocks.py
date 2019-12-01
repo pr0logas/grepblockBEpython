@@ -93,4 +93,4 @@ timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 print timeSet +" JSON copied to FE instance"
 
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-print timeSet +" All task was successful."
+print timeSet +" All tasks were successful."
