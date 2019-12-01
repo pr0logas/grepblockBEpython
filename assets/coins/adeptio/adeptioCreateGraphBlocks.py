@@ -50,6 +50,7 @@ while whileprogress <= findLastBlock:
 		print lB
 		print currBlkTime, nextDayTimeWhileProgress
 
+		# This should never happen. But if the blockchain stopped for more than 24h?
 		timeCheck = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 		check1 = str(currBlkTime).replace("-", "")
 		check2 = str(timeCheck).replace("-", "")
@@ -57,7 +58,7 @@ while whileprogress <= findLastBlock:
 
 		if currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
-		elif check1 > check2:
+		elif int(check1) > int(check2):
 			print check1, check2
 			print "WTF?"
 			sys.exit(1)
