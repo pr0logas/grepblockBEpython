@@ -51,11 +51,13 @@ while whileprogress <= findLastBlock:
 		print currBlkTime, nextDayTimeWhileProgress
 
 		timeCheck = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
+		check1 = str(currBlkTime).replace("-", "")
+		check2 = str(timeCheck).replace("-", "")
 
 		if currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
-		elif currBlkTime > timeCheck:
-			print currBlkTime, timeCheck
+		elif check1 > check2:
+			print check1, check2
 			print "WTF?"
 			sys.exit(1)
 		else:
