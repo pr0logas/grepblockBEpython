@@ -39,7 +39,6 @@ while whileprogress <= findLastBlock:
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
 	if lB != []: # This should never happen!
 		count = len(lB['tx'])
-		print count
 		unixTime = lB['time']
 		reqNum = int(count)
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
@@ -54,10 +53,10 @@ while whileprogress <= findLastBlock:
 			print "WARNING! The blockchain STALL has been detected!!!"
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.findLastBlockTime(sumTxs, unixTime)
+			resJSON = PG.appendNewContentToTxsGraph(sumTxs, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total blocks: " + str(sumTxs) + " // We at " + str(printTime)
+				print timeSet + " Next day found. Total Transactions: " + str(sumTxs) + " // We at " + str(printTime)
 				sumTxs = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
@@ -70,10 +69,10 @@ while whileprogress <= findLastBlock:
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.appendNewContentToBlocksGraph(sumTxs, unixTime)
+			resJSON = PG.appendNewContentToTxsGraph(sumTxs, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total blocks: " + str(sumTxs) + " // We at " + str(printTime)
+				print timeSet + " Next day found. Total Transactions: " + str(sumTxs) + " // We at " + str(printTime)
 				sumTxs = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
