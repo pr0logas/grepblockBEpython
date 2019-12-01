@@ -3,10 +3,12 @@
 #:: Description: This file contains core graphs related methods.
 
 import os, json, sys
+import subprocess
 from mongoDB import *
 
 class parseGraph():
-	def __init__ (self, file, genesisTime):
+	def __init__ (self, assetTicker, file, genesisTime):
+		self.assetTicker = assetTicker
 		self.file = file
 		self.path = 'JSON/' + self.file
 		self.genesisTime = genesisTime
@@ -58,3 +60,9 @@ class parseGraph():
 		except:
 			print "FATAL failed to write blocks graph to the JSON file."
 			sys.exit(1)
+
+	def sendJSONtoFronend(self):
+		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:/usr/share/nginx/grepblockcom/apidata/' + self.assetTicker + '/' + self.file
+		res = subprocess.check_output(command, shell=True).strip()
+		print res
+		return res

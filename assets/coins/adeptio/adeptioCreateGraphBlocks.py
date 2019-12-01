@@ -14,7 +14,7 @@ db = database
 collectionForBlocks = "blocks"
 
 # Init Classes;
-PG = parseGraph(fileForBlockCount, genesisBlock)
+PG = parseGraph(assetTicker, fileForBlockCount, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 
 # Find Last unixTime value in a working json file;
@@ -54,7 +54,7 @@ while whileprogress <= findLastBlock:
 			if resWrite == 'OK':
 				setProcEnd = int(round(time.time() * 1000))
 				performanceResult = str(setProcEnd - setProcStart)
-				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime) + ' //' + str(performanceResult) + ' ms'
+				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime) + ' // ' + str(performanceResult) + ' ms'
 				sumBlocks = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
@@ -66,6 +66,9 @@ while whileprogress <= findLastBlock:
 		sys.exit(1)
 
 	whileprogress += 1
+
+# Send new JSON to FE;
+PG.sendJSONtoFronend()
 
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 print timeSet +" All task was successful."
