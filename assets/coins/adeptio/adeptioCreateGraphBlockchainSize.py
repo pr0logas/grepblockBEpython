@@ -42,6 +42,7 @@ while whileprogress <= findLastBlock:
 		count = lB['size']
 		unixTime = lB['time']
 		reqNum = int(count)
+		print reqNum
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
