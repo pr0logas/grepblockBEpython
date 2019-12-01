@@ -50,8 +50,13 @@ while whileprogress <= findLastBlock:
 		print lB
 		print currBlkTime, nextDayTimeWhileProgress
 
+		timeCheck = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
+
 		if currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
+		elif currBlkTime != timeCheck:
+			print "WTF?"
+			sys.exit(1)
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
