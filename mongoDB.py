@@ -62,16 +62,10 @@ class mongoConnection():
   		return int(r)
 
 	@autoreconnect_retry
-	def findLastBlockTimeGraphBlocks(self, fromCollection, unixTime):
+	def findLastBlockTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['block']
   		return int(r)
-
-	@autoreconnect_retry
-	def findLastBlockTimeGraphTxs(self, fromCollection, unixTime):
-		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
-		r = s[0]['tx']
-		return str(r)
 
  	@autoreconnect_retry
 	def updateLastTxidProgressPlusOne(self, toCollection, lastTxidProgress):

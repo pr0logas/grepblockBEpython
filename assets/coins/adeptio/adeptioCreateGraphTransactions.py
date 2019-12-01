@@ -24,7 +24,7 @@ if lU == 'FileWasEmpty!':
 	print "Warning, file was empty, init zero params!"
 
 # Find the same but in MongoDB;
-lastBlockByUnixTime = MC.findLastBlockTimeGraphTxs(collectionForBlocks, lU)
+lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
 
 # Last Block value in mongoDB;
 findLastBlock = MC.findLastBlock(collectionForBlocks)
@@ -55,7 +55,7 @@ while whileprogress <= findLastBlock:
 			print "WARNING! The blockchain STALL has been detected!!!"
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.findLastBlockTimeGraphTxs(sumTxs, unixTime)
+			resJSON = PG.findLastBlockTime(sumTxs, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
 				print timeSet + " Next day found. Total blocks: " + str(sumTxs) + " // We at " + str(printTime)
