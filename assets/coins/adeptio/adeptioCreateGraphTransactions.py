@@ -80,7 +80,7 @@ while whileprogress <= findLastBlock:
 				sys.exit(1)
 
 	else:
-		print "FATAL! Something went wrong while counting Blocks Graph!"
+		print "FATAL! Something went wrong while counting Transactions Graph!"
 		sys.exit(1)
 
 	whileprogress += 1

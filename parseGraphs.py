@@ -15,7 +15,6 @@ class parseGraph():
 
 	def parseBlocksFindLastValue(self):
 		if os.path.isfile('JSON/' + self.file):
-			print "Found data in file. All Good. Continuing progress and appending only new data..."
 			readFile = open(self.path, "r") 
 			content = (readFile.read())
 			cjson = json.loads(content)
@@ -39,7 +38,6 @@ class parseGraph():
 
 	def parseTransactionsFindLastValue(self):
 		if os.path.isfile('JSON/' + self.file):
-			print "Found data in file. All Good. Continuing progress and appending only new data..."
 			readFile = open(self.path, "r") 
 			content = (readFile.read())
 			cjson = json.loads(content)
