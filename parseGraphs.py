@@ -43,3 +43,26 @@ class parseGraph():
 			except:
 				print "FATAL failed to write to the file init data!"
 				sys.exit(1)
+
+
+	def appendNewContentToBlocksGraph(self, sumBlocks, unixTime):
+		try:
+			new = '{"y":' + str(sumBlocks) + ',"x":' + str(unixTime) + '}'
+			file = open(self.path, "r") 
+			content = (file.read())
+			cjson = json.loads(content)
+			cjson['values'].append(new)
+			return json.dumps(cjson)
+		except:
+			print "FATAL! Failed to append the data to blocks graph!"
+			sys.exit(1)
+
+
+	def writeJSONtoFile(self, jsonFile):
+		try:	
+			file = open(self.path, "w") 
+			file.write(jsonFile)
+			file.close()
+		except:
+			print "FATAL failed to write blocks graph to the JSON file."
+			sys.exit(1)
