@@ -59,7 +59,7 @@ class parseGraph():
 				print "FATAL failed to write to the file init data!"
 				sys.exit(1)
 
-	def parseBlockchainSizeFindLastValue(self):
+	def parseBlockchainSizeFindLastValueTime(self):
 		if os.path.isfile('JSON/' + self.file):
 			readFile = open(self.path, "r") 
 			content = (readFile.read())
@@ -70,6 +70,12 @@ class parseGraph():
 				os.makedirs("JSON")
 			except:
 				pass
+
+	def parseBlockchainSizeFindLastValueSize(self):
+			readFile = open(self.path, "r") 
+			content = (readFile.read())
+			cjson = json.loads(content)
+			return cjson['values'][-1]['y']
 
 			# Create init json file;
 			initJSON = '{"name":"BlockchainSize","unit":"BlockchainSize","period":"day","values":[{"x":' + str(self.genesisTime) +',"y":0}]}'

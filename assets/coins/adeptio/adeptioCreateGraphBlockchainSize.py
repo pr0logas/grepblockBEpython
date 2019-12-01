@@ -18,10 +18,12 @@ PG = parseGraph(assetTicker, fileForBlockchainSize, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 
 # Find Last unixTime value in a working json file;
-lU = PG.parseBlockchainSizeFindLastValue()
+lU = PG.parseBlockchainSizeFindLastValueTime()
 if lU == 'FileWasEmpty!':
-	lU = PG.parseBlockchainSizeFindLastValue()
+	lU = PG.parseBlockchainSizeFindLastValueTime()
 	print "Warning, file was empty, init zero params!"
+
+sumSize = parseBlockchainSizeFindLastValueSize()
 
 # Find the same but in MongoDB;
 lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
@@ -57,7 +59,6 @@ while whileprogress <= findLastBlock:
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
 				print timeSet + " Next day found. Total BlockchainSize: " + str(sumSize) + " // We at " + str(printTime)
-				sumSize = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
 				print "FATAL!"
@@ -73,7 +74,6 @@ while whileprogress <= findLastBlock:
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
 				print timeSet + " Next day found. Total BlockchainSize: " + str(sumSize) + " // We at " + str(printTime)
-				sumSize = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
 				print "FATAL!"
