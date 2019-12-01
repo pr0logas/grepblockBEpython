@@ -45,6 +45,9 @@ while whileprogress <= findLastBlock:
 		count = lB['block']
 		unixTime = lB['time']
 
+		reqNum = (count - count) + 1 # How to get count? Change this :DD
+		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
+
 		# This checks if the blockchain were stalled for more than 24h
 		timeCheck = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 
@@ -52,9 +55,6 @@ while whileprogress <= findLastBlock:
 
 		if timeCheck != nextDayTimeWhileProgress:		
 			nextDayTimeWhileProgress = unixTime
-
-		reqNum = (count - count) + 1 # How to get count? Change this :DD
-		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 		print timeSet + " Counting blocks: " + str(sumBlocks)
