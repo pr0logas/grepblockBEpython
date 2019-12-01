@@ -28,6 +28,7 @@ while True:
 	averageBlkMinus = (86400 - int(blockTime))
 	lastProgress = (lastProgress + averageBlkMinus)
 	diffRes = MC.findDiffGtThan(collectionForBlocks, lastProgress)
+	print diffRes
 
 	if diffRes == 'Empty':
 		# Send new JSON to FE;
@@ -40,7 +41,7 @@ while True:
 		unixTime = MC.findDiffGtThanReturnTime(collectionForBlocks, lastProgress)
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		resJSON = PG.appendNewContentToDifficultyGraph(diffRes, unixTime)
+		resJSON = PG.appendNewContentToDifficultyGraph(float(diffRes), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
 			print timeSet + " Next day found. Difficulty: " + str(diffRes) + " // We at " + str(printTime)
