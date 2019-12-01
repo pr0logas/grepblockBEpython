@@ -32,6 +32,7 @@ findLastBlock = MC.findLastBlock(collectionForBlocks)
 # Init Global while vars;
 nextDayTime = (datetime.fromtimestamp(float(lU)) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 sumSize = PG.parseBlockchainSizeFindLastValueSize()
+print sumSize
 nextDayTimeWhileProgress = nextDayTime
 
 whileprogress = lastBlockByUnixTime
