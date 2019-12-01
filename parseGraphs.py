@@ -62,6 +62,7 @@ class parseGraph():
 			sys.exit(1)
 
 	def sendJSONtoFronend(self):
+		print "qq"
 		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:/usr/share/nginx/grepblockcom/apidata/' + self.assetTicker + '/' + self.file
 		res = subprocess.check_output(command, shell=True).strip()
 		print res
