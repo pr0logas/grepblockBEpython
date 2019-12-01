@@ -65,7 +65,7 @@ while whileprogress <= findLastBlock:
 				sys.exit(1)
 
 		elif currBlkTime != nextDayTimeWhileProgress:
-			sumSize = (reqNum + sumSize)
+			sumSize = (int(reqNum) + int(sumSize))
 
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
