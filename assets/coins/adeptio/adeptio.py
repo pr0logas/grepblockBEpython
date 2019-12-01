@@ -33,11 +33,11 @@ fileForBlockCount="assetBlocks.json"
 fileForActiveWalletsCount="assetActiveWallets.json"
 fileForBlockchainSize="assetBlockchainSize.json"
 fileForDifficulty="assetDifficulty.json"
+fileForTransactions="assetTransactions.json"
 
 # Money related
 fileForMarketCap="assetMarketCap.json"
 fileForPrice="assetPrice.json"
-fileForTransactions="assetTransactions.json"
 fileForVolume="assetVolume.json"
 
 daemonCli = "adeptio-cli"

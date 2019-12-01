@@ -50,6 +50,18 @@ class parseGraph():
 			print "FATAL! Failed to append the data to blocks graph!"
 			sys.exit(1)
 
+	def appendNewContentToTxsGraph(self, sumTxs, unixTime):
+		try:
+			new = {"y":str(sumTxs),"x":str(unixTime)}
+			file = open(self.path, "r") 
+			content = (file.read())
+			cjson = json.loads(content)
+			cjson['values'].append(new)
+			return json.dumps(cjson)
+		except:
+			print "FATAL! Failed to append the data to Txs graph!"
+			sys.exit(1)
+
 
 	def writeJSONtoFile(self, jsonFile):
 		try:	

@@ -14,7 +14,7 @@ db = database
 collectionForBlocks = "blocks"
 
 # Init Classes;
-PG = parseGraph(assetTicker, fileForBlockCount, genesisBlock)
+PG = parseGraph(assetTicker, fileForTransactions, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 
 # Find Last unixTime value in a working json file;
@@ -24,23 +24,25 @@ if lU == 'FileWasEmpty!':
 	print "Warning, file was empty, init zero params!"
 
 # Find the same but in MongoDB;
-lastBlockByUnixTime = MC.findLastBlockTimeGraphBlocks(collectionForBlocks, lU)
+lastBlockByUnixTime = MC.findLastBlockTimeGraphTxs(collectionForBlocks, lU)
 
 # Last Block value in mongoDB;
 findLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Init Global while vars;
 nextDayTime = (datetime.fromtimestamp(float(lU)) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
-sumBlocks = 0
+sumTxs = 0
 nextDayTimeWhileProgress = nextDayTime
 
 whileprogress = lastBlockByUnixTime
 while whileprogress <= findLastBlock:
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
+	print lB
 	if lB != []: # This should never happen!
-		count = lB['block']
+		count = len(lB['tx'])
 		unixTime = lB['time']
-		reqNum = (count - count) + 1 # How to get count? Change this :DD
+		print count
+		reqNum = int(count)
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
@@ -53,27 +55,27 @@ while whileprogress <= findLastBlock:
 			print "WARNING! The blockchain STALL has been detected!!!"
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.appendNewContentToTxsGraph(sumBlocks, unixTime)
+			resJSON = PG.findLastBlockTimeGraphTxs(sumTxs, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime)
-				sumBlocks = 0
+				print timeSet + " Next day found. Total blocks: " + str(sumTxs) + " // We at " + str(printTime)
+				sumTxs = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
 				print "FATAL!"
 				sys.exit(1)
 
 		elif currBlkTime != nextDayTimeWhileProgress:
-			sumBlocks = (reqNum + sumBlocks)
+			sumTxs = (reqNum + sumTxs)
 
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, unixTime)
+			resJSON = PG.appendNewContentToBlocksGraph(sumTxs, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime)
-				sumBlocks = 0
+				print timeSet + " Next day found. Total blocks: " + str(sumTxs) + " // We at " + str(printTime)
+				sumTxs = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
 				print "FATAL!"
