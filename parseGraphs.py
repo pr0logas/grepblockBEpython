@@ -72,7 +72,7 @@ class parseGraph():
 				pass
 
 	def parseBlockchainSizeFindLastValueSize(self):
-			readFile = open(self.path, "r") 
+			readFile = open('JSON/assetBlockchainSize.json', "r") 
 			content = (readFile.read())
 			cjson = json.loads(content)
 			return cjson['values'][-1]['y']
