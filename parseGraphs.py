@@ -59,6 +59,29 @@ class parseGraph():
 				print "FATAL failed to write to the file init data!"
 				sys.exit(1)
 
+	def parseDifficultyFindLastValue(self):
+		if os.path.isfile('JSON/' + self.file):
+			readFile = open(self.path, "r") 
+			content = (readFile.read())
+			cjson = json.loads(content)
+			return cjson['values'][-1]['x']
+		else:
+			try: 
+				os.makedirs("JSON")
+			except:
+				pass
+
+			# Create init json file;
+			initJSON = '{"name":"Difficulty","unit":"Difficulty","period":"day","values":[{"x":' + str(self.genesisTime) +',"y":0}]}'
+			try:	
+				file = open(self.path, "w") 
+				file.write(str(initJSON)) 
+				file.close()
+				return "FileWasEmpty!"
+			except:
+				print "FATAL failed to write to the file init data!"
+				sys.exit(1)
+
 	def parseBlockchainSizeFindLastValueTime(self):
 		if os.path.isfile('JSON/' + self.file):
 			readFile = open(self.path, "r") 
@@ -89,35 +112,6 @@ class parseGraph():
 			return cjson['values'][-1]['y']
 
 
-	def parseDifficultyFindLastValueTime(self):
-		if os.path.isfile('JSON/' + self.file):
-			readFile = open(self.path, "r") 
-			content = (readFile.read())
-			cjson = json.loads(content)
-			return cjson['values'][-1]['x']
-		else:
-			try: 
-				os.makedirs("JSON")
-			except:
-				pass
-
-			# Create init json file;
-			initJSON = '{"name":"Difficulty","unit":"Difficulty","period":"day","values":[{"x":' + str(self.genesisTime) +',"y":0}]}'
-			try:	
-				file = open(self.path, "w") 
-				file.write(str(initJSON)) 
-				file.close()
-				return "FileWasEmpty!"
-			except:
-				print "FATAL failed to write to the file init data!"
-				sys.exit(1)
-
-	def parseDifficultyFindLastValueSize(self):
-			readFile = open(self.path, "r") 
-			content = (readFile.read())
-			cjson = json.loads(content)
-			return cjson['values'][-1]['y']
-
 	def appendNewContentToBlocksGraph(self, sumBlocks, unixTime):
 		try:
 			new = {"y":str(sumBlocks),"x":str(unixTime)}
@@ -128,6 +122,18 @@ class parseGraph():
 			return json.dumps(cjson)
 		except:
 			print "FATAL! Failed to append the data to blocks graph!"
+			sys.exit(1)
+
+	def appendNewContentToDifficultyGraph(self, difficulty, unixTime):
+		try:
+			new = {"y":str(difficulty),"x":str(unixTime)}
+			file = open(self.path, "r") 
+			content = (file.read())
+			cjson = json.loads(content)
+			cjson['values'].append(new)
+			return json.dumps(cjson)
+		except:
+			print "FATAL! Failed to append the data to difficulty graph!"
 			sys.exit(1)
 
 	def appendNewContentToTxsGraph(self, sumTxs, unixTime):

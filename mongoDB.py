@@ -67,6 +67,27 @@ class mongoConnection():
 		r = s[0]['block']
   		return int(r)
 
+	@autoreconnect_retry
+	def findLastDiffbyTime(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
+		r = s[0]['time']
+  		return int(r)
+
+	@autoreconnect_retry
+	def findDiffGtThan(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
+		if s == []:
+			return "Empty"
+		else:
+			r = s[0]['difficulty']
+  			return float(r)
+
+	@autoreconnect_retry
+	def findDiffGtThanReturnTime(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
+		r = s[0]['time']
+  		return int(r)
+
  	@autoreconnect_retry
 	def updateLastTxidProgressPlusOne(self, toCollection, lastTxidProgress):
 		increasing = int(lastTxidProgress)
