@@ -18,9 +18,9 @@ PG = parseGraph(assetTicker, fileForTransactions, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 
 # Find Last unixTime value in a working json file;
-lU = PG.parseBlocksFindLastValue()
+lU = PG.parseTransactionsFindLastValue()
 if lU == 'FileWasEmpty!':
-	lU = PG.parseBlocksFindLastValue()
+	lU = PG.parseTransactionsFindLastValue()
 	print "Warning, file was empty, init zero params!"
 
 # Find the same but in MongoDB;
