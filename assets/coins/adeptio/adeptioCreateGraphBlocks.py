@@ -64,8 +64,9 @@ while whileprogress <= findLastBlock:
 			else:
 				print "FATAL!"
 				sys.exit(1)
-				
-		setProcStart = int(round(time.time() * 1000))
+
+			setProcStart = int(round(time.time() * 1000))
+			
 		elif currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
 
