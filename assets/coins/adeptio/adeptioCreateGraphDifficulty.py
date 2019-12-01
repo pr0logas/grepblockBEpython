@@ -14,13 +14,13 @@ db = database
 collectionForBlocks = "blocks"
 
 # Init Classes;
-PG = parseGraph(assetTicker, fileForBlockchainSize, genesisBlock)
+PG = parseGraph(assetTicker, fileForDifficulty, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 
 # Find Last unixTime value in a working json file;
-lU = PG.parseBlockchainSizeFindLastValueTime()
+lU = PG.parseDifficultyFindLastValueTime()
 if lU == 'FileWasEmpty!':
-	lU = PG.parseBlockchainSizeFindLastValueTime()
+	lU = PG.parseDifficultyFindLastValueTime()
 	print "Warning, file was empty, init zero params!"
 
 # Find the same but in MongoDB;
@@ -31,14 +31,14 @@ findLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Init Global while vars;
 nextDayTime = (datetime.fromtimestamp(float(lU)) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
-sumSize = PG.parseBlockchainSizeFindLastValueSize()
+sumDiff = PG.parseDifficultyFindLastValueSize()
 nextDayTimeWhileProgress = nextDayTime
 
 whileprogress = lastBlockByUnixTime
 while whileprogress <= findLastBlock:
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
 	if lB != []: # This should never happen!
-		count = lB['size']
+		count = lB['difficulty']
 		unixTime = lB['time']
 		reqNum = int(count)
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
@@ -53,32 +53,32 @@ while whileprogress <= findLastBlock:
 			print "WARNING! The blockchain STALL has been detected!!!"
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.appendNewContentToBlockchainSizeGraph(sumSize, unixTime)
+			resJSON = PG.appendNewContentToBlockchainSizeGraph(sumDiff, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total BlockchainSize: " + str(sumSize) + " bytes. // We at " + str(printTime)
+				print timeSet + " Next day found. Difficulty: " + str(sumDiff) + " // We at " + str(printTime)
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
 				print "FATAL!"
 				sys.exit(1)
 
 		elif currBlkTime != nextDayTimeWhileProgress:
-			sumSize = (int(reqNum) + int(sumSize))
+			sumDiff = (int(reqNum) + int(sumDiff))
 
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.appendNewContentToBlockchainSizeGraph(sumSize, unixTime)
+			resJSON = PG.appendNewContentToBlockchainSizeGraph(sumDiff, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total BlockchainSize: " + str(sumSize) + " bytes. // We at " + str(printTime)
+				print timeSet + " Next day found. Difficulty: " + str(sumDiff) + " // We at " + str(printTime)
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
 				print "FATAL!"
 				sys.exit(1)
 
 	else:
-		print "FATAL! Something went wrong while counting BlockchainSize Graph!"
+		print "FATAL! Something went wrong while counting Difficulty Graph!"
 		sys.exit(1)
 
 	whileprogress += 1
