@@ -37,11 +37,10 @@ nextDayTimeWhileProgress = nextDayTime
 whileprogress = lastBlockByUnixTime
 while whileprogress <= findLastBlock:
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
-	print lB
 	if lB != []: # This should never happen!
 		count = len(lB['tx'])
-		unixTime = lB['time']
 		print count
+		unixTime = lB['time']
 		reqNum = int(count)
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
