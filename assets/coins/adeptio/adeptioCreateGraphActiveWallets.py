@@ -31,13 +31,11 @@ if lU == 'FileWasEmpty!':
 	lU = PG.parseActiveWalletsFindLastValue()
 	print "Warning, file was empty, init zero params!"
 
-'''
 # Can we start?
 if diff > 15 or diff < 0:
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	print "We are not up to date with blocks collection! Diff: " + str(diff)
 	sys.exit(1)
-'''
 
 while True:
 	lU = PG.parseActiveWalletsFindLastValue()
