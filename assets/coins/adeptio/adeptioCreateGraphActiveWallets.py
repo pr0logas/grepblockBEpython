@@ -66,7 +66,7 @@ while True:
 		resJSON = PG.appendNewContentToDifficultyGraph(int(result), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
-			print timeSet + " Next day found. Active Wallets: " + str(diffRes) + " // We at " + str(printTime)
+			print timeSet + " Next day found. Active Wallets: " + str(result) + " // We at " + str(printTime)
 		else:
 			print "FATAL!"
 			sys.exit(1)
