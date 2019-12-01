@@ -105,13 +105,15 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findActiveWalletsGtThanCalc1(self, fromCollection, unixTime):
-		s = list(self.mongoDB[fromCollection].count_documents({'walletTime': {"$lt": int(unixTime)}}))
+		ut = int(unixTime)
+		s = list(self.mongoDB[fromCollection].count_documents({'walletTime': {"$lt": ut}}))
 		r = s[0]
   		return int(r)
 
  	@autoreconnect_retry
 	def findActiveWalletsGtThanCalc2(self, fromCollection, unixTime):
-		s = list(self.mongoDB[fromCollection].count_documents({'walletTime': {"$lt": int(unixTime)}}))
+		ut = int(unixTime)
+		s = list(self.mongoDB[fromCollection].count_documents({'walletTime': {"$lt": ut}}))
 		r = s[0]
   		return int(r)
 
