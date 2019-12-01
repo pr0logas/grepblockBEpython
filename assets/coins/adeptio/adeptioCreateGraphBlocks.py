@@ -56,6 +56,7 @@ while whileprogress <= findLastBlock:
 		print check1, check2
 
 		if int(check1) > int(check2):
+			print "WARNING! The blockchain STALL has been detected!!!"
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, unixTime)
@@ -70,11 +71,9 @@ while whileprogress <= findLastBlock:
 				print "FATAL!"
 				sys.exit(1)
 
-			sys.exit(1)
-
 		elif currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
-			
+
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
