@@ -36,6 +36,7 @@ nextDayTimeWhileProgress = nextDayTime
 
 whileprogress = lastBlockByUnixTime
 while whileprogress <= findLastBlock:
+	setProcStart = int(round(time.time() * 1000))
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
 	if lB != []: # This should never happen!
 		count = lB['block']
@@ -51,7 +52,9 @@ while whileprogress <= findLastBlock:
 			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime)
+				setProcEnd = int(round(time.time() * 1000))
+				performanceResult = str(setProcEnd - setProcStart)
+				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime) + ' //' + str(performanceResult) + ' ms'
 				sumBlocks = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
