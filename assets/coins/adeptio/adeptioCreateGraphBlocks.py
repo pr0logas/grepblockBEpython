@@ -56,11 +56,25 @@ while whileprogress <= findLastBlock:
 		print check1, check2
 
 		if int(check1) > int(check2):
-			print check1, check2
-			print "WTF?"
+			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, unixTime)
+			resWrite = PG.writeJSONtoFile(resJSON)
+			if resWrite == 'OK':
+				setProcEnd = int(round(time.time() * 1000))
+				performanceResult = str(setProcEnd - setProcStart)
+				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime) + ' // ' + str(performanceResult) + ' ms'
+				sumBlocks = 0
+				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
+			else:
+				print "FATAL!"
+				sys.exit(1)
+
 			sys.exit(1)
+
 		elif currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
+			
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
