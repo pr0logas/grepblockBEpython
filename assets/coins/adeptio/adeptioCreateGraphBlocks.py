@@ -24,7 +24,7 @@ if lU == 'FileWasEmpty!':
 	print "Warning, file was empty, init zero params!"
 
 # Find the same but in MongoDB;
-lastBlockByUnixTime = MC.findLastBlockTimeGraphBlocks(collectionForBlocks, lU)
+lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
 
 # Last Block value in mongoDB;
 findLastBlock = MC.findLastBlock(collectionForBlocks)
