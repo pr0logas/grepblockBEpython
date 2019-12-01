@@ -107,6 +107,7 @@ class mongoConnection():
 	def findActiveWalletsGtThanCalc1(self, fromCollection, unixTime):
 		ut = int(unixTime)
 		s = list(self.mongoDB[fromCollection].count_documents({'walletTime': {"$lt": ut}}))
+		print s
 		r = s[0]
   		return int(r)
 
@@ -114,6 +115,7 @@ class mongoConnection():
 	def findActiveWalletsGtThanCalc2(self, fromCollection, unixTime):
 		ut = int(unixTime)
 		s = list(self.mongoDB[fromCollection].count_documents({'walletTime': {"$lt": ut}}))
+		print s
 		r = s[0]
   		return int(r)
 
