@@ -29,7 +29,6 @@ while True:
 	averageBlkMinus = (86400 - int(blockTime))
 	lastProgress = (lastProgress + averageBlkMinus)
 	diffRes = MC.findDiffGtThan(collectionForBlocks, lastProgress)
-	print diffRes
 
 	if diffRes == 'Empty':
 		# Send new JSON to FE;
