@@ -24,6 +24,7 @@ if lU == 'FileWasEmpty!':
 	print "Warning, file was empty, init zero params!"
 
 while True:
+	lU = PG.parseDifficultyFindLastValue()
 	lastProgress = MC.findLastDiffbyTime(collectionForBlocks, lU)
 	averageBlkMinus = (86400 - int(blockTime))
 	lastProgress = (lastProgress + averageBlkMinus)
