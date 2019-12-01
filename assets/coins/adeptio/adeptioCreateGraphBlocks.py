@@ -46,6 +46,8 @@ while whileprogress <= findLastBlock:
 
 		if currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print "Counting blocks: " + str(sumBlocks)
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
