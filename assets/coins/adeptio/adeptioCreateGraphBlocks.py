@@ -1,4 +1,4 @@
-#:: By GrepBlock.com developers // pr0logas
+#:: By GrepBlock.com developers // pr0logas, mrNemo
 #:: Modified date: 2019-11-30
 #:: Description: This file is a workspace for assetGraph creation.
 
@@ -30,7 +30,7 @@ lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
 findLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Init Global while vars;
-nextDayTime = (datetime.fromtimestamp(lU) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
+nextDayTime = (datetime.fromtimestamp(float(lU)) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 sumBlocks = 0
 nextDayTimeWhileProgress = nextDayTime
 

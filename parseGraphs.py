@@ -13,20 +13,11 @@ class parseGraph():
 
 	def parseBlocksFindLastValue(self):
 		if os.path.isfile('JSON/' + self.file):
-			lastValue = ''
 			print "Found data in file. All Good. Continuing progress and appending only new data..."
 			readFile = open(self.path, "r") 
 			content = (readFile.read())
 			cjson = json.loads(content)
-			result = ''
-			i = 0
-			while True:
-				try:
-					result = cjson['values'][i]['x']
-					i =+ 1
-				except:
-					return result
-					break
+			return cjson['values'][-1]['x']
 		else:
 			try: 
 				os.makedirs("JSON")
@@ -47,7 +38,7 @@ class parseGraph():
 
 	def appendNewContentToBlocksGraph(self, sumBlocks, unixTime):
 		try:
-			new = "{'y':" + str(sumBlocks) +",'x':" + str(unixTime) +"}"
+			new = {"y":str(sumBlocks),"x":str(unixTime)}
 			file = open(self.path, "r") 
 			content = (file.read())
 			cjson = json.loads(content)

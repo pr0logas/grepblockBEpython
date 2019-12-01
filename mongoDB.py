@@ -63,13 +63,13 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findLastBlockMedianTime(self, fromCollection, unixTime):
-		s = list(self.mongoDB[fromCollection].find({'mediantime' : unixTime}))
+		s = list(self.mongoDB[fromCollection].find({'mediantime' : int(unixTime)}))
 		r = s[0]['block']
   		return int(r)
 
 	@autoreconnect_retry
 	def findLastBlockTime(self, fromCollection, unixTime):
-		s = list(self.mongoDB[fromCollection].find({'time' : unixTime}))
+		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['block']
   		return int(r)
 
