@@ -90,7 +90,7 @@ while whileprogress <= findLastBlock:
 # Send new JSON to FE;
 PG.sendJSONtoFronend()
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-print timeSet +" JSON copied to FE instance"
+print timeSet +" ***JSON copied to FE instance***"
 
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 print timeSet +" All tasks were successful."
