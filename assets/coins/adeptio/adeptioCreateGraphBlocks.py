@@ -55,12 +55,12 @@ while whileprogress <= findLastBlock:
 		check2 = str(nextDayTimeWhileProgress).replace("-", "")
 		print check1, check2
 
-		if currBlkTime != nextDayTimeWhileProgress:
-			sumBlocks = (reqNum + sumBlocks)
-		elif int(check1) > int(check2):
+		if int(check1) > int(check2):
 			print check1, check2
 			print "WTF?"
 			sys.exit(1)
+		elif currBlkTime != nextDayTimeWhileProgress:
+			sumBlocks = (reqNum + sumBlocks)
 		else:
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
