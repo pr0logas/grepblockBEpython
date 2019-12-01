@@ -56,9 +56,7 @@ while whileprogress <= findLastBlock:
 			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, nextDayTimeWhileProgress)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				setProcEnd = int(round(time.time() * 1000))
-				performanceResult = str(setProcEnd - setProcStart)
-				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime) + ' // ' + str(performanceResult) + ' ms'
+				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime)
 				sumBlocks = 0
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
