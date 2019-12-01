@@ -23,7 +23,7 @@ if lU == 'FileWasEmpty!':
 	lU = PG.parseBlockchainSizeFindLastValueTime()
 	print "Warning, file was empty, init zero params!"
 
-sumSize = parseBlockchainSizeFindLastValueSize()
+sumSize = PG.parseBlockchainSizeFindLastValueSize()
 
 # Find the same but in MongoDB;
 lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
