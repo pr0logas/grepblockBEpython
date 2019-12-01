@@ -36,7 +36,6 @@ nextDayTimeWhileProgress = nextDayTime
 
 whileprogress = lastBlockByUnixTime
 while whileprogress <= findLastBlock:
-	setProcStart = int(round(time.time() * 1000))
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
 	if lB != []: # This should never happen!
 		count = lB['block']
@@ -65,7 +64,8 @@ while whileprogress <= findLastBlock:
 			else:
 				print "FATAL!"
 				sys.exit(1)
-
+				
+		setProcStart = int(round(time.time() * 1000))
 		elif currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
 
