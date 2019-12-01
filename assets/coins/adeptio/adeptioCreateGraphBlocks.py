@@ -48,7 +48,8 @@ while whileprogress <= findLastBlock:
 		print timeSet + " Counting blocks: " + str(sumBlocks)
 		print whileprogress
 		print lB
-
+		print currBlkTime, nextDayTimeWhileProgress
+		
 		if currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
 		else:
