@@ -32,7 +32,6 @@ findLastBlock = MC.findLastBlock(collectionForBlocks)
 # Init Global while vars;
 nextDayTime = (datetime.fromtimestamp(float(lU)) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 sumSize = PG.parseBlockchainSizeFindLastValueSize()
-print sumSize
 nextDayTimeWhileProgress = nextDayTime
 
 whileprogress = lastBlockByUnixTime
@@ -42,7 +41,6 @@ while whileprogress <= findLastBlock:
 		count = lB['size']
 		unixTime = lB['time']
 		reqNum = int(count)
-		print reqNum
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
