@@ -54,7 +54,7 @@ while whileprogress <= findLastBlock:
 
 		if currBlkTime != nextDayTimeWhileProgress:
 			sumBlocks = (reqNum + sumBlocks)
-		elif currBlkTime != timeCheck:
+		elif currBlkTime > timeCheck:
 			print currBlkTime, timeCheck
 			print "WTF?"
 			sys.exit(1)
