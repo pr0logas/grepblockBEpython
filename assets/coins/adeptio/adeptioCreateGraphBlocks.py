@@ -45,15 +45,10 @@ while whileprogress <= findLastBlock:
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print timeSet + " Counting blocks: " + str(sumBlocks)
-		print whileprogress
-		print lB
-		print currBlkTime, nextDayTimeWhileProgress
 
 		# This should never happen. But if the blockchain stopped for more than 24h?
 		check1 = str(currBlkTime).replace("-", "")
 		check2 = str(nextDayTimeWhileProgress).replace("-", "")
-		print check1, check2
 
 		if int(check1) > int(check2):
 			print "WARNING! The blockchain STALL has been detected!!!"
