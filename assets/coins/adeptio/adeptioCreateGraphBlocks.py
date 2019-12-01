@@ -51,9 +51,9 @@ while whileprogress <= findLastBlock:
 
 		if int(check1) > int(check2):
 			print "WARNING! The blockchain STALL has been detected!!!"
-			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
+			printTime = (datetime.fromtimestamp(nextDayTimeWhileProgress)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, unixTime)
+			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, nextDayTimeWhileProgress)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
 				setProcEnd = int(round(time.time() * 1000))
