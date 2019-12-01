@@ -74,6 +74,12 @@ class mongoConnection():
   		return int(r)
 
 	@autoreconnect_retry
+	def findLastActiveWalletsbyTime(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
+		r = s[0]['time']
+  		return int(r)
+
+	@autoreconnect_retry
 	def findDiffGtThan(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
 		if s == []:
@@ -84,6 +90,33 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findDiffGtThanReturnTime(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
+		r = s[0]['time']
+  		return int(r)
+
+	@autoreconnect_retry
+	def findActiveWalletsGtThan(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
+		if s == []:
+			return "Empty"
+		else:
+			r = s[0]['time']
+  			return float(r)
+
+	@autoreconnect_retry
+	def findActiveWalletsGtThanCalc1(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'walletTime': {"$lt": int(unixTime)}}).count())
+		r = s[0]
+  		return int(r)
+
+ 	@autoreconnect_retry
+	def findActiveWalletsGtThanCalc2(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'walletTime': {"$lt": int(unixTime)}}).count())
+		r = s[0]
+  		return int(r)
+
+	@autoreconnect_retry
+	def findActiveWalletsGtThanReturnTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
 		r = s[0]['time']
   		return int(r)
