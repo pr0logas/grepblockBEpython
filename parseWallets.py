@@ -26,7 +26,7 @@ class aggregateWalletsData():
 	def aggregateOnlyUniqueWallets(self, wallets):
 		output = set()
 		for x in wallets:
-				output.add(x)
+			output.add(x)
 
 		return output
 
@@ -36,7 +36,7 @@ class aggregateWalletsData():
 		nestedData = firstObj['tx']
 		resultList = []
 		for i in nestedData:
-				resultList.append(i)
+			resultList.append(i)
 
 			return resultList
 
