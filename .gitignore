@@ -1,2 +1,3 @@
 *.pyc
 /assets/coins/*/JSON
+.idea/
