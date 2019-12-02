@@ -27,7 +27,6 @@ class aggregateWalletsData():
 		output = set()
 		for x in wallets:
 			output.add(x)
-
 		return output
 
 	# Works only data from Explorer
