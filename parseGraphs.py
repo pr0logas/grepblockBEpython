@@ -195,7 +195,8 @@ class parseGraph():
 			sys.exit(1)
 
 	def sendJSONtoFronend(self):
-		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:/usr/share/nginx/grepblockcom/apidata/' + self.assetTicker + '/' + self.file
+		instancePath = '/usr/share/nginx/grepblockcom/apidata/'
+		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:' + instancePath + self.assetTicker + '/' + self.file
 		try:
 			res = subprocess.check_output(command, shell=True).strip()
 		except:
