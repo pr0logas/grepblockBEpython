@@ -6,6 +6,7 @@ import sys, time
 from datetime import datetime, timedelta
 from time import gmtime, strftime
 from adeptio import *
+
 sys.path.append('../../../')
 from mongoDB import *
 from parseGraphs import parseGraph
@@ -23,9 +24,9 @@ MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 lU = PG.parseActiveWalletsFindLastValue()
 if lU == 'FileWasEmpty!':
 	lU = PG.parseActiveWalletsFindLastValue()
-	print "Warning, file was empty, init zero params!"
+	print("Warning, file was empty, init zero params!")
 
-lPGBLK = MC.findLastTxidProgress(collectionForWalletsProgress)
+lP = MC.findLastTxidProgress(collectionForWalletsProgress)
 
 while True:
 	lU = PG.parseActiveWalletsFindLastValue()
@@ -35,7 +36,7 @@ while True:
 
 	lBLK = MC.findActiveWalletsGtThanReturnBlock(collectionForBlocks, lastProgress)
 
-	if lBLK >= lPGBLK:
+	if lBLK >= lP:
 		break
 	else:
 		diffRes = MC.findActiveWalletsGtThan(collectionForBlocks, lastProgress)
@@ -51,13 +52,13 @@ while True:
 		resJSON = PG.appendNewContentToDifficultyGraph(int(result), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
-			print timeSet + " Next day found. Active Wallets: " + str(result) + " // We at " + str(printTime)
+			print(timeSet + " Next day found. Active Wallets: " + str(result) + " // We at " + str(printTime))
 		else:
-			print "FATAL!"
+			print("FATAL!")
 			sys.exit(1)
 
 # Send new JSON to FE;
 PG.sendJSONtoFronend()
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-print timeSet + " ***JSON copied to FE instance***"
-print timeSet + " All tasks were successful."
+print(timeSet + " ***JSON copied to FE instance***")
+print(timeSet + " All tasks were successful.")
