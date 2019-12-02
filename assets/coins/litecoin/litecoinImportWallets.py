@@ -54,13 +54,14 @@ while whileprogress<currentLastBlock:
 		getTxData = RPC.getTxContentByTxid(txid)
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
-			uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
-			for uw in uniqWlts:
-				createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
-				result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
-				status = result
-				t = int(round(time.time() * 1000))
-				setProcEnd = t
+			if randomWlts is not None:
+				uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
+				for uw in uniqWlts:
+					createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
+					result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
+					status = result
+					t = int(round(time.time() * 1000))
+					setProcEnd = t
 
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
