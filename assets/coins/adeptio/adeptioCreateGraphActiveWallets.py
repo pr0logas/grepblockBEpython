@@ -35,8 +35,6 @@ while True:
 
 	lBLK = MC.findActiveWalletsGtThanReturnBlock(collectionForBlocks, lastProgress)
 
-	print lBLK, lPGBLK
-
 	if lBLK >= lPGBLK:
 		break
 	else:
