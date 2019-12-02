@@ -16,7 +16,7 @@ class nodeRpcCaller():
 	def getBlockHash(self, blockNum):
 		fullcall = self.command + ' getblockhash' + ' ' + str(blockNum)
 		try:
-		    res = subprocess.check_output(fullcall, shell=True).strip()
+			res = subprocess.check_output(fullcall, shell=True).strip()
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " No new Blocks found1. Sleeping..."
@@ -27,7 +27,7 @@ class nodeRpcCaller():
 	def getBlockContentByHash(self, blockHash):
 		fullcall = self.command + ' getblock' + ' ' + str(blockHash)
 		try:
-		    res = subprocess.check_output(fullcall, shell=True).strip()
+			res = subprocess.check_output(fullcall, shell=True).strip()
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " No new Blocks found2. Sleeping..."
@@ -38,7 +38,7 @@ class nodeRpcCaller():
 	def getTxContentByTxid(self, txid):
 		fullcall = self.command + ' getrawtransaction' + ' ' + str(txid) + ' ' + str(1)
 		try:
-		    res = subprocess.check_output(fullcall, shell=True).strip()
+			res = subprocess.check_output(fullcall, shell=True).strip()
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " No new TXids found1. Sleeping..."

@@ -19,25 +19,18 @@ collectionForWallets = "wallets"
 PG = parseGraph(assetTicker, fileForActiveWalletsCount, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 
-# Init progress;
-lastCurrBlk = MC.findLastBlock(collectionForBlocks)
-lastProgressInWalletsCol = MC.findLastTxidProgress(collectionForWalletsProgress)
-
-diff = int(int(lastCurrBlk) - int(lastProgressInWalletsCol))
-
 # Find Last unixTime value in a working json file;
 lU = PG.parseActiveWalletsFindLastValue()
 if lU == 'FileWasEmpty!':
 	lU = PG.parseActiveWalletsFindLastValue()
 	print "Warning, file was empty, init zero params!"
 
-# Can we start?
-if diff > 15 or diff < 0:
-	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-	print "We are not up to date with blocks collection! Diff: " + str(diff)
-	sys.exit(1)
-
+lTPBLK = ''
 while True:
+	lBLK = MC.findLastBlock(collectionForBlocks)
+
+	lastProgress = MC.findLastActiveWalletsbyTimeBlockNum(collectionForBlocks, lU)
+	if lBLK <= 
 	lU = PG.parseActiveWalletsFindLastValue()
 	lastProgress = MC.findLastActiveWalletsbyTime(collectionForBlocks, lU)
 	averageBlkMinus = (86400 - int(blockTime))

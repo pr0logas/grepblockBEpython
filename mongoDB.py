@@ -19,19 +19,19 @@ class mongoConnection():
 		self.mongoDB = self.mongoConn[database]
 
 	def autoreconnect_retry(fn, retries=10):
-	    def db_op_wrapper(*args, **kwargs):
-	        tries = 0
+		def db_op_wrapper(*args, **kwargs):
+			tries = 0
 
-	        while tries < retries:
-	            try:
-	                return fn(*args, **kwargs)
+			while tries < retries:
+				try:
+					return fn(*args, **kwargs)
 
-	            except AutoReconnect:
-	                tries += 1
+				except AutoReconnect:
+					tries += 1
 
-	        raise Exception("MongoDB not responding. No luck even after %d retries" % retries)
+			raise Exception("MongoDB not responding. No luck even after %d retries" % retries)
 
-	    return db_op_wrapper
+		return db_op_wrapper
 
 	@autoreconnect_retry
 	def findByBlock(self, fromCollection, blockNum):
@@ -47,37 +47,43 @@ class mongoConnection():
 	def findLastBlock(self, fromCollection):
 		searchLastBlock = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
 		lastBlock = searchLastBlock[0]['block']
-  		return int(lastBlock)
+		return int(lastBlock)
 
 	@autoreconnect_retry
 	def findLastTxidProgress(self, fromCollection):
 		searchLastTxidProg = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "lastblock": 1}).sort([( '$natural', -1 )] ).limit(1))
 		lastTxidProgress = searchLastTxidProg[0]['lastblock']
-  		return int(lastTxidProgress)
+		return int(lastTxidProgress)
 
 	@autoreconnect_retry
 	def findLastHistoricalPrices(self, fromCollection):
 		s = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "unix_time": 1}).sort([( '$natural', -1 )] ).limit(1))
 		r = s[0]['unix_time']
-  		return int(r)
+		return int(r)
 
 	@autoreconnect_retry
 	def findLastBlockTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['block']
-  		return int(r)
+		return int(r)
 
 	@autoreconnect_retry
 	def findLastDiffbyTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['time']
-  		return int(r)
+		return int(r)
 
 	@autoreconnect_retry
 	def findLastActiveWalletsbyTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['time']
-  		return int(r)
+		return int(r)
+
+	@autoreconnect_retry
+	def findLastActiveWalletsbyTimeBlockNum(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
+		r = s[0]['block']
+		return int(r)
 
 	@autoreconnect_retry
 	def findDiffGtThan(self, fromCollection, unixTime):
@@ -86,13 +92,13 @@ class mongoConnection():
 			return "Empty"
 		else:
 			r = s[0]['difficulty']
-  			return float(r)
+			return float(r)
 
 	@autoreconnect_retry
 	def findDiffGtThanReturnTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
 		r = s[0]['time']
-  		return int(r)
+		return int(r)
 
 	@autoreconnect_retry
 	def findActiveWalletsGtThan(self, fromCollection, unixTime):
@@ -101,27 +107,27 @@ class mongoConnection():
 			return "Empty"
 		else:
 			r = s[0]['time']
-  			return float(r)
+			return float(r)
 
 	@autoreconnect_retry
 	def findActiveWalletsGtThanCalc1(self, fromCollection, unixTime):
 		ut = int(unixTime)
 		s = (self.mongoDB[fromCollection].count_documents({'walletTime': {"$lt": ut}}))
-  		return int(s)
+		return int(s)
 
- 	@autoreconnect_retry
+	@autoreconnect_retry
 	def findActiveWalletsGtThanCalc2(self, fromCollection, unixTime):
 		ut = int(unixTime)
 		s = (self.mongoDB[fromCollection].count_documents({'walletTime': {"$lt": ut}}))
-  		return int(s)
+		return int(s)
 
 	@autoreconnect_retry
 	def findActiveWalletsGtThanReturnTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
 		r = s[0]['time']
-  		return int(r)
+		return int(r)
 
- 	@autoreconnect_retry
+	@autoreconnect_retry
 	def updateLastTxidProgressPlusOne(self, toCollection, lastTxidProgress):
 		increasing = int(lastTxidProgress)
 		decresing = int(lastTxidProgress -1)
@@ -129,14 +135,14 @@ class mongoConnection():
 		new = { "$set": { "lastblock": increasing } }
 		self.mongoDB[toCollection].update_one(current, new)
 
- 	@autoreconnect_retry
+	@autoreconnect_retry
 	def updateLastTxidProgressMinusOne(self, toCollection, lastTxidProgress):
 		decrease = int(lastTxidProgress - 1)
 		current = { "lastblock": lastTxidProgress }
 		decreasing = { "$set": { "lastblock": decrease } }
 		self.mongoDB[toCollection].update_one(current, decreasing)
 
- 	@autoreconnect_retry
+	@autoreconnect_retry
 	def upsertUniqueWallets(self, toCollection, jsonOfWallets):
 		data = eval(jsonOfWallets)
 		#print(mongoerrors.__dict__.keys())
@@ -148,7 +154,7 @@ class mongoConnection():
 			print timeSet + " MongoDB dup wlt, skip"
 			pass
 
- 	@autoreconnect_retry
+	@autoreconnect_retry
 	def insertInitValueForBlocks(self, toCollection):
 		data = '{ "block" : 0 }'
 		setData = ast.literal_eval(data)
@@ -161,7 +167,7 @@ class mongoConnection():
 		self.mongoDB[toCollection].create_index([('time', pymongo.ASCENDING)])
 		self.mongoDB[toCollection].create_index([('mediantime', pymongo.ASCENDING)])
 
- 	@autoreconnect_retry
+	@autoreconnect_retry
 	def insertInitValueForWalletsProgress(self, toCollection):
 		data = '{ "lastblock" : 0 }'
 		setData = ast.literal_eval(data)
@@ -172,7 +178,7 @@ class mongoConnection():
 		self.mongoDB['wallets'].create_index([('block', pymongo.ASCENDING)])
 		self.mongoDB['wallets'].create_index([('wallet', pymongo.ASCENDING)], unique=True)
 
- 	@autoreconnect_retry
+	@autoreconnect_retry
 	def insertInitValueForHP(self, toCollection, time):
 		data = '{ "unix_time" : ' + str(time) + ' }'
 		setData = ast.literal_eval(data)
