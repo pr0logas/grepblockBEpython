@@ -59,7 +59,5 @@ while True:
 # Send new JSON to FE;
 PG.sendJSONtoFronend()
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-print
-timeSet + " ***JSON copied to FE instance***"
-print
-timeSet + " All tasks were successful."
+print timeSet + " ***JSON copied to FE instance***"
+print timeSet + " All tasks were successful."
