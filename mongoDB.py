@@ -80,7 +80,7 @@ class mongoConnection():
 		return int(r)
 
 	@autoreconnect_retry
-	def findLastActiveWalletsbyTimeBlockNum(self, fromCollection, unixTime):
+	def findLastActiveWalletsbyTimeReturnBlock(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['block']
 		return int(r)
@@ -108,6 +108,12 @@ class mongoConnection():
 		else:
 			r = s[0]['time']
 			return float(r)
+
+	@autoreconnect_retry
+	def findActiveWalletsGtThanReturnBlock(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
+		r = s[0]['block']
+		return int(r)
 
 	@autoreconnect_retry
 	def findActiveWalletsGtThanCalc1(self, fromCollection, unixTime):

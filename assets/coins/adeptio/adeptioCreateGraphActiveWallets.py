@@ -25,26 +25,22 @@ if lU == 'FileWasEmpty!':
 	lU = PG.parseActiveWalletsFindLastValue()
 	print "Warning, file was empty, init zero params!"
 
-lTPBLK = ''
-while True:
-	lBLK = MC.findLastBlock(collectionForBlocks)
+lPGBLK = MC.findLastTxidProgress(collectionForWalletsProgress)
 
-	lastProgress = MC.findLastActiveWalletsbyTimeBlockNum(collectionForBlocks, lU)
-	if lBLK <= 
+while True:
 	lU = PG.parseActiveWalletsFindLastValue()
 	lastProgress = MC.findLastActiveWalletsbyTime(collectionForBlocks, lU)
 	averageBlkMinus = (86400 - int(blockTime))
 	lastProgress = (lastProgress + averageBlkMinus)
-	diffRes = MC.findActiveWalletsGtThan(collectionForBlocks, lastProgress)
 
-	if diffRes == 'Empty':
-		# Send new JSON to FE;
-		PG.sendJSONtoFronend()
-		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print timeSet +" ***JSON copied to FE instance***"
-		print timeSet +" All tasks were successful."
+	lBLK = MC.findActiveWalletsGtThanReturnBlock(collectionForBlocks, lastProgress)
+
+	print lBLK, lPGBLK
+
+	if lBLK >= lPGBLK:
 		break
 	else:
+		diffRes = MC.findActiveWalletsGtThan(collectionForBlocks, lastProgress)
 		# Search only < 3 month older activeWallet count;
 		searchActiveWltMinus3mos = int(int(diffRes) - 7776000)
 		currentWalletsMinus3mos = MC.findActiveWalletsGtThanCalc1(collectionForWallets, searchActiveWltMinus3mos)
@@ -61,3 +57,11 @@ while True:
 		else:
 			print "FATAL!"
 			sys.exit(1)
+
+# Send new JSON to FE;
+PG.sendJSONtoFronend()
+timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+print
+timeSet + " ***JSON copied to FE instance***"
+print
+timeSet + " All tasks were successful."
