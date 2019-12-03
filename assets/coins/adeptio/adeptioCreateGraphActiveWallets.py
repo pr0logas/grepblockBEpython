@@ -38,7 +38,7 @@ while True:
 
 	if lBLK >= lP:
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print(timeSet + " Last parsed block with Active Wallets: " + str(lBLK)
+		print(timeSet + " Last parsed block with Active Wallets: " + str(lBLK))
 		break
 	else:
 		diffRes = MC.findActiveWalletsGtThan(collectionForBlocks, lastProgress)
