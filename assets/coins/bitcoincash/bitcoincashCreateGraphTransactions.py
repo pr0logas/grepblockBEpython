@@ -24,7 +24,7 @@ if lU == 'FileWasEmpty!':
 	print "Warning, file was empty, init zero params!"
 
 # Find the same but in MongoDB;
-lastBlockByUnixTime = MC.findLastBlockMedianTime(collectionForBlocks, lU)
+lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
 
 # Last Block value in mongoDB;
 findLastBlock = MC.findLastBlock(collectionForBlocks)
@@ -39,7 +39,7 @@ while whileprogress <= findLastBlock:
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
 	if lB != []: # This should never happen!
 		count = len(lB['tx'])
-		unixTime = lB['mediantime']
+		unixTime = lB['time']
 		reqNum = int(count)
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
