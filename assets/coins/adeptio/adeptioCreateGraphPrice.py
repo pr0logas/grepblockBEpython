@@ -39,5 +39,6 @@ while True:
 		print 'empty'
 		break
 	else:
-		print "Non-empty"
+		price = MC.findLastPrice(collectionForHistoricalPrices, res)
+		print price
 		break
