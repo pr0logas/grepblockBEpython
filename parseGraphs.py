@@ -128,6 +128,28 @@ class parseGraph():
 				print "FATAL failed to write to the file init data!"
 				sys.exit(1)
 
+	def parsePriceFindLastValue(self, coinGeckoStartUnixTime):
+		if os.path.isfile('JSON/' + self.file):
+			readFile = open(self.path, "r")
+			content = (readFile.read())
+			print content
+		else:
+			try:
+				os.makedirs("JSON")
+			except:
+				pass
+
+			# Create init json file;
+			initJSON = '[[' + str(str(int(coinGeckoStartUnixTime*1000))) + ' ,' + str(0) + ' ]]'
+			try:
+				file = open(self.path, "w")
+				file.write(str(initJSON))
+				file.close()
+				return "FileWasEmpty!"
+			except:
+				print "FATAL failed to write to the file init data!"
+				sys.exit(1)
+
 	def parseBlockchainSizeFindLastValueSize(self):
 			readFile = open(self.path, "r") 
 			content = (readFile.read())

@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas, mrNemo
-#:: Modified date: 2019-11-30
+#:: Modified date: 2019-12-03
 #:: Description: This file contains all MongoDB core methods - find / insert / update / check / assigning mongodb indexes.
 
 import pymongo
