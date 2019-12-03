@@ -79,7 +79,7 @@ class mongoConnection():
 	@autoreconnect_retry
 	def findLastPrice(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
-		print s
+		print s['market_data']['current_price']['usd']
 		r = s[0]['usd']
 		return float(r)
 
