@@ -14,7 +14,7 @@ db = database
 collectionForHistoricalPrices = "historicalPriceData"
 
 # Init Classes;
-PG = parseGraph(assetTicker, fileForPrice, genesisBlock)
+PG = parseGraph(assetTicker, fileForMarketCap, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForHistoricalPrices)
 
 # Find Last unixTime value in a working json file;
@@ -38,12 +38,12 @@ while True:
 		break
 	else:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-		price = MC.findLastPrice(collectionForHistoricalPrices, unixTime)
+		price = MC.findLastMarketCap(collectionForHistoricalPrices, unixTime)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Found historical Price: " + str(price) + " // We at " + str(printTime)
+			print timeSet + " Found historical MarketCap: " + str(price) + " // We at " + str(printTime)
 		else:
 			print "FATAL!"
 			sys.exit(1)
