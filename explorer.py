@@ -30,7 +30,7 @@ class iquidusExplorer():
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. No new Blocks found1. Sleeping..."
+			print(timeSet + " No new Blocks found. Exit code: 1 Sleeping...")
 			sys.exit(0)
 
 		content = page.read()
@@ -43,7 +43,7 @@ class iquidusExplorer():
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. No new Blocks found2. Sleeping..."
+			print(timeSet + " No new Blocks found. Exit code: 2 Sleeping...")
 			sys.exit(0)
 
 		content = page.read()
@@ -56,7 +56,7 @@ class iquidusExplorer():
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. No new TXids found1. Sleeping..."
+			print(timeSet + " No new TXids found. Exit code: 3 Sleeping...")
 			sys.exit(0)
 
 		content = page.read()
@@ -69,7 +69,7 @@ class iquidusExplorer():
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. Can't get last block?"
+			print (timeSet + " Can't get last block? Exit code: 4")
 			sys.exit(1)
 
 		content = page.read()
@@ -82,7 +82,7 @@ class iquidusExplorer():
 			return result
 		else:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. Can't get last block?"
+			print (timeSet + " Can't get last block? Exit code: 5")
 			sys.exit(1)
 
 
@@ -97,7 +97,7 @@ class insightExplorer(iquidusExplorer):
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. No new Blocks found1. Sleeping..."
+			print(timeSet + " No new Blocks found. Exit code: 6 Sleeping...")
 			sys.exit(0)
 
 		content = page.read()
@@ -112,7 +112,7 @@ class insightExplorer(iquidusExplorer):
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. No new TXids found1. Sleeping..."
+			print(timeSet + " No new TXids found. Exit code: 7 Sleeping...")
 			sys.exit(0)
 
 		content = page.read()
@@ -125,7 +125,7 @@ class insightExplorer(iquidusExplorer):
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. Can't get last block?"
+			print(timeSet + " Can't get last block? Exit code: 8")
 			sys.exit(1)
 
 		content = page.read()
@@ -140,7 +140,7 @@ class insightExplorer(iquidusExplorer):
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. Can't get last block Alternative?"
+			print(timeSet + " Can't get last block Alternative? Exit code: 9")
 			sys.exit(1)
 
 		content = page.read()
@@ -153,7 +153,7 @@ class insightExplorer(iquidusExplorer):
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " EX.Class. Can't get last block Alternative 2?"
+			print(timeSet + " Can't get last block Alternative? Exit code: 10")
 			sys.exit(0)
 
 		content = page.read()
