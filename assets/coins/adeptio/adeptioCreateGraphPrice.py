@@ -41,5 +41,6 @@ while True:
 	else:
 		price = MC.findLastPrice(collectionForHistoricalPrices, res)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), res)
+		resWrite = PG.writeJSONtoFile(resJSON)
 		print resJSON
 		break
