@@ -23,7 +23,7 @@ getBlockIndexMethod = ''
 getBlockwithHashMethod = ''
 getTx = ''
 
-apiProvider = 'api.coingecko.com'
+apiProvider = 'https://api.coingecko.com'
 vsCurrencyUSD = 'usd'
 collectionForPricesUSD = 'priceDataUSD'
 collectionForHistoricalPricesUSD = 'historicalPriceData'
