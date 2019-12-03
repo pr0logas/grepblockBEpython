@@ -16,7 +16,7 @@ collectionForHistoricalPrices = "historicalPriceData"
 
 # Init Classes;
 PG = parseGraph(assetTicker, fileForPrice, genesisBlock)
-MC = mongoConnection(mongoAuth, db, collectionForBlocks)
+MC = mongoConnection(mongoAuth, db, collectionForPrices)
 
 # Find Last unixTime value in a working json file;
 lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
