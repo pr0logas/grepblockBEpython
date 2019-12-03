@@ -171,14 +171,6 @@ class parseGraph():
 			sys.exit(1)
 
 	def appendNewContentToDifficultyGraph(self, difficulty, unixTime):
-		new = {"y": float(difficulty), "x": str(unixTime)}
-		print new
-		file = open(self.path, "r")
-		content = (file.read())
-		cjson = json.loads(content)
-		print cjson
-		cjson['values'].append(new)
-		return json.dumps(cjson)
 		try:
 			new = {"y":float(difficulty),"x":str(unixTime)}
 			file = open(self.path, "r") 
