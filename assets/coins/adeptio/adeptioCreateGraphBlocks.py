@@ -53,7 +53,7 @@ while whileprogress <= findLastBlock:
 			print("WARNING! The blockchain STALL has been detected!!!")
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.appendNewContentToTxsGraph(sumBlocks, unixTime)
+			resJSON = PG.appendNewContentToBlocksGraph(sumBlocks, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
 				print timeSet + " Next day found. Total blocks: " + str(sumBlocks) + " // We at " + str(printTime)
