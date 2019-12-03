@@ -15,6 +15,7 @@ class iquidusExplorer():
 		self.getBlockwithHashMethod = getBlockwithHashMethod
 		self.getTx = getTx
 		self.u = urllib2
+		self.timeout = 15
 		self.header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (INFO, GrepBlock.com) Chrome/23.0.1271.64 Safari/537.11',
 			   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 			   'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
@@ -26,7 +27,7 @@ class iquidusExplorer():
 		url = (self.chainProvider+self.getBlockIndexMethod+blockNum)
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. No new Blocks found1. Sleeping..."
@@ -39,7 +40,7 @@ class iquidusExplorer():
 		url = (self.chainProvider+self.getBlockwithHashMethod+blockHash)
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. No new Blocks found2. Sleeping..."
@@ -52,7 +53,7 @@ class iquidusExplorer():
 		url = (self.chainProvider+self.getTx+txid+'&decrypt=1')
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. No new TXids found1. Sleeping..."
@@ -65,7 +66,7 @@ class iquidusExplorer():
 		url = (self.chainProvider+'/api/getblockcount')
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. Can't get last block?"
@@ -93,7 +94,7 @@ class insightExplorer(iquidusExplorer):
 		url = (self.chainProvider+self.getBlockIndexMethod+blockNum)
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. No new Blocks found1. Sleeping..."
@@ -108,7 +109,7 @@ class insightExplorer(iquidusExplorer):
 		url = (self.chainProvider+self.getTx+txid)
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. No new TXids found1. Sleeping..."
@@ -121,7 +122,7 @@ class insightExplorer(iquidusExplorer):
 		url = (self.chainProvider+'api/status?q=getInfo')
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. Can't get last block?"
@@ -136,7 +137,7 @@ class insightExplorer(iquidusExplorer):
 		url = (self.chainProvider+'api/status?q=getLastBlockHash')
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. Can't get last block Alternative?"
@@ -149,7 +150,7 @@ class insightExplorer(iquidusExplorer):
 		s = (self.chainProvider+self.getBlockwithHashMethod+h)
 		r = self.u.Request(s, headers=self.header)
 		try:
-			page = self.u.urlopen(r)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " EX.Class. Can't get last block Alternative 2?"
