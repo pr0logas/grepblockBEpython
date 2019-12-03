@@ -49,6 +49,12 @@ class parseCoinGeckoPrices():
 		if secObj['low_24h'] is None:
 			secObj['low_24h'] = str('null')
 
+		if secObj['market_cap_change_percentage_24h'] is 'null':
+			secObj['market_cap_change_percentage_24h'] = str('null')
+
+		if secObj['market_cap_change_24h'] is 'null':
+			secObj['market_cap_change_24h'] = str('null')
+
 		if secObj['price_change_percentage_24h'] is None:
 			secObj['price_change_percentage_24h'] = int('0')
 
