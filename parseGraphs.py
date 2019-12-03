@@ -132,8 +132,9 @@ class parseGraph():
 		if os.path.isfile('JSON/' + self.file):
 			readFile = open(self.path, "r")
 			content = (readFile.read())
-			print content
-			print content[-1]
+			cjson = json.loads(content)
+			print cjson
+			print cjson[-1]
 		else:
 			try:
 				os.makedirs("JSON")
