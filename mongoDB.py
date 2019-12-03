@@ -90,7 +90,7 @@ class mongoConnection():
 		r = s[0]['market_data']['market_cap']['usd']
 		if r is None:
 			print('WARNING there are no historical price for unixTime: ' + str(unixTime))
-			return str('null')
+			return float(0.0)
 		else:
 			return float(r)
 
