@@ -183,13 +183,13 @@ class parseGraph():
 			sys.exit(1)
 
 	def appendNewContentToPriceGraph(self, price, unixTime):
-		new = '[int(unixTime), float(price)]'
+		new = [int(unixTime), float(price)]
 		print new
 		file = open(self.path, "r")
 		content = (file.read())
 		cjson = json.loads(content)
 		print cjson
-		cjson['values'].append(new)
+		cjson['values'].append(eval(new))
 		print cjson
 		return json.dumps(cjson)
 
