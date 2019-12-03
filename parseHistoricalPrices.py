@@ -29,7 +29,7 @@ class parseCoinGeckoHistoricalPrices():
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " HPR.Class. FATAL: " + self.apiProvider + " failed to provide data. " + url
-			sys.exit(0)
+			sys.exit(1)
 
 		content = page.read()
 		return content

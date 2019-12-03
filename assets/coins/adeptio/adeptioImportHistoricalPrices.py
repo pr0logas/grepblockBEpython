@@ -26,6 +26,7 @@ if MC.checkIfHistoricalPricesColEmpty(col) == "Empty":
 # MongoDB check last progress;
 lastTime = MC.findLastHistoricalPrices(col)
 lastTime = (int(lastTime) + 86400) # Increase 1 day
+printTime = (datetime.fromtimestamp(lastTime)).strftime('%Y-%m-%d %H:%M:%S')
 
 # CoinGecko
 result = PP.parseHistoricalPrice(lastTime)
@@ -36,4 +37,4 @@ aggregatedData = PP.aggregateInsertUnixTime(result, lastTime)
 #Insert to MongoDB
 res = MC.insertHistoricalPricesData(col, aggregatedData)
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-print timeSet + " Succefully inserted asset historical price: $" + res
+print(timeSet + " Succefully inserted asset historical price: $" + res + ' at: ' + printTime)
