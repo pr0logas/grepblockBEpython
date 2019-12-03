@@ -83,9 +83,33 @@ class mongoConnection():
 		return float(r)
 
 	@autoreconnect_retry
+	def findLastMarketCap(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
+		r = s[0]['market_data']['market_cap']['usd']
+		return float(r)
+
+	@autoreconnect_retry
+	def findLastVolume(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
+		r = s[0]['market_data']['total_volume']['usd']
+		return float(r)
+
+	@autoreconnect_retry
 	def findLastPriceQuick(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
 		r = s[0]['current_price']
+		return float(r)
+
+	@autoreconnect_retry
+	def findLastMarketCapQuick(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
+		r = s[0]['market_cap']
+		return float(r)
+
+	@autoreconnect_retry
+	def findLastVolumeQuick(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
+		r = s[0]['total_volume']
 		return float(r)
 
 	@autoreconnect_retry
