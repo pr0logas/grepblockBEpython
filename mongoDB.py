@@ -84,9 +84,7 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findLastMarketCap(self, fromCollection, unixTime):
-		print unixTime
 		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
-		print s
 		r = s[0]['market_data']['market_cap']['usd']
 		if r is None:
 			print('WARNING there are no historical price for unixTime: ' + str(unixTime))
