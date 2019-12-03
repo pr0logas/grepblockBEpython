@@ -34,25 +34,18 @@ print lastUnixTimeinDB
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
 	unixTime = MC.findLastPriceGtThan(collectionForHistoricalPrices, lU)
-	print unixTime
-	if unixTime != []:
-		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-
-		if unixTime == 'Empty':
-			print 'empty'
-			break
-		else:
-			price = MC.findLastPrice(collectionForHistoricalPrices, unixTime)
-			resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
-			resWrite = PG.writeJSONtoFile(resJSON)
-			if resWrite == 'OK':
-				timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-				print timeSet + " Found historical Price: " + str(price) + " // We at " + str(printTime)
-			else:
-				print "FATAL!"
-				sys.exit(1)
-			print resJSON
+	if unixTime == 'Empty':
+		print 'empty'
+		break
 	else:
-		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print(timeSet + ' No new Historical Price Data points found!')
-		sys.exit(1)
+		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
+		price = MC.findLastPrice(collectionForHistoricalPrices, unixTime)
+		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
+		resWrite = PG.writeJSONtoFile(resJSON)
+		if resWrite == 'OK':
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print timeSet + " Found historical Price: " + str(price) + " // We at " + str(printTime)
+		else:
+			print "FATAL!"
+			sys.exit(1)
+		print resJSON
