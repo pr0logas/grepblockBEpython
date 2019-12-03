@@ -133,6 +133,12 @@ class mongoConnection():
 		return int(r)
 
 	@autoreconnect_retry
+	def findLastBlockMedianTime(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'mediantime' : int(unixTime)}))
+		r = s[0]['block']
+		return int(r)
+
+	@autoreconnect_retry
 	def findLastDiffbyTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['time']
