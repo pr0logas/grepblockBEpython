@@ -33,8 +33,8 @@ while True:
 		# Send new JSON to FE;
 		PG.sendJSONtoFronend()
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-		print timeSet +" ***JSON copied to FE instance***"
-		print timeSet +" All tasks were successful."
+		print(timeSet +" ***JSON copied to FE instance***")
+		print(timeSet +" All tasks were successful.")
 		break
 	else:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d %H:%M:%S')
@@ -45,5 +45,5 @@ while True:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " Found MarketCap: " + str(price) + " // We at " + str(printTime)
 		else:
-			print "FATAL!"
+			print("FATAL!")
 			sys.exit(1)

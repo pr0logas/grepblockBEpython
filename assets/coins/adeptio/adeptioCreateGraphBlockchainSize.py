@@ -21,7 +21,7 @@ MC = mongoConnection(mongoAuth, db, collectionForBlocks)
 lU = PG.parseBlockchainSizeFindLastValueTime()
 if lU == 'FileWasEmpty!':
 	lU = PG.parseBlockchainSizeFindLastValueTime()
-	print "Warning, file was empty, init zero params!"
+	print("Warning, file was empty, init zero params!")
 
 # Find the same but in MongoDB;
 lastBlockByUnixTime = MC.findLastBlockTime(collectionForBlocks, lU)
@@ -50,16 +50,16 @@ while whileprogress <= findLastBlock:
 		check2 = str(nextDayTimeWhileProgress).replace("-", "")
 
 		if int(check1) > int(check2):
-			print "WARNING! The blockchain STALL has been detected!!!"
+			print("WARNING! The blockchain STALL has been detected!!!")
 			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			resJSON = PG.appendNewContentToBlockchainSizeGraph(sumSize, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total BlockchainSize: " + str(sumSize) + " bytes. // We at " + str(printTime)
+				print(timeSet + " Next day found. Total BlockchainSize: " + str(sumSize) + " bytes. // We at " + str(printTime))
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
-				print "FATAL!"
+				print("FATAL!")
 				sys.exit(1)
 
 		elif currBlkTime != nextDayTimeWhileProgress:
@@ -71,14 +71,14 @@ while whileprogress <= findLastBlock:
 			resJSON = PG.appendNewContentToBlockchainSizeGraph(sumSize, unixTime)
 			resWrite = PG.writeJSONtoFile(resJSON)
 			if resWrite == 'OK':
-				print timeSet + " Next day found. Total BlockchainSize: " + str(sumSize) + " bytes. // We at " + str(printTime)
+				print(timeSet + " Next day found. Total BlockchainSize: " + str(sumSize) + " bytes. // We at " + str(printTime))
 				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
 			else:
-				print "FATAL!"
+				print("FATAL!")
 				sys.exit(1)
 
 	else:
-		print "FATAL! Something went wrong while counting BlockchainSize Graph!"
+		print("FATAL! Something went wrong while counting BlockchainSize Graph!")
 		sys.exit(1)
 
 	whileprogress += 1
@@ -86,7 +86,7 @@ while whileprogress <= findLastBlock:
 # Send new JSON to FE;
 PG.sendJSONtoFronend()
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-print timeSet +" ***JSON copied to FE instance***"
+print(timeSet +" ***JSON copied to FE instance***")
 
 timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-print timeSet +" All tasks were successful."
+print(timeSet +" All tasks were successful.")

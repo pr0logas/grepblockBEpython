@@ -35,7 +35,7 @@ if currentLastTxidProgress != 0:
 		print ("FAIL: Unable to decrease lastblock value in txidsProgress!")
 		sys.exit(1)
 	else:
-		print ("OK: txidsProgress value succesfully decreased to:" + ' ' + str(MC.findLastTxidProgress(collectionTxidProgress)))
+		print("OK: txidsProgress value succesfully decreased to:" + ' ' + str(MC.findLastTxidProgress(collectionTxidProgress)))
 
 if currentLastTxidProgress == 0:
 	currentLastTxidProgress += 1
@@ -67,11 +67,11 @@ while whileprogress<currentLastBlock:
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	if str(status) != 'None':
 		if str(status) != '':
-			print timeSet + " Wallet inserted : " + str(status)
+			print(timeSet + " Wallet inserted : " + str(status))
 		else:
-			print timeSet + " Warning! Txid don't have any vout Wallets!"
+			print(timeSet + " Warning! Txid don't have any vout Wallets!")
 	
-	print timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
+	print(timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms')
 
 	# Increase txidsProgress to move forward;
 	MC.updateLastTxidProgressPlusOne(collectionTxidProgress, whileprogress)
