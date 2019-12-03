@@ -62,6 +62,12 @@ class mongoConnection():
 		return int(r)
 
 	@autoreconnect_retry
+	def findLastPriceDataUnixTime(self, fromCollection):
+		s = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "unix_time": 1}).sort([( '$natural', -1 )] ).limit(1))
+		r = s[0]['unix_time']
+		return int(r)
+
+	@autoreconnect_retry
 	def findLastBlockTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['block']

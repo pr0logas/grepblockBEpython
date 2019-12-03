@@ -25,3 +25,8 @@ if lU == 'FileWasEmpty!':
 	print("Warning, file was empty, init zero params!")
 
 print lU
+
+# Find the same but in MongoDB;
+lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForPrices)
+
+print lastUnixTimeinDB
