@@ -16,7 +16,7 @@ collectionForHistoricalPrices = "historicalPriceData"
 
 # Init Classes;
 PG = parseGraph(assetTicker, fileForPrice, genesisBlock)
-MC = mongoConnection(mongoAuth, db, collectionForPrices)
+MC = mongoConnection(mongoAuth, db, collectionForHistoricalPrices)
 
 # Find Last unixTime value in a working json file;
 lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
@@ -24,22 +24,24 @@ if lU == 'FileWasEmpty!':
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
 	print("Warning, file was empty, init zero params!")
 
-print lU
-
 # Find the same but in MongoDB;
-lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForPrices)
+lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForHistoricalPrices)
 
 print lastUnixTimeinDB
 
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
-	unixTime = MC.findLastPriceGtThan(collectionForPrices, lU)
+	unixTime = MC.findLastPriceGtThan(collectionForHistoricalPrices, lU)
 	if unixTime == 'Empty':
-		print 'empty'
+		# Send new JSON to FE;
+		PG.sendJSONtoFronend()
+		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+		print timeSet +" ***JSON copied to FE instance***"
+		print timeSet +" All tasks were successful."
 		break
 	else:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-		price = MC.findLastPrice(collectionForPrices, unixTime)
+		price = MC.findLastPrice(collectionForHistoricalPrices, unixTime)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
@@ -48,4 +50,3 @@ while True:
 		else:
 			print "FATAL!"
 			sys.exit(1)
-		print resJSON
