@@ -3,6 +3,7 @@
 #:: Description: This file is a workspace for Historical Prices importation.
 
 import sys, time
+from datetime import datetime, timedelta
 from time import gmtime, strftime
 from bitcoin import *
 sys.path.append('../../../')
