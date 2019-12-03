@@ -39,7 +39,7 @@ while whileprogress <= findLastBlock:
 	lB = MC.findByBlock(collectionForBlocks, whileprogress)
 	if lB != []: # This should never happen!
 		count = len(lB['tx'])
-		unixTime = lB['time']
+		unixTime = lB['mediantime']
 		reqNum = int(count)
 		currBlkTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 
