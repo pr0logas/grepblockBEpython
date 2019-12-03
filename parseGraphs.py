@@ -188,7 +188,7 @@ class parseGraph():
 			file = open(self.path, "r")
 			content = (file.read())
 			cjson = json.loads(content)
-			cjson[0].append(new)
+			cjson.append(new)
 			return json.dumps(cjson)
 		except:
 			print "FATAL! Failed to append the data to price graph!"
