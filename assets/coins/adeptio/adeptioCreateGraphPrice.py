@@ -37,5 +37,7 @@ while True:
 	print res
 	if res == 'Empty':
 		print 'empty'
+		break
 	else:
 		print "Non-empty"
+		break
