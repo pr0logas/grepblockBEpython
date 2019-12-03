@@ -24,6 +24,20 @@ getBlockwithHashMethod = ''
 getTx = ''
 
 apiProvider = 'api.coingecko.com'
+vsCurrencyUSD = 'usd'
+collectionForPricesUSD = 'priceDataUSD'
+collectionForHistoricalPricesUSD = 'historicalPriceData'
 
+# Stats related
+fileForBlockCount="assetBlocks.json"
+fileForActiveWalletsCount="assetActiveWallets.json"
+fileForBlockchainSize="assetBlockchainSize.json"
+fileForDifficulty="assetDifficulty.json"
+fileForTransactions="assetTransactions.json"
+
+# Money related
+fileForMarketCap="assetMarketCap.json"
+fileForPrice="assetPrice.json"
+fileForVolume="assetVolume.json"
 #
 daemonCli = "bitcoin-cli"
