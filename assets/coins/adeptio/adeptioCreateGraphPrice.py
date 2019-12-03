@@ -40,5 +40,6 @@ while True:
 		break
 	else:
 		price = MC.findLastPrice(collectionForHistoricalPrices, res)
-		print price
+		resJSON = PG.appendNewContentToDifficultyGraph(float(price), res)
+		print resJSON
 		break
