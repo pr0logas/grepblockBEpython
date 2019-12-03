@@ -11,7 +11,6 @@ from mongoDB import *
 from parseGraphs import parseGraph
 
 db = database
-collectionForPrices = "priceDataUSD"
 collectionForHistoricalPrices = "historicalPriceData"
 
 # Init Classes;
@@ -26,8 +25,6 @@ if lU == 'FileWasEmpty!':
 
 # Find the same but in MongoDB;
 lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForHistoricalPrices)
-
-print lastUnixTimeinDB
 
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
