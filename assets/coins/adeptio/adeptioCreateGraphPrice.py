@@ -34,8 +34,10 @@ print lastUnixTimeinDB
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
 	unixTime = MC.findLastPriceGtThan(collectionForHistoricalPrices, lU)
+	print unixTime
 	if unixTime != []:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
+
 		if unixTime == 'Empty':
 			print 'empty'
 			break
