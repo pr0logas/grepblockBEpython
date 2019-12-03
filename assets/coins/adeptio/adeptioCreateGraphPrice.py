@@ -34,6 +34,7 @@ print lastUnixTimeinDB
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
 	unixTime = MC.findLastPriceGtThan(collectionForHistoricalPrices, lU)
+	if unixTime != []:
 	printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 	if unixTime == 'Empty':
 		print 'empty'
@@ -49,3 +50,7 @@ while True:
 			print "FATAL!"
 			sys.exit(1)
 		print resJSON
+	else:
+		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+		print(timeSet + ' No new Historical Price Data points found!')
+		sys.exit(1)
