@@ -189,7 +189,7 @@ class parseGraph():
 		content = (file.read())
 		cjson = json.loads(content)
 		print cjson
-		cjson['values'].append(eval(new))
+		cjson[0].append(new)
 		print cjson
 		return json.dumps(cjson)
 
