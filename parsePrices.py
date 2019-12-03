@@ -38,6 +38,10 @@ class parseCoinGeckoPrices():
 		unixTime = int(time.time())
 		secObj['unix_time'] = int(unixTime)
 
+		if secObj['current_price'] is None:
+			print('WARNING! The asset price is null. Skipping')
+			sys.exit(1)
+
 		if secObj['roi'] is None:
 			secObj['roi'] = str('null')
 		
