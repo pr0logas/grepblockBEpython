@@ -184,7 +184,7 @@ class parseGraph():
 
 	def appendNewContentToPriceGraph(self, price, unixTime):
 		try:
-			new = [int(unixTime), float(price)]
+			new = 'int(int(unixTime * 1000)), float(price)'
 			file = open(self.path, "r")
 			content = (file.read())
 			cjson = json.loads(content)
