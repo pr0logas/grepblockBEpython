@@ -133,7 +133,7 @@ class parseGraph():
 			readFile = open(self.path, "r")
 			content = (readFile.read())
 			cjson = json.loads(content)
-			return cjson[-1][0]
+			return int(cjson[-1][0]/1000)
 		else:
 			try:
 				os.makedirs("JSON")
