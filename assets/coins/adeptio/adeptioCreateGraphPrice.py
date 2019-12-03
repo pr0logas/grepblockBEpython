@@ -16,7 +16,7 @@ collectionForHistoricalPrices = "historicalPriceData"
 
 # Init Classes;
 PG = parseGraph(assetTicker, fileForPrice, genesisBlock)
-MC = mongoConnection(mongoAuth, db, collectionForHistoricalPrices)
+MC = mongoConnection(mongoAuth, db, collectionForPrices)
 
 # Find Last unixTime value in a working json file;
 lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
@@ -27,19 +27,19 @@ if lU == 'FileWasEmpty!':
 print lU
 
 # Find the same but in MongoDB;
-lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForHistoricalPrices)
+lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForPrices)
 
 print lastUnixTimeinDB
 
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
-	unixTime = MC.findLastPriceGtThan(collectionForHistoricalPrices, lU)
+	unixTime = MC.findLastPriceGtThan(collectionForPrices, lU)
 	if unixTime == 'Empty':
 		print 'empty'
 		break
 	else:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-		price = MC.findLastPrice(collectionForHistoricalPrices, unixTime)
+		price = MC.findLastPrice(collectionForPrices, unixTime)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
