@@ -28,9 +28,7 @@ lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForPrices)
 
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
-	print lU
 	unixTime = MC.findLastPriceGtThan(collectionForPrices, lU)
-	print unixTime
 	if unixTime == 'Empty':
 		# Send new JSON to FE;
 		PG.sendJSONtoFronend()
@@ -41,14 +39,11 @@ while True:
 	else:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
 		price = MC.findLastPriceQuick(collectionForPrices, unixTime)
-		print price
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
-		print resJSON
 		resWrite = PG.writeJSONtoFile(resJSON)
-		print resWrite
 		if resWrite == 'OK':
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Found Price: " + str(price) + " // We at " + str(printTime)
+			print timeSet + " Found historical Price: " + str(price) + " // We at " + str(printTime)
 		else:
 			print "FATAL!"
 			sys.exit(1)
