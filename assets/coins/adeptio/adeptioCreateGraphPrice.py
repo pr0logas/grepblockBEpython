@@ -43,6 +43,7 @@ while True:
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print timeSet + " Found historical Price: " + str(price) + " // We at " + str(printTime)
 		else:
 			print "FATAL!"
