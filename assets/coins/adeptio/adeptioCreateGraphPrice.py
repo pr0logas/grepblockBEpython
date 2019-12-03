@@ -30,3 +30,12 @@ print lU
 lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForPrices)
 
 print lastUnixTimeinDB
+
+while True:
+	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
+	res = MC.findLastPriceGtThan(collectionForPrices, lU)
+	print res
+	if res == 'Empty':
+		print 'empty'
+	else:
+		print "Non-empty"
