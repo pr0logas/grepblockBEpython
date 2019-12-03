@@ -183,25 +183,12 @@ class parseGraph():
 			sys.exit(1)
 
 	def appendNewContentToPriceGraph(self, price, unixTime):
-		new = [int(unixTime), float(price)]
-		print new
-		file = open(self.path, "r")
-		content = (file.read())
-		cjson = json.loads(content)
-		print cjson
-		cjson[0].append(new)
-		print cjson
-		return json.dumps(cjson)
-
 		try:
 			new = [int(unixTime), float(price)]
-			print new
 			file = open(self.path, "r")
 			content = (file.read())
 			cjson = json.loads(content)
-			print cjson
-			cjson['values'].append(new)
-			print cjson
+			cjson[0].append(new)
 			return json.dumps(cjson)
 		except:
 			print "FATAL! Failed to append the data to price graph!"
