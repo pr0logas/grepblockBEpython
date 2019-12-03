@@ -107,9 +107,7 @@ class mongoConnection():
 	@autoreconnect_retry
 	def findLastMarketCapQuick(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
-		print s
 		r = s[0]['market_cap']
-		print r
 		return float(r)
 
 	@autoreconnect_retry
