@@ -134,7 +134,7 @@ class parseGraph():
 			content = (readFile.read())
 			cjson = json.loads(content)
 			print cjson
-			print cjson[-1]
+			print cjson[-1][-1]
 		else:
 			try:
 				os.makedirs("JSON")
