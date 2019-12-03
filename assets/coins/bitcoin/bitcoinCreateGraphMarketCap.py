@@ -39,6 +39,9 @@ while True:
 	else:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d %H:%M:%S')
 		price = MC.findLastMarketCapQuick(collectionForPrices, unixTime)
+		if price == 'KeyError':
+			print('WARNING! Cannot parse price in unixTime, KeyError: ' + str(unixTime))
+			sys.exit(1)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
