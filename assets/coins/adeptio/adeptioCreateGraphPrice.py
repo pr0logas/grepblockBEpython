@@ -37,7 +37,7 @@ while True:
 		print timeSet +" All tasks were successful."
 		break
 	else:
-		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
+		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d-%H-%M')
 		price = MC.findLastPriceQuick(collectionForPrices, unixTime)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
