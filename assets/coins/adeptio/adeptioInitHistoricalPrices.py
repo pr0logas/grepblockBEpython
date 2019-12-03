@@ -11,11 +11,11 @@ from mongoDB import *
 from parseGraphs import parseGraph
 
 db = database
-collectionForPrices = "priceDataUSD"
+collectionForHistoricalPrices = "historicalPriceData"
 
 # Init Classes;
 PG = parseGraph(assetTicker, fileForPrice, genesisBlock)
-MC = mongoConnection(mongoAuth, db, collectionForPrices)
+MC = mongoConnection(mongoAuth, db, collectionForHistoricalPrices)
 
 # Find Last unixTime value in a working json file;
 lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
@@ -24,11 +24,11 @@ if lU == 'FileWasEmpty!':
 	print("Warning, file was empty, init zero params!")
 
 # Find the same but in MongoDB;
-lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForPrices)
+lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForHistoricalPrices)
 
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
-	unixTime = MC.findLastPriceGtThan(collectionForPrices, lU)
+	unixTime = MC.findLastPriceGtThan(collectionForHistoricalPrices, lU)
 	if unixTime == 'Empty':
 		# Send new JSON to FE;
 		PG.sendJSONtoFronend()
@@ -38,12 +38,12 @@ while True:
 		break
 	else:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-		price = MC.findLastPriceQuick(collectionForPrices, unixTime)
+		price = MC.findLastPrice(collectionForHistoricalPrices, unixTime)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Found Price: " + str(price) + " // We at " + str(printTime)
+			print timeSet + " Found historical Price: " + str(price) + " // We at " + str(printTime)
 		else:
 			print "FATAL!"
 			sys.exit(1)
