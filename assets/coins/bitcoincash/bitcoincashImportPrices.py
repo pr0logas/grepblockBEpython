@@ -1,10 +1,10 @@
 #:: By GrepBlock.com developers // pr0logas
-#:: Modified date: 2019-11-30
+#:: Modified date: 2019-12-04
 #:: Description: This file is a workspace for Prices importation.
 
 import sys, time
 from time import gmtime, strftime
-from bitcoincash import **
+from bitcoincash import *
 sys.path.append('../../../')
 from mongoDB import *
 from parsePrices import parseCoinGeckoPrices
