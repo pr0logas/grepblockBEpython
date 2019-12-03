@@ -69,7 +69,7 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findLastPriceGtThan(self, fromCollection, unixTime):
-		s = list(self.mongoDB[fromCollection].find({'unix_time': {"$gt": int(unixTime)}}).sort([( '$natural', -1 )] ).limit(1))
+		s = list(self.mongoDB[fromCollection].find({'unix_time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
 		if s == []:
 			return "Empty"
 		else:
