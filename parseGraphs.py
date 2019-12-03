@@ -133,6 +133,7 @@ class parseGraph():
 			readFile = open(self.path, "r")
 			content = (readFile.read())
 			print content
+			print content[-1]
 		else:
 			try:
 				os.makedirs("JSON")
@@ -140,7 +141,7 @@ class parseGraph():
 				pass
 
 			# Create init json file;
-			initJSON = '[[' + str(str(int(coinGeckoStartUnixTime*1000))) + ' ,' + str(0) + ' ]]'
+			initJSON = '[[' + str(str(int(coinGeckoStartUnixTime*1000))) + ', ' + str(0) + ' ]]'
 			try:
 				file = open(self.path, "w")
 				file.write(str(initJSON))
