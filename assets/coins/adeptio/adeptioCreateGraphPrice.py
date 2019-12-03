@@ -23,3 +23,5 @@ lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
 if lU == 'FileWasEmpty!':
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
 	print("Warning, file was empty, init zero params!")
+
+print lU
