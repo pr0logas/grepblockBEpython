@@ -75,7 +75,7 @@ python ./${asset}ImportWallets.py</command>
   </buildWrappers>
 </project>
 '''
-createJob(testas, newXml)
+createJob('testas', newXml)
 # build a parameterized job
 # requires creating and configuring the api-test job to accept 'param1' & 'param2'
 server.build_job('api-test', {'param1': 'test value 1', 'param2': 'test value 2'})
