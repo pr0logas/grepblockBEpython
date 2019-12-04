@@ -24,9 +24,9 @@ class jenkinsJobs():
             <hudson.tasks.Shell>
               <command>asset=''' + self.assetName + '''
         
-        cd ~/grepblockbepython/assets/coins/${asset}
+cd ~/grepblockbepython/assets/coins/${asset}
         
-        python ./${asset}ImportWallets.py</command>
+python ./${asset}ImportWallets.py</command>
             </hudson.tasks.Shell>
           </builders>
           <publishers/>
