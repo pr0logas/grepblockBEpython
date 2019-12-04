@@ -130,7 +130,137 @@ python ./${asset}CreateGraphBlockchainSize.py</command>
                   </buildWrappers>
                 </project>
                 '''
-            return newXml
+        return newXml
+
+    def assetBlocks(self):
+        newXml = '''<?xml version='1.1' encoding='UTF-8'?>
+                    <project>
+                      <actions/>
+                      <description></description>
+                      <keepDependencies>false</keepDependencies>
+                      <properties>
+                        <jenkins.model.BuildDiscarderProperty>
+                          <strategy class="hudson.tasks.LogRotator">
+                            <daysToKeep>90</daysToKeep>
+                            <numToKeep>-1</numToKeep>
+                            <artifactDaysToKeep>-1</artifactDaysToKeep>
+                            <artifactNumToKeep>-1</artifactNumToKeep>
+                          </strategy>
+                        </jenkins.model.BuildDiscarderProperty>
+                      </properties>
+                      <scm class="hudson.scm.NullSCM"/>
+                      <canRoam>true</canRoam>
+                      <disabled>false</disabled>
+                      <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+                      <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+                      <triggers>
+                        <hudson.triggers.TimerTrigger>
+                          <spec>3 3 * * *</spec>
+                        </hudson.triggers.TimerTrigger>
+                      </triggers>
+                      <concurrentBuild>false</concurrentBuild>
+                      <builders>
+                        <hudson.tasks.Shell>
+                          <command>asset=''' + self.assetName + '''
+
+cd ~/grepblockbepython/assets/coins/${asset}
+
+python ./${asset}CreateGraphBlocks.py</command>
+                        </hudson.tasks.Shell>
+                      </builders>
+                      <publishers/>
+                      <buildWrappers>
+                      </buildWrappers>
+                    </project>
+                    '''
+        return newXml
+
+    def assetDifficulty(self):
+        newXml = '''<?xml version='1.1' encoding='UTF-8'?>
+                        <project>
+                          <actions/>
+                          <description></description>
+                          <keepDependencies>false</keepDependencies>
+                          <properties>
+                            <jenkins.model.BuildDiscarderProperty>
+                              <strategy class="hudson.tasks.LogRotator">
+                                <daysToKeep>90</daysToKeep>
+                                <numToKeep>-1</numToKeep>
+                                <artifactDaysToKeep>-1</artifactDaysToKeep>
+                                <artifactNumToKeep>-1</artifactNumToKeep>
+                              </strategy>
+                            </jenkins.model.BuildDiscarderProperty>
+                          </properties>
+                          <scm class="hudson.scm.NullSCM"/>
+                          <canRoam>true</canRoam>
+                          <disabled>false</disabled>
+                          <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+                          <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+                          <triggers>
+                            <hudson.triggers.TimerTrigger>
+                              <spec>1 1 * * *</spec>
+                            </hudson.triggers.TimerTrigger>
+                          </triggers>
+                          <concurrentBuild>false</concurrentBuild>
+                          <builders>
+                            <hudson.tasks.Shell>
+                              <command>asset=''' + self.assetName + '''
+
+cd ~/grepblockbepython/assets/coins/${asset}
+
+python ./${asset}CreateGraphDifficulty.py</command>
+                            </hudson.tasks.Shell>
+                          </builders>
+                          <publishers/>
+                          <buildWrappers>
+                          </buildWrappers>
+                        </project>
+                        '''
+        return newXml
+
+    def assetTransactions(self):
+        newXml = '''<?xml version='1.1' encoding='UTF-8'?>
+                            <project>
+                              <actions/>
+                              <description></description>
+                              <keepDependencies>false</keepDependencies>
+                              <properties>
+                                <jenkins.model.BuildDiscarderProperty>
+                                  <strategy class="hudson.tasks.LogRotator">
+                                    <daysToKeep>90</daysToKeep>
+                                    <numToKeep>-1</numToKeep>
+                                    <artifactDaysToKeep>-1</artifactDaysToKeep>
+                                    <artifactNumToKeep>-1</artifactNumToKeep>
+                                  </strategy>
+                                </jenkins.model.BuildDiscarderProperty>
+                              </properties>
+                              <scm class="hudson.scm.NullSCM"/>
+                              <canRoam>true</canRoam>
+                              <disabled>false</disabled>
+                              <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+                              <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+                              <triggers>
+                                <hudson.triggers.TimerTrigger>
+                                  <spec>2 2 * * *</spec>
+                                </hudson.triggers.TimerTrigger>
+                              </triggers>
+                              <concurrentBuild>false</concurrentBuild>
+                              <builders>
+                                <hudson.tasks.Shell>
+                                  <command>asset=''' + self.assetName + '''
+
+cd ~/grepblockbepython/assets/coins/${asset}
+
+python ./${asset}CreateGraphTransactions.py</command>
+                                </hudson.tasks.Shell>
+                              </builders>
+                              <publishers/>
+                              <buildWrappers>
+                              </buildWrappers>
+                            </project>
+                            '''
+        return newXml
+
 
     def daemonParseWallets(self):
         newXml = '''<?xml version='1.1' encoding='UTF-8'?>

@@ -51,6 +51,13 @@ createJob(assetName, 'daemon-parseBlocks', Methods.daemonParseBlocks())
 createJob(assetName, 'daemon-parseWallets', Methods.daemonParseWallets())
 createJob(assetName, 'graph-assetActiveWallets', Methods.assetActiveWallets())
 createJob(assetName, 'graph-assetBlockchainSize', Methods.assetBlockchainSize())
+createJob(assetName, 'graph-assetBlocks', Methods.assetBlocks())
+createJob(assetName, 'graph-assetDifficulty', Methods.assetDifficulty())
+createJob(assetName, 'graph-assetTransactions', Methods.assetTransactions())
+createJob(assetName, 'graph-assetTransactions', Methods.assetTransactions())
+createJob(assetName, 'graph-assetTransactions', Methods.assetTransactions())
+createJob(assetName, 'graph-assetTransactions', Methods.assetTransactions())
+
 
 
 
