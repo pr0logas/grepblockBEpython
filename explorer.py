@@ -147,6 +147,7 @@ class insightExplorer(iquidusExplorer):
 		firstObj = json.loads(content)
 		h = str(firstObj['lastblockhash'])
 		print(h)
+		s = (self.chainProvider + self.getBlockwithHashMethod + h)
 		page = self.u.urlopen(s, timeout=self.timeout)
 		content = page.read()
 		print content
