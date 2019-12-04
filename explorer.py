@@ -150,16 +150,15 @@ class insightExplorer(iquidusExplorer):
 		page = self.u.urlopen(s, timeout=self.timeout)
 		content = page.read()
 		print content
-		print s
 		sys.exit(0)
 
 		s = (self.chainProvider+self.getBlockwithHashMethod+h)
+		print s
 		try:
 			page = self.u.urlopen(s, timeout = self.timeout)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " Can't get last block Alternative? Exit code: 10")
-			content = page.read()
 			sys.exit(0)
 
 		content = page.read()
