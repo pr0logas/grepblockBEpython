@@ -41,45 +41,7 @@ def showViewJobs(viewName):
 
 #print(printJobXML('Adeptio-daemon-parseWallets'))
 
-newXml = '''<?xml version='1.1' encoding='UTF-8'?>
-<project>
-  <actions/>
-  <description></description>
-  <keepDependencies>false</keepDependencies>
-  <properties/>
-  <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
-  <disabled>false</disabled>
-  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
-  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.TimerTrigger>
-      <spec>*/10 * * * *</spec>
-    </hudson.triggers.TimerTrigger>
-  </triggers>
-  <concurrentBuild>false</concurrentBuild>
-  <builders>
-    <hudson.tasks.Shell>
-      <command>asset=testas
 
-cd ~/grepblockbepython/assets/coins/${asset}
-
-python ./${asset}ImportWallets.py</command>
-    </hudson.tasks.Shell>
-  </builders>
-  <publishers/>
-  <buildWrappers>
-    <hudson.plugins.ansicolor.AnsiColorBuildWrapper plugin="ansicolor@0.6.2">
-      <colorMapName>xterm</colorMapName>
-    </hudson.plugins.ansicolor.AnsiColorBuildWrapper>
-  </buildWrappers>
-</project>
-'''
 createJob('testas', newXml)
-# build a parameterized job
-# requires creating and configuring the api-test job to accept 'param1' & 'param2'
-server.build_job('api-test', {'param1': 'test value 1', 'param2': 'test value 2'})
-last_build_number = server.get_job_info('api-test')['lastCompletedBuild']['number']
-build_info = server.get_build_info('api-test', last_build_number)
-print build_info
+
 
