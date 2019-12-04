@@ -1,6 +1,5 @@
 import jenkins
 from methods import jenkinsJobs
-from auth import username, password
 from asset import assetName
 
 server = jenkins.Jenkins('https://development.adeptio.cc', username='administrator',
@@ -19,7 +18,7 @@ def printJobs():
 
 def createJob(jobName, method, xml):
     name = jobName.capitalize()
-    server.create_job(name+method, xml)
+    server.create_job(name+'-'method, xml)
 
 def printJobXML(jobName):
     return server.get_job_config(jobName)
@@ -47,5 +46,10 @@ def showViewJobs(viewName):
 
 
 createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
+createJob(assetName, 'coingecko-parsePrice', Methods.daemonParsePrice())
+#createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
+#createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
+
+print printJobXML('Adeptio-coingecko-parsePrice')
 
 
