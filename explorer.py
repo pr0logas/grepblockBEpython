@@ -156,6 +156,7 @@ class insightExplorer(iquidusExplorer):
 			print(timeSet + " Can't get last block Alternative? Exit code: 10")
 			content = page.read()
 			print content
+			print s
 			sys.exit(0)
 
 		content = page.read()
