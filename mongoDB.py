@@ -128,7 +128,9 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findLastBlockTime(self, fromCollection, unixTime):
+		print unixTime
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
+		print s
 		r = s[0]['block']
 		return int(r)
 
