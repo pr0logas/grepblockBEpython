@@ -35,7 +35,6 @@ class parseCoinGeckoHistoricalPrices():
 		return content
 
 	def aggregateInsertUnixTime(self, historicalPriceData, time):
-		print historicalPriceData
 		firstObj = json.loads(historicalPriceData)
 		secObj = firstObj
 		secObj['unix_time'] = int(time)
@@ -43,7 +42,7 @@ class parseCoinGeckoHistoricalPrices():
 		if 'community_data' in secObj:
 			secObj['community_data'] = str("null")
 
-		if '"public_interest_stats"' in secObj:
+		if 'public_interest_stats' in secObj:
 			secObj['"public_interest_stats"'] = str("null")
 
 		if 'developer_data' in secObj:
