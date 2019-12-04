@@ -291,7 +291,6 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def insertHistoricalPricesData(self, toCollection, aggregatedHPData):
-		print aggregatedHPData
 		data = eval(aggregatedHPData)
 		#data = ast.literal_eval(aggregatedBlockData)
 		try:
