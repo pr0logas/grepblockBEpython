@@ -1,5 +1,7 @@
 import jenkins
+from methods import jenkinsJobs
 from auth import username, password
+from asset import *
 
 server = jenkins.Jenkins('https://development.adeptio.cc', username='administrator',
 password='dnVOQfYwG7GmTaTnpY27yxFzf4N/ziED')
@@ -7,6 +9,9 @@ password='dnVOQfYwG7GmTaTnpY27yxFzf4N/ziED')
 user = server.get_whoami()
 version = server.get_version()
 print('Hello %s from Jenkins %s' % (user['fullName'], version))
+
+# Init Classes;
+Methods =jenkinsJobs(assetName)
 
 def printJobs():
     jobs = server.get_jobs()
