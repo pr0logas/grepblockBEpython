@@ -34,7 +34,7 @@ def enableJob(jobName):
 def reconfigJob(jobName):
     server.reconfig_job(jobName, jenkins.RECONFIG_XML)
 
-def deleteJob(jobName)
+def deleteJob(jobName):
     server.delete_job(jobName)
 
 def showViewJobs(viewName):
