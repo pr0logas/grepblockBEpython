@@ -48,5 +48,4 @@ class parseCoinGeckoHistoricalPrices():
 		if 'developer_data' in secObj:
 			secObj['developer_data'] = str("null")
 
-		print json.dumps(secObj)
 		return json.dumps(secObj)
