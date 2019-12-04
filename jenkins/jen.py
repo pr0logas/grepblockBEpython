@@ -46,10 +46,9 @@ def showViewJobs(viewName):
 
 
 createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
-createJob(assetName, 'coingecko-parsePrice', Methods.daemonParsePrice())
-#createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
-#createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
-
-print printJobXML('Adeptio-coingecko-parsePrice')
+createJob(assetName, 'coingecko-parsePrice', Methods.coingeckoParsePrice())
+createJob(assetName, 'daemon-parseBlocks', Methods.daemonParseBlocks())
+createJob(assetName, 'daemon-parseWallets', Methods.daemonParseWallets())
+createJob(assetName, 'graph-assetActiveWallets', Methods.assetActiveWallets())
 
 
