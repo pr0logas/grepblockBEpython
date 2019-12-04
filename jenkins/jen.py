@@ -16,8 +16,7 @@ def createJob(jobName):
     server.create_job(jobName, jenkins.EMPTY_CONFIG_XML)
 
 def printJobXML(jobName):
-    my_job = server.get_job_config(jobName)
-    return my_job
+    return server.get_job_config(jobName)
 
 def buildJob(jobName):
     server.build_job(jobName)
@@ -40,7 +39,7 @@ def deleteJob(jobName):
 def showViewJobs(viewName):
     return server.get_jobs(view_name=viewName)
 
-createJob('api-test')
+print(printJobXML('Adeptio-daemon-parseWallets'))
 # build a parameterized job
 # requires creating and configuring the api-test job to accept 'param1' & 'param2'
 server.build_job('api-test', {'param1': 'test value 1', 'param2': 'test value 2'})
