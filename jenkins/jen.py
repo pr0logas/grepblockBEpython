@@ -40,7 +40,7 @@ def deleteJob(jobName):
 def showViewJobs(viewName):
     return server.get_jobs(view_name=viewName)
 
-createJob(api-test)
+createJob('api-test')
 # build a parameterized job
 # requires creating and configuring the api-test job to accept 'param1' & 'param2'
 server.build_job('api-test', {'param1': 'test value 1', 'param2': 'test value 2'})
