@@ -43,7 +43,7 @@ class parseCoinGeckoHistoricalPrices():
 			secObj['community_data'] = str("null")
 
 		if 'public_interest_stats' in secObj:
-			secObj['"public_interest_stats"'] = str("null")
+			secObj['public_interest_stats'] = str("null")
 
 		if 'developer_data' in secObj:
 			secObj['developer_data'] = str("null")
