@@ -17,8 +17,9 @@ def printJobs():
     jobs = server.get_jobs()
     return jobs
 
-def createJob(jobName, xml):
-    server.create_job(jobName, xml)
+def createJob(jobName, method, xml):
+    name = jobName.capitalize()
+    server.create_job(name+method, xml)
 
 def printJobXML(jobName):
     return server.get_job_config(jobName)
@@ -45,6 +46,6 @@ def showViewJobs(viewName):
     return server.get_jobs(view_name=viewName)
 
 
-createJob(assetName+'-coingecko-parseHistoricalPrice'.capitalize(), Methods.coingeckoParseHistoricalPrice())
+createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
 
 
