@@ -153,7 +153,6 @@ class insightExplorer(iquidusExplorer):
 		sys.exit(0)
 
 		s = (self.chainProvider+self.getBlockwithHashMethod+h)
-		print s
 		try:
 			page = self.u.urlopen(s, timeout = self.timeout)
 		except:
