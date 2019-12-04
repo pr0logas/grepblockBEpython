@@ -1,3 +1,4 @@
 *.pyc
 /assets/coins/*/JSON
 .idea/
+/jenkins/auth.py
