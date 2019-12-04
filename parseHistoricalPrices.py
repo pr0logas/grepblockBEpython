@@ -35,6 +35,7 @@ class parseCoinGeckoHistoricalPrices():
 		return content
 
 	def aggregateInsertUnixTime(self, historicalPriceData, time):
+		print historicalPriceData
 		firstObj = json.loads(historicalPriceData)
 		secObj = firstObj
 		secObj['unix_time'] = int(time)
