@@ -158,6 +158,5 @@ class insightExplorer(iquidusExplorer):
 
 		content = page.read()
 		sObj = json.loads(content)
-		print sObj
 		res = int(sObj['height'])
 		return res
