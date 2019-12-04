@@ -146,22 +146,16 @@ class insightExplorer(iquidusExplorer):
 		content = page.read()
 		firstObj = json.loads(content)
 		h = str(firstObj['lastblockhash'])
-		print(h)
-		s = (self.chainProvider + self.getBlockwithHashMethod + h)
-		page = self.u.urlopen(s, timeout=self.timeout)
-		content = page.read()
-		print content
-		sys.exit(0)
 
-		s = (self.chainProvider+self.getBlockwithHashMethod+h)
+		second = (self.chainProvider + self.getBlockwithHashMethod + h)
 		try:
-			page = self.u.urlopen(s, timeout = self.timeout)
+			secReq = self.u.Request(second, headers=self.header)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " Can't get last block Alternative? Exit code: 10")
 			sys.exit(0)
 
-		content = page.read()
+		content = secReq.read()
 		sObj = json.loads(content)
 		res = int(sObj['height'])
 		return res
