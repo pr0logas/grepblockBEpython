@@ -241,8 +241,8 @@ class mongoConnection():
 		self.mongoDB[toCollection].create_index([('tx', pymongo.ASCENDING)])
 		self.mongoDB[toCollection].create_index([('hash', pymongo.ASCENDING)])
 		self.mongoDB[toCollection].create_index([('merkleroot', pymongo.ASCENDING)])
-		self.mongoDB[toCollection].create_index([('time', pymongo.ASCENDING)])
-		self.mongoDB[toCollection].create_index([('mediantime', pymongo.ASCENDING)])
+		self.mongoDB[toCollection].create_index([('time', pymongo.DESCENDING)])
+		self.mongoDB[toCollection].create_index([('mediantime', pymongo.DESCENDING)])
 
 	@autoreconnect_retry
 	def insertInitValueForWalletsProgress(self, toCollection):
