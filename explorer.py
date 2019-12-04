@@ -154,9 +154,9 @@ class insightExplorer(iquidusExplorer):
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " Can't get last block Alternative? Exit code: 10")
+			print page
 			sys.exit(0)
 
-		print page
 		content = page.read()
 		sObj = json.loads(content)
 		res = int(sObj['height'])
