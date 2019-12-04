@@ -89,6 +89,49 @@ python ./${asset}CreateGraphActiveWallets.py </command>
             '''
         return newXml
 
+    def assetBlockchainSize(self):
+        newXml = '''<?xml version='1.1' encoding='UTF-8'?>
+                <project>
+                  <actions/>
+                  <description></description>
+                  <keepDependencies>false</keepDependencies>
+                  <properties>
+                    <jenkins.model.BuildDiscarderProperty>
+                      <strategy class="hudson.tasks.LogRotator">
+                        <daysToKeep>90</daysToKeep>
+                        <numToKeep>-1</numToKeep>
+                        <artifactDaysToKeep>-1</artifactDaysToKeep>
+                        <artifactNumToKeep>-1</artifactNumToKeep>
+                      </strategy>
+                    </jenkins.model.BuildDiscarderProperty>
+                  </properties>
+                  <scm class="hudson.scm.NullSCM"/>
+                  <canRoam>true</canRoam>
+                  <disabled>false</disabled>
+                  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+                  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+                  <triggers>
+                    <hudson.triggers.TimerTrigger>
+                      <spec>4 4 * * *</spec>
+                    </hudson.triggers.TimerTrigger>
+                  </triggers>
+                  <concurrentBuild>false</concurrentBuild>
+                  <builders>
+                    <hudson.tasks.Shell>
+                      <command>asset=''' + self.assetName + '''
+
+cd ~/grepblockbepython/assets/coins/${asset}
+
+python ./${asset}CreateGraphBlockchainSize.py</command>
+                    </hudson.tasks.Shell>
+                  </builders>
+                  <publishers/>
+                  <buildWrappers>
+                  </buildWrappers>
+                </project>
+                '''
+            return newXml
+
     def daemonParseWallets(self):
         newXml = '''<?xml version='1.1' encoding='UTF-8'?>
         <project>

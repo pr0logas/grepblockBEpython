@@ -50,5 +50,7 @@ createJob(assetName, 'coingecko-parsePrice', Methods.coingeckoParsePrice())
 createJob(assetName, 'daemon-parseBlocks', Methods.daemonParseBlocks())
 createJob(assetName, 'daemon-parseWallets', Methods.daemonParseWallets())
 createJob(assetName, 'graph-assetActiveWallets', Methods.assetActiveWallets())
+createJob(assetName, 'graph-assetBlockchainSize', Methods.assetBlockchainSize())
+
 
 
