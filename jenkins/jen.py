@@ -1,5 +1,5 @@
 import jenkins
-from auth import *
+from auth import username, passwrod
 
 server = jenkins.Jenkins('https://development.adeptio.cc', username='administrator', password='dnVOQfYwG7GmTaTnpY27yxFzf4N/ziED')
 user = server.get_whoami()
@@ -17,14 +17,23 @@ def printJobXML(jobName):
     my_job = server.get_job_config(jobName)
     return my_job
 
-server.build_job('empty')
-server.disable_job('empty')
-server.copy_job('empty', 'empty_copy')
-server.enable_job('empty_copy')
-server.reconfig_job('empty_copy', jenkins.RECONFIG_XML)
+def buildJob(jobName):
+    server.build_job(jobName)
 
-#server.delete_job('empty')
-#server.delete_job('empty_copy')
+def disableJob(jobName):
+    server.disable_job(jobName)
+
+def copyJob(jobName1, jobName2):
+    server.copy_job(jobName1, jobName2)
+
+def enableJob(jobName):
+    server.enable_job(jobName)
+
+def reconfigJob(jobName):
+    server.reconfig_job(jobName, jenkins.RECONFIG_XML)
+
+def deleteJob(jobName)
+    server.delete_job(jobName)
 
 # build a parameterized job
 # requires creating and configuring the api-test job to accept 'param1' & 'param2'
