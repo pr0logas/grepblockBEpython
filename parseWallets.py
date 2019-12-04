@@ -11,7 +11,6 @@ class aggregateWalletsData():
 		pass
 
 	def findAllWalletsAddr(self, data):
-		print data
 		firstObj = json.loads(data)
 		nestedData = firstObj['vout']
 		resultList = []
