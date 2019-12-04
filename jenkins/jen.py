@@ -45,6 +45,6 @@ def showViewJobs(viewName):
     return server.get_jobs(view_name=viewName)
 
 
-createJob('Pikatciu', Methods.coingeckoParseHistoricalPrice())
+createJob(assetName+'-coingecko-parseHistoricalPrice'.capitalize(), Methods.coingeckoParseHistoricalPrice())
 
 
