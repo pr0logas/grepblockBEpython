@@ -18,7 +18,7 @@ def printJobs():
 
 def createJob(jobName, method, xml):
     name = jobName.capitalize()
-    server.create_job(name+'-'method, xml)
+    server.create_job(name+'-'+method, xml)
 
 def printJobXML(jobName):
     return server.get_job_config(jobName)
