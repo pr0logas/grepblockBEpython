@@ -4,7 +4,7 @@
 
 import sys, time
 from time import gmtime, strftime
-from bitcoin import *
+from decred import *
 sys.path.append('../../../')
 from mongoDB import *
 from parsePrices import parseCoinGeckoPrices
