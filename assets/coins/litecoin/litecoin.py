@@ -6,7 +6,7 @@
 database = "litecoin"
 assetTicker="LTC"
 assetName = "litecoin"
-genesisBlock = 1368576000
+genesisBlock = 1318055359
 coinGeckoStartUnixTime = 1368576000
 blockTime = 150
 
