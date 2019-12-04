@@ -1,5 +1,5 @@
 import jenkins
-from auth import username, passwrod
+from auth import username, passwordk
 
 server = jenkins.Jenkins('https://development.adeptio.cc', username='administrator',
 password='dnVOQfYwG7GmTaTnpY27yxFzf4N/ziED')
