@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas
-#:: Modified date: 2019-11-30
+#:: Modified date: 2019-12-04
 #:: Description: This file is a workspace for block importation.
 
 import sys, time
@@ -7,7 +7,7 @@ from time import gmtime, strftime
 from bitcore import *
 sys.path.append('../../../')
 from mongoDB import *
-from rpc import nodeRpcCallerDash
+from explorer import insightExplorer
 from parseBlocks import aggregateBlocksData
 
 db = database
@@ -15,7 +15,7 @@ collectionForBlocks = "blocks"
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
-RPC = nodeRpcCallerDash(daemonCli, rpcconnect, rpcport, rpcuser, rpcpassword)
+EX = insightExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
 AG = aggregateBlocksData()
 
 # Check if blocks col empty or not?
@@ -27,13 +27,13 @@ if MC.checkIfBlocksColEmpty(collectionForBlocks) == "Empty":
 currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Check last Explorer block:
-currentExplBlock = int(RPC.getLastBlock())
+currentExplBlock = int(EX.getLastBlock())
 currentExplBlock -= 2
 
 # Set how much blocks we want to sync from current point +- ~99
 parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
 
-# Check if our progress is near by Explorer blocks?
+# Check if our progress is near by Explorer bloapi/status?q=getBlockCountcks?
 diff = str(currentExplBlock - currentLastBlock)
 
 # We have two choises here, parse the blocks in range for +- ~100 blocks (last block too far anyway) or until last Explorer block -2 //
@@ -48,8 +48,9 @@ if (int(diff) >= 100):
 
 	while whileprogress < parsingBlocksInRange:
 		setProcStart = int(round(time.time() * 1000))
-		bH = RPC.getBlockHash(str(whileprogress))
-		bD = RPC.getBlockContentByHash(bH)
+		bH = EX.getBlockHash(str(whileprogress))
+		time.sleep(1) # Sleep otherwise rate-limit occur
+		bD = EX.getBlockContentByHash(bH)
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
@@ -72,8 +73,9 @@ else:
 
 	while whileprogress < currentExplBlock:
 		setProcStart = int(round(time.time() * 1000))
-		bH = RPC.getBlockHash(str(whileprogress))
-		bD = RPC.getBlockContentByHash(bH)
+		bH = EX.getBlockHash(str(whileprogress))
+		time.sleep(1) # Sleep otherwise rate-limit occur
+		bD = EX.getBlockContentByHash(bH)
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
@@ -86,3 +88,4 @@ else:
 
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	print timeSet + " No new blocks found, last one: " + str(currentExplBlock)
+

@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas
-#:: Modified date: 2019-11-30
+#:: Modified date: 2019-12-04
 #:: Description: This file is a workspace for wallets importation.
 
 import sys, time
@@ -7,7 +7,7 @@ from time import gmtime, strftime
 from bitcore import *
 sys.path.append('../../../')
 from mongoDB import *
-from rpc import nodeRpcCallerDash
+from explorer import insightExplorer
 from parseWallets import aggregateWalletsData
 
 collectionTxidProgress = "txidsProgress"
@@ -16,7 +16,7 @@ collectionForWallets = "wallets"
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, database, collectionTxidProgress)
-RPC = nodeRpcCallerDash(daemonCli, rpcconnect, rpcport, rpcuser, rpcpassword)
+EX = insightExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
 AG = aggregateWalletsData()
 
 # Check if txidProgress col empty or not?
@@ -51,7 +51,7 @@ while whileprogress<currentLastBlock:
 	blockTime = blockData['time']
 	blockNumber = blockData['height']
 	for txid in blockData['tx']:
-		getTxData = RPC.getTxContentByTxid(txid)
+		getTxData = EX.getTxContentByTxid(txid)
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
 			if randomWlts is not None:

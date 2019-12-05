@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas, mrNemo
-#:: Modified date: 2019-11-30
+#:: Modified date: 2019-12-04
 #:: Description: This file is a workspace for assetGraph creation.
 
 import sys, time
@@ -50,18 +50,19 @@ while whileprogress <= findLastBlock:
 		check2 = str(nextDayTimeWhileProgress).replace("-", "")
 
 		if int(check1) > int(check2):
-			print "WARNING! The blockchain STALL has been detected!!!"
-			printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			resJSON = PG.appendNewContentToTxsGraph(sumTxs, unixTime)
-			resWrite = PG.writeJSONtoFile(resJSON)
-			if resWrite == 'OK':
-				print timeSet + " Next day found. Total Transactions: " + str(sumTxs) + " // We at " + str(printTime)
-				sumTxs = 0
-				nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
-			else:
-				print "FATAL!"
-				sys.exit(1)
+			if sumTxs > 90: # WalkAround nextDay time // medianTime bug
+				print "WARNING! The blockchain STALL has been detected!!!"
+				printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
+				timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+				resJSON = PG.appendNewContentToTxsGraph(sumTxs, unixTime)
+				resWrite = PG.writeJSONtoFile(resJSON)
+				if resWrite == 'OK':
+					print timeSet + " Next day found. Total Transactions: " + str(sumTxs) + " // We at " + str(printTime)
+					sumTxs = 0
+					nextDayTimeWhileProgress = (datetime.fromtimestamp(unixTime) + timedelta(hours=24)).strftime('%Y-%m-%d') # Increase 1 day;
+				else:
+					print "FATAL!"
+					sys.exit(1)
 
 		elif currBlkTime != nextDayTimeWhileProgress:
 			sumTxs = (reqNum + sumTxs)
