@@ -183,7 +183,12 @@ class mongoConnection():
 	@autoreconnect_retry
 	def findActiveWalletsGtThanReturnBlock(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
-		r = s[0]['block']
+		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([('$natural', 1)]).limit(1))
+		if s == []:
+			print('No more blocks found with unix_time: ' + str(unixTime))
+			sys.exit(0)
+		else:
+			r = s[0]['block']
 		return int(r)
 
 	@autoreconnect_retry
