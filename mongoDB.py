@@ -182,7 +182,6 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findActiveWalletsGtThanReturnBlock(self, fromCollection, unixTime):
-		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([('$natural', 1)]).limit(1))
 		if s == []:
 			return int(10000000000) # Send 10 Billions in order to stop //
@@ -207,6 +206,15 @@ class mongoConnection():
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
 		r = s[0]['time']
 		return int(r)
+
+	@autoreconnect_retry
+	def findBasicInfo(self, fromCollection, whatToFind):
+		check = list(self.mongoDB[fromCollection].find({whatToFind: {"$exists": "true"}},{ "_id": 0, whatToFind : 1})).limit(1)
+		if check == []:
+			print("Collumn is empty!")
+			sys.exit(1)
+		else:
+			return str(check)
 
 	@autoreconnect_retry
 	def updateLastTxidProgressPlusOne(self, toCollection, lastTxidProgress):
@@ -290,7 +298,7 @@ class mongoConnection():
 			return str(data['current_price'])
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " MongoDB failed to insert Price Data!"
+			print(timeSet + " MongoDB failed to insert Price Data!")
 			sys.exit(1)
 
 	@autoreconnect_retry
@@ -302,9 +310,8 @@ class mongoConnection():
 			return str(data['market_data']['current_price']['usd'])
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " MongoDB failed to insert Historical Price Data!"
+			print(timeSet + " MongoDB failed to insert Historical Price Data!")
 			sys.exit(1)
-
 
 	@autoreconnect_retry
 	def checkIfBlocksColEmpty(self, fromCollection):
