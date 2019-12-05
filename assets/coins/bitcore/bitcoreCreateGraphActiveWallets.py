@@ -5,7 +5,7 @@
 import sys, time
 from datetime import datetime, timedelta
 from time import gmtime, strftime
-from zcoin import *
+from bitcore import *
 
 sys.path.append('../../../')
 from mongoDB import *

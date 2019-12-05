@@ -4,7 +4,7 @@
 
 import sys, time
 from time import gmtime, strftime
-from bitcore import *
+from zcoin import *
 sys.path.append('../../../')
 from mongoDB import *
 from rpc import nodeRpcCallerDash
