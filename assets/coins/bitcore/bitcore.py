@@ -7,7 +7,7 @@ database = "bitcore"
 assetTicker = "BTX"
 assetName = "bitcore"
 genesisBlock = 1492995597
-coinGeckoStartUnixTime = 1494892800
+coinGeckoStartUnixTime = 1495929600
 blockTime = 150
 
 # RPC
