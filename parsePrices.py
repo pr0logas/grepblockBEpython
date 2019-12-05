@@ -44,6 +44,9 @@ class parseCoinGeckoPrices():
 
 		if secObj['roi'] is None:
 			secObj['roi'] = str('null')
+
+		if secObj['total_supply'] is None:
+			secObj['total_supply'] = str('null')
 		
 		if secObj['high_24h'] is None:
 			secObj['high_24h'] = str('null')
