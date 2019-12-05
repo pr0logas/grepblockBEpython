@@ -185,8 +185,7 @@ class mongoConnection():
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([( '$natural', 1 )] ).limit(1))
 		s = list(self.mongoDB[fromCollection].find({'time': {"$gt": int(unixTime)}}).sort([('$natural', 1)]).limit(1))
 		if s == []:
-			print('No more blocks found with unix_time: ' + str(unixTime))
-			sys.exit(0)
+			return int(10000000000) # Send 10 Billions in order to stop //
 		else:
 			r = s[0]['block']
 		return int(r)
