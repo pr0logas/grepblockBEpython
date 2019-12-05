@@ -299,6 +299,7 @@ class mongoConnection():
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " MongoDB failed to insert Price Data!")
+			print(data)
 			sys.exit(1)
 
 	@autoreconnect_retry
@@ -311,6 +312,7 @@ class mongoConnection():
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " MongoDB failed to insert Historical Price Data!")
+			print(data)
 			sys.exit(1)
 
 	@autoreconnect_retry
