@@ -16,7 +16,7 @@ coingckstart = coinGeckoStartUnixTime
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, db, col)
-PP = parseCoinGeckoHistoricalPrices(apiProvider, vsCurrencyUSD, assetName)
+PP = parseCoinGeckoHistoricalPrices(apiProvider, vsCurrencyUSD, 'horizen')
 
 
 # Check if blocks col empty or not?

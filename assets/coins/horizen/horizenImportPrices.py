@@ -14,7 +14,7 @@ col = collectionForPricesUSD
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, db, col)
-PP = parseCoinGeckoPrices(apiProvider, vsCurrencyUSD, assetName)
+PP = parseCoinGeckoPrices(apiProvider, vsCurrencyUSD, 'horizen')
 
 # CoinGecko
 result = PP.parsePrice()
