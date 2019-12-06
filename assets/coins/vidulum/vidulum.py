@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas
-#:: Modified date: 2019-12-05
+#:: Modified date: 2019-12-06
 #:: Description: This file contains default values of the asset
 
 # Defaults
