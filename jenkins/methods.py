@@ -284,7 +284,7 @@ python ./${asset}CreateGraphTransactions.py</command>
                                   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
                                   <triggers>
                                     <hudson.triggers.TimerTrigger>
-                                      <spec>*/5 * * * *</spec>
+                                      <spec></spec>
                                     </hudson.triggers.TimerTrigger>
                                   </triggers>
                                   <concurrentBuild>false</concurrentBuild>
@@ -327,7 +327,7 @@ python ./${asset}CreateGraphMarketCap.py</command>
                                       <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
                                       <triggers>
                                         <hudson.triggers.TimerTrigger>
-                                          <spec>*/5 * * * *</spec>
+                                          <spec></spec>
                                         </hudson.triggers.TimerTrigger>
                                       </triggers>
                                       <concurrentBuild>false</concurrentBuild>
@@ -370,7 +370,7 @@ python ./${asset}CreateGraphMarketCap.py</command>
                                       <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
                                       <triggers>
                                         <hudson.triggers.TimerTrigger>
-                                          <spec>*/5 * * * *</spec>
+                                          <spec></spec>
                                         </hudson.triggers.TimerTrigger>
                                       </triggers>
                                       <concurrentBuild>false</concurrentBuild>
