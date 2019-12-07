@@ -79,7 +79,11 @@ class mongoConnection():
 	@autoreconnect_retry
 	def findLastPrice(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
-		r = s[0]['market_data']['current_price']['usd']
+		try:
+			r = s[0]['market_data']['current_price']['usd']
+		except KeyError:
+			print('KeyError')
+			print(r)
 		return float(r)
 
 	@autoreconnect_retry
