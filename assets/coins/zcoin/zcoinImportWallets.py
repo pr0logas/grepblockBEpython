@@ -22,8 +22,7 @@ AG = aggregateWalletsData()
 
 # Check if txidProgress col empty or not?
 if MC.checkIfTxidProgressColEmpty(collectionTxidProgress) == "Empty":
-    print
-    "Warning! We found an empty txidProgress collection. Starting from zero."
+    print "Warning! We found an empty txidProgress collection. Starting from zero."
     MC.insertInitValueForWalletsProgress(collectionTxidProgress)
 
 # Set current progress;
@@ -70,14 +69,11 @@ while whileprogress < currentLastBlock:
     timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
     if str(status) != 'None':
         if str(status) != '':
-            print
-            timeSet + " Wallet inserted : " + str(status)
+            print timeSet + " Wallet inserted : " + str(status)
         else:
-            print
-            timeSet + " Warning! Txid don't have any vout Wallets!"
+            print timeSet + " Warning! Txid don't have any vout Wallets!"
 
-    print
-    timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
+    print timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
 
     # Increase txidsProgress to move forward;
     MC.updateLastTxidProgressPlusOne(collectionTxidProgress, whileprogress)
