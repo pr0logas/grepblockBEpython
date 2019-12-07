@@ -16,7 +16,7 @@ rpcport = 9078
 rpcuser = "grepblock"
 rpcpassword = "tothemoon"
 
-parseBlocksInRangeFor = 99
+parseBlocksInRangeFor = 999
 
 chainProvider = 'http://explorer.safecapital.io'
 getBlockIndexMethod = '/api/getblockhash?index='
