@@ -66,11 +66,10 @@ class iquidusExplorer():
 	def getLastBlock(self):
 		url = (self.chainProvider+'/api/getblockcount')
 		req = self.u.Request(url, headers=self.header)
-		gcontext = ssl.SSLContext()
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout, context = gcontext)
+			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
-			page = self.u.urlopen(req, timeout=self.timeout, context = gcontext)
+			page = self.u.urlopen(req, timeout=self.timeout)
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print (timeSet + " Can't get last block? Exit code: 4")
 			print(page)
