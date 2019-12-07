@@ -141,6 +141,15 @@ class mongoConnection():
 			return 'KeyError'
 
 	@autoreconnect_retry
+	def findLastPriceQuick(self, fromCollection, unixTime):
+		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
+		try:
+			r = s[0]['current_price']
+			return float(r)
+		except KeyError:
+			return 'KeyError'
+
+	@autoreconnect_retry
 	def findLastBlockTime(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'time' : int(unixTime)}))
 		r = s[0]['block']
