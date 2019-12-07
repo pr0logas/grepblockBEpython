@@ -24,7 +24,7 @@ class parseCoinGeckoHistoricalPrices():
 		check2Convert = datetime.now().strftime('%Y%m%d')
 		if int(check1Convert) >= int(check2Convert):
 			print('Stopping Historical Price Parsing. Reached today\'s day.')
-			sys.exit(1)
+			sys.exit(0)
 
 		formatTime = (datetime.utcfromtimestamp(time).strftime('%d-%m-%Y'))
 		url = (self.apiProvider+ '/api/v3/coins/' + self.assetName + '/history?date=' + str(formatTime) + 
