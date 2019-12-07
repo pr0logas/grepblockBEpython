@@ -110,18 +110,17 @@ class mongoConnection():
 	@autoreconnect_retry
 	def findLastVolume(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
-		r = s[0]['market_data']['total_volume']['usd']
-		return float(r)
+		r = ''
+		if 'market_data' in s[0]:
+			r = s[0]['market_data']['total_volume']['usd']
+		else:
+			return float(0.0)
 
-	@autoreconnect_retry
-	def findLastPriceQuick(self, fromCollection, unixTime):
-		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
-		try:
-			r = s[0]['current_price']
+		if r is None:
+			print('WARNING there are no historical price for unixTime: ' + str(unixTime))
+			return float(0.0)
+		else:
 			return float(r)
-		except KeyError:
-			return 'KeyError'
-
 
 	@autoreconnect_retry
 	def findLastMarketCapQuick(self, fromCollection, unixTime):
