@@ -284,7 +284,7 @@ python ./${asset}CreateGraphTransactions.py</command>
                                   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
                                   <triggers>
                                     <hudson.triggers.TimerTrigger>
-                                      <spec></spec>
+                                      <spec>#*/5 * * * *</spec>
                                     </hudson.triggers.TimerTrigger>
                                   </triggers>
                                   <concurrentBuild>false</concurrentBuild>
@@ -327,7 +327,7 @@ python ./${asset}CreateGraphMarketCap.py</command>
                                       <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
                                       <triggers>
                                         <hudson.triggers.TimerTrigger>
-                                          <spec></spec>
+                                          <spec>#*/5 * * * *</spec>
                                         </hudson.triggers.TimerTrigger>
                                       </triggers>
                                       <concurrentBuild>false</concurrentBuild>
@@ -335,9 +335,9 @@ python ./${asset}CreateGraphMarketCap.py</command>
                                         <hudson.tasks.Shell>
                                           <command>asset=''' + self.assetName + '''
 
-    cd ~/grepblockbepython/assets/coins/${asset}
+cd ~/grepblockbepython/assets/coins/${asset}
 
-    python ./${asset}CreateGraphPrice.py</command>
+python ./${asset}CreateGraphPrice.py</command>
                                         </hudson.tasks.Shell>
                                       </builders>
                                       <publishers/>
@@ -370,7 +370,7 @@ python ./${asset}CreateGraphMarketCap.py</command>
                                       <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
                                       <triggers>
                                         <hudson.triggers.TimerTrigger>
-                                          <spec></spec>
+                                          <spec>#*/5 * * * *</spec>
                                         </hudson.triggers.TimerTrigger>
                                       </triggers>
                                       <concurrentBuild>false</concurrentBuild>
@@ -378,9 +378,9 @@ python ./${asset}CreateGraphMarketCap.py</command>
                                         <hudson.tasks.Shell>
                                           <command>asset=''' + self.assetName + '''
 
-    cd ~/grepblockbepython/assets/coins/${asset}
+cd ~/grepblockbepython/assets/coins/${asset}
 
-    python ./${asset}CreateGraphVolume.py</command>
+python ./${asset}CreateGraphVolume.py</command>
                                         </hudson.tasks.Shell>
                                       </builders>
                                       <publishers/>
