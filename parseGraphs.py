@@ -231,9 +231,11 @@ class parseGraph():
 
 	def sendJSONtoFronend(self):
 		instancePath = '/usr/share/nginx/grepblockcom/apidata/'
+		makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + self.assetTicker + '/"'
 		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:' + instancePath + self.assetTicker + '/' + self.file
 		try:
+			dir = subprocess.check_output(makeDir, shell=True).strip()
 			res = subprocess.check_output(command, shell=True).strip()
 		except:
-			print "FATAL! Failed to copy JSON to FE websiteHostIP"
+			print("FATAL! Failed to copy JSON to FE websiteHostIP")
 			sys.exit(1)

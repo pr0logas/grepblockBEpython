@@ -88,4 +88,3 @@ else:
 
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	print timeSet + " No new blocks found, last one: " + str(currentExplBlock)
-
