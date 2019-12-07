@@ -68,8 +68,10 @@ class iquidusExplorer():
 		try:
 			page = self.u.urlopen(req, timeout = self.timeout)
 		except:
+			page = self.u.urlopen(req, timeout=self.timeout)
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print (timeSet + " Can't get last block? Exit code: 4")
+			print(page)
 			sys.exit(1)
 
 		content = page.read()
