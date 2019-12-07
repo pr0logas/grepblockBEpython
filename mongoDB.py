@@ -83,8 +83,7 @@ class mongoConnection():
 			r = s[0]['market_data']['current_price']['usd']
 			return float(r)
 		except KeyError:
-			print('KeyError')
-			print(r)
+			print('KeyError') + str(r)
 
 	@autoreconnect_retry
 	def findLastMarketCap(self, fromCollection, unixTime):
