@@ -87,6 +87,7 @@ class mongoConnection():
 	def findLastMarketCap(self, fromCollection, unixTime):
 		s = list(self.mongoDB[fromCollection].find({'unix_time' : unixTime}).limit(1))
 		r = s[0]['market_data']['market_cap']['usd']
+		print r
 		if r is None:
 			print('WARNING there are no historical price for unixTime: ' + str(unixTime))
 			return float(0.0)
