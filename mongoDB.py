@@ -86,7 +86,8 @@ class mongoConnection():
 		else:
 			try:
 				r = s[0]['market_data']['current_price']['usd']
-			except:
+			except KeyError:
+				continue
 				return float(0.0)
 
 			return float(r)
@@ -102,6 +103,7 @@ class mongoConnection():
 			try:
 				r = s[0]['market_data']['market_cap']['usd']
 			except KeyError:
+				continue
 				return float(0.0)
 
 			return float(r)
