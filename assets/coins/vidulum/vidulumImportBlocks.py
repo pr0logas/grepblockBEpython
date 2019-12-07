@@ -51,6 +51,7 @@ if (int(diff) >= 100):
 		bH = EX.getBlockHash(str(whileprogress))
 		time.sleep(1) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
+		time.sleep(1) # Sleep otherwise rate-limit occur
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
