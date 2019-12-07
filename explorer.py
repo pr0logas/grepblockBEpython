@@ -17,7 +17,7 @@ class iquidusExplorer():
 		self.getTx = getTx
 		self.u = urllib2
 		self.timeout = 15
-		self.context = ssl._create_unverified_context() # Bypass old CERT validation
+		self.context = ssl._create_unverified_context() # Bypass old CERT validation 2.7 Python deprecated, no support
 		self.header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (INFO, GrepBlock.com) Chrome/23.0.1271.64 Safari/537.11',
 			   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 			   'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
