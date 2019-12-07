@@ -16,7 +16,7 @@ rpcport = 9078
 rpcuser = "grepblock"
 rpcpassword = "tothemoon"
 
-parseBlocksInRangeFor = 99
+parseBlocksInRangeFor = 25
 
 chainProvider = 'https://verge-blockchain.info'
 getBlockIndexMethod = '/api/getblockhash?index='
