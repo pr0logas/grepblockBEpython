@@ -17,6 +17,7 @@ class iquidusExplorer():
 		self.getTx = getTx
 		self.u = urllib2
 		self.timeout = 15
+		self.context = ssl._create_unverified_context() # Bypass old CERT validation
 		self.header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (INFO, GrepBlock.com) Chrome/23.0.1271.64 Safari/537.11',
 			   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 			   'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
@@ -27,11 +28,10 @@ class iquidusExplorer():
 	def getBlockHash(self, blockNum):
 		url = (self.chainProvider+self.getBlockIndexMethod+blockNum)
 		req = self.u.Request(url, headers=self.header)
-		context = ssl._create_unverified_context() # Bypass old CERT validation
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout, context=context)
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
-			page = self.u.urlopen(req, timeout=self.timeout, context=context)
+			page = self.u.urlopen(req, timeout=self.timeout, context=self.context)
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " No new Blocks found. Exit code: 1 Sleeping...")
 			sys.exit(0)
@@ -42,9 +42,8 @@ class iquidusExplorer():
 	def getBlockContentByHash(self, blockHash):
 		url = (self.chainProvider+self.getBlockwithHashMethod+blockHash)
 		req = self.u.Request(url, headers=self.header)
-		context = ssl._create_unverified_context()  # Bypass old CERT validation
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout, context=context)
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " No new Blocks found. Exit code: 2 Sleeping...")
@@ -56,9 +55,8 @@ class iquidusExplorer():
 	def getTxContentByTxid(self, txid):
 		url = (self.chainProvider+self.getTx+txid+'&decrypt=1')
 		req = self.u.Request(url, headers=self.header)
-		context = ssl._create_unverified_context()  # Bypass old CERT validation
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout, context=context)
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " No new TXids found. Exit code: 3 Sleeping...")
@@ -70,11 +68,10 @@ class iquidusExplorer():
 	def getLastBlock(self):
 		url = (self.chainProvider+'/api/getblockcount')
 		req = self.u.Request(url, headers=self.header)
-		context = ssl._create_unverified_context()
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout, context=context)
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
-			page = self.u.urlopen(req, timeout=self.timeout, context=context)
+			page = self.u.urlopen(req, timeout=self.timeout, context=self.context)
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print (timeSet + " Can't get last block? Exit code: 4")
 			print(page)
