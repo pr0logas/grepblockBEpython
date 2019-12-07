@@ -84,12 +84,10 @@ class mongoConnection():
 			print('WARNING there are no historical price for unixTime: ' + str(unixTime))
 			return float(0.0)
 		else:
-			try:
-				r = s[0]['market_data']['current_price']['usd']
-			except KeyError:
+			if 'market_data' in s[0]:
+				return float(s[0]['market_data']['current_price']['usd'])
+			else:
 				return float(0.0)
-
-			return float(r)
 
 	@autoreconnect_retry
 	def findLastMarketCap(self, fromCollection, unixTime):
@@ -99,12 +97,10 @@ class mongoConnection():
 			print('WARNING there are no historical price for unixTime: ' + str(unixTime))
 			return float(0.0)
 		else:
-			try:
-				r = s[0]['market_data']['market_cap']['usd']
-			except KeyError:
+			if 'market_data' in s[0]:
+				return float(s[0]['market_data']['market_cap']['usd'])
+			else:
 				return float(0.0)
-
-			return float(r)
 
 	@autoreconnect_retry
 	def findLastVolume(self, fromCollection, unixTime):
