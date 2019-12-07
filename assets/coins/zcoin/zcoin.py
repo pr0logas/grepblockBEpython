@@ -18,10 +18,10 @@ rpcpassword = "tothemoon"
 
 parseBlocksInRangeFor = 99
 
-chainProvider = ''
-getBlockIndexMethod = ''
-getBlockwithHashMethod = ''
-getTx = ''
+chainProvider = 'https://explorer.zcoin.io/'
+getBlockIndexMethod = 'api/block-index/'
+getBlockwithHashMethod = 'api/block/'
+getTx = 'api/tx/'
 
 apiProvider = 'https://api.coingecko.com'
 vsCurrencyUSD = 'usd'
