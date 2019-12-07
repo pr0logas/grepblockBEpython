@@ -126,7 +126,6 @@ class insightExplorer(iquidusExplorer):
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " Can't get last block? Exit code: 8")
-			print(page)
 			sys.exit(1)
 
 		content = page.read()
