@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas
-#:: Modified date: 2019-11-30
+#:: Modified date: 2019-12-07
 #:: Description: This file is a workspace for block importation.
 
 import sys, time
@@ -48,11 +48,11 @@ if (int(diff) >= 100):
 
 	while whileprogress < parsingBlocksInRange:
 		setProcStart = int(round(time.time() * 1000))
-		time.sleep(5) # Sleep otherwise rate-limit occur
+		#time.sleep(5) # Sleep otherwise rate-limit occur
 		bH = EX.getBlockHash(str(whileprogress))
-		time.sleep(5) # Sleep otherwise rate-limit occur
+		#time.sleep(5) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
-		time.sleep(5) # Sleep otherwise rate-limit occur
+		#time.sleep(5) # Sleep otherwise rate-limit occur
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
@@ -75,11 +75,11 @@ else:
 
 	while whileprogress < currentExplBlock:
 		setProcStart = int(round(time.time() * 1000))
-		time.sleep(5) # Sleep otherwise rate-limit occur
+		#time.sleep(5) # Sleep otherwise rate-limit occur
 		bH = EX.getBlockHash(str(whileprogress))
-		time.sleep(5) # Sleep otherwise rate-limit occur
+		#time.sleep(5) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
-		time.sleep(5) # Sleep otherwise rate-limit occur
+		#time.sleep(5) # Sleep otherwise rate-limit occur
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1

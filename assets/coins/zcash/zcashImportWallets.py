@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas
-#:: Modified date: 2019-11-30
+#:: Modified date: 2019-12-07
 #:: Description: This file is a workspace for wallets importation.
 
 import sys, time
@@ -51,7 +51,7 @@ while whileprogress<currentLastBlock:
 	blockTime = blockData['time']
 	blockNumber = blockData['height']
 	for txid in blockData['tx']:
-		time.sleep(5) # Sleep otherwise rate-limit occur
+		#time.sleep(5) # Sleep otherwise rate-limit occur
 		getTxData = EX.getTxContentByTxid(txid)
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
