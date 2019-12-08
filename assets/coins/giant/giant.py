@@ -3,12 +3,12 @@
 #:: Description: This file contains default values of the asset
 
 # Defaults
-database = "giantpay"
-assetTicker="ADE"
-assetName = "giantpay"
+database = "giant"
+assetTicker="GIC"
+assetName = "giant"
 genesisBlock = 1525748357
 coinGeckoStartUnixTime = 1532088000
-blockTime = 60
+blockTime = 120
 
 # RPC
 rpcconnect = "10.10.100.201"
@@ -18,7 +18,7 @@ rpcpassword = "tothemoon"
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://explorer.adeptio.cc'
+chainProvider = 'https://explorer.giantpay.network'
 getBlockIndexMethod = '/api/getblockhash?index='
 getBlockwithHashMethod = '/api/getblock?hash='
 getTx = '/api/getrawtransaction?txid='
@@ -40,4 +40,4 @@ fileForMarketCap="assetMarketCap.json"
 fileForPrice="assetPrice.json"
 fileForVolume="assetVolume.json"
 
-daemonCli = "giantpay-cli"
+daemonCli = "giant-cli"
