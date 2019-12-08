@@ -7,7 +7,7 @@ database = "giant"
 assetTicker="GIC"
 assetName = "giant"
 genesisBlock = 1525748357
-coinGeckoStartUnixTime = 1530230400
+coinGeckoStartUnixTime = 1530403200
 blockTime = 120
 
 # RPC
