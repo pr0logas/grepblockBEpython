@@ -3,11 +3,11 @@
 #:: Description: This file contains default values of the asset
 
 # Defaults
-database = "deviantcoin"
-assetTicker="DEV"
-assetName = "deviantcoin"
-genesisBlock = 1529783629
-coinGeckoStartUnixTime = 1522368000
+database = "gentarium"
+assetTicker="GTM"
+assetName = "gentarium"
+genesisBlock = 1548057781
+coinGeckoStartUnixTime = 1535241600
 blockTime = 60
 
 # RPC
@@ -18,7 +18,7 @@ rpcpassword = "tothemoon"
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'http://explorer.deviantcoin.io'
+chainProvider = 'https://explorer.gtmcoin.io'
 getBlockIndexMethod = '/api/getblockhash?index='
 getBlockwithHashMethod = '/api/getblock?hash='
 getTx = '/api/getrawtransaction?txid='
@@ -40,4 +40,4 @@ fileForMarketCap="assetMarketCap.json"
 fileForPrice="assetPrice.json"
 fileForVolume="assetVolume.json"
 
-daemonCli = "deviantcoin-cli"
+daemonCli = "gentarium-cli"
