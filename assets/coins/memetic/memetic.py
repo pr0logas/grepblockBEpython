@@ -3,11 +3,11 @@
 #:: Description: This file contains default values of the asset
 
 # Defaults
-database = "adeptio"
-assetTicker="ADE"
-assetName = "adeptio"
-genesisBlock = 1527710105
-coinGeckoStartUnixTime = 1532088000
+database = "memetic"
+assetTicker="MEME"
+assetName = "memetic"
+genesisBlock = 1457193055
+coinGeckoStartUnixTime = 1510444800
 blockTime = 60
 
 # RPC
@@ -18,7 +18,7 @@ rpcpassword = "tothemoon"
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://explorer.adeptio.cc'
+chainProvider = 'http://explorer.memetic.ai'
 getBlockIndexMethod = '/api/getblockhash?index='
 getBlockwithHashMethod = '/api/getblock?hash='
 getTx = '/api/getrawtransaction?txid='
@@ -40,4 +40,4 @@ fileForMarketCap="assetMarketCap.json"
 fileForPrice="assetPrice.json"
 fileForVolume="assetVolume.json"
 
-daemonCli = "adeptio-cli"
+daemonCli = "memetic-cli"
