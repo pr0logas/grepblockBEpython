@@ -99,7 +99,7 @@ class insightExplorer(iquidusExplorer):
 		url = (self.chainProvider+self.getBlockIndexMethod+blockNum)
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout)
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " No new Blocks found. Exit code: 6 Sleeping...")
@@ -114,7 +114,7 @@ class insightExplorer(iquidusExplorer):
 		url = (self.chainProvider+self.getTx+txid)
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout)
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " No new TXids found. Exit code: 7 Sleeping...")
@@ -127,9 +127,9 @@ class insightExplorer(iquidusExplorer):
 		url = (self.chainProvider+'api/status?q=getInfo')
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout)
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
-			page = self.u.urlopen(req, timeout=self.timeout)
+			page = self.u.urlopen(req, timeout=self.timeout, context=self.context)
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " Can't get last block? Exit code: 8")
 			print(page)
@@ -144,7 +144,7 @@ class insightExplorer(iquidusExplorer):
 		url = (self.chainProvider+'api/status?q=getLastBlockHash')
 		req = self.u.Request(url, headers=self.header)
 		try:
-			page = self.u.urlopen(req, timeout = self.timeout)
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " Can't get last block Alternative? Exit code: 9")
@@ -158,7 +158,7 @@ class insightExplorer(iquidusExplorer):
 		req2 = self.u.Request(url2, headers=self.header)
 
 		try:
-			page2 = self.u.urlopen(req2, timeout = self.timeout)
+			page2 = self.u.urlopen(req2, timeout = self.timeout, context=self.context)
 		except:
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " Can't get last block Alternative? Exit code: 10")
