@@ -2,3 +2,4 @@
 /assets/coins/*/JSON
 .idea/
 /jenkins/auth.py
+/jenkins/asset.py
