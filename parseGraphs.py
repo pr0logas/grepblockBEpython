@@ -235,9 +235,9 @@ class parseGraph():
 		makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + self.assetTicker + '/"'
 		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:' + instancePath + self.assetTicker + '/' + self.file
 		try:
-			time.sleep(random.randint(1, 120)) # Sleep, ssh too many sessions are mean in failure
+			time.sleep(random.randint(1, 60)) # Sleep, ssh too many sessions are mean in failure
 			subprocess.check_output(makeDir, shell=True).strip()
-			time.sleep(random.randint(1, 120)) # Sleep, ssh too many sessions are mean in failure
+			time.sleep(random.randint(1, 60)) # Sleep, ssh too many sessions are mean in failure
 			subprocess.check_output(command, shell=True).strip()
 		except:
 			print("FATAL! Failed to copy JSON to FE websiteHostIP")
