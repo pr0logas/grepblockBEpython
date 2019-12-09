@@ -233,13 +233,9 @@ class parseGraph():
 		instancePath = '/usr/share/nginx/grepblockcom/apidata/'
 		makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + self.assetTicker + '/"'
 		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:' + instancePath + self.assetTicker + '/' + self.file
-		dir = ''
-		res = ''
 		try:
-			dir = subprocess.check_output(makeDir, shell=True).strip()
-			res = subprocess.check_output(command, shell=True).strip()
+			subprocess.check_output(makeDir, shell=True).strip()
+			subprocess.check_output(command, shell=True).strip()
 		except:
-			print(dir)
-			print(res)
 			print("FATAL! Failed to copy JSON to FE websiteHostIP")
 			sys.exit(1)
