@@ -3,9 +3,9 @@
 #:: Description: This file contains default values of the asset
 
 # Defaults
-database = "deviant"
-assetTicker="ADE"
-assetName = "deviant"
+database = "deviantcoin"
+assetTicker="DEV"
+assetName = "deviantcoin"
 genesisBlock = 1529783629
 coinGeckoStartUnixTime = 1522368000
 blockTime = 60
@@ -40,4 +40,4 @@ fileForMarketCap="assetMarketCap.json"
 fileForPrice="assetPrice.json"
 fileForVolume="assetVolume.json"
 
-daemonCli = "deviant-cli"
+daemonCli = "deviantcoin-cli"
