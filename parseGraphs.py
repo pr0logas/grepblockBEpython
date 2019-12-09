@@ -235,7 +235,9 @@ class parseGraph():
 		command = 'scp ./JSON/' + self.file + ' root@websiteHostIP:' + instancePath + self.assetTicker + '/' + self.file
 		try:
 			dir = subprocess.check_output(makeDir, shell=True).strip()
+			print(dir)
 			res = subprocess.check_output(command, shell=True).strip()
+			print(res)
 		except:
 			print("FATAL! Failed to copy JSON to FE websiteHostIP")
 			sys.exit(1)
