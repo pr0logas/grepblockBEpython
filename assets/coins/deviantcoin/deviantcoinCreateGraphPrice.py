@@ -5,17 +5,17 @@
 import sys, time
 from datetime import datetime, timedelta
 from time import gmtime, strftime
-from deviant import *
+from deviantcoin import *
 sys.path.append('../../../')
 from mongoDB import *
 from parseGraphs import parseGraph
 
 db = database
-collectionForHistoricalPrices = "historicalPriceData"
+collectionForPrices = "priceDataUSD"
 
 # Init Classes;
-PG = parseGraph(assetTicker, fileForMarketCap, genesisBlock)
-MC = mongoConnection(mongoAuth, db, collectionForHistoricalPrices)
+PG = parseGraph(assetTicker, fileForPrice, genesisBlock)
+MC = mongoConnection(mongoAuth, db, collectionForPrices)
 
 # Find Last unixTime value in a working json file;
 lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
@@ -24,11 +24,11 @@ if lU == 'FileWasEmpty!':
 	print("Warning, file was empty, init zero params!")
 
 # Find the same but in MongoDB;
-lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForHistoricalPrices)
+lastUnixTimeinDB = MC.findLastPriceDataUnixTime(collectionForPrices)
 
 while True:
 	lU = PG.parsePriceFindLastValue(coinGeckoStartUnixTime)
-	unixTime = MC.findLastPriceGtThan(collectionForHistoricalPrices, lU)
+	unixTime = MC.findLastPriceGtThan(collectionForPrices, lU)
 	if unixTime == 'Empty':
 		# Send new JSON to FE;
 		PG.sendJSONtoFronend()
@@ -37,13 +37,16 @@ while True:
 		print(timeSet +" All tasks were successful.")
 		break
 	else:
-		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-		price = MC.findLastMarketCap(collectionForHistoricalPrices, unixTime)
+		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d %H:%M:%S')
+		price = MC.findLastPriceQuick(collectionForPrices, unixTime)
+		if price == 'KeyError':
+			print('WARNING! Cannot parse price in unixTime, KeyError: ' + str(unixTime))
+			sys.exit(1)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Found historical MarketCap: " + str(price) + " // We at " + str(printTime)
+			print(timeSet + " Found Price: " + str(price) + " // We at " + str(printTime))
 		else:
 			print("FATAL!")
 			sys.exit(1)

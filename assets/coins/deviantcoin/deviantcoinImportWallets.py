@@ -4,7 +4,7 @@
 
 import sys, time
 from time import gmtime, strftime
-from deviant import *
+from deviantcoin import *
 sys.path.append('../../../')
 from mongoDB import *
 from explorer import iquidusExplorer
