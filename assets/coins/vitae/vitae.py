@@ -3,12 +3,12 @@
 #:: Description: This file contains default values of the asset
 
 # Defaults
-database = "adeptio"
-assetTicker="ADE"
-assetName = "adeptio"
-genesisBlock = 1527710105
-coinGeckoStartUnixTime = 1532088000
-blockTime = 60
+database = "vitae"
+assetTicker="VITAE"
+assetName = "vitae"
+genesisBlock = 1526747690
+coinGeckoStartUnixTime = 1535241600
+blockTime = 45
 
 # RPC
 rpcconnect = "10.10.100.201"
@@ -18,7 +18,7 @@ rpcpassword = "tothemoon"
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://explorer.adeptio.cc'
+chainProvider = 'http://de.vit.tips'
 getBlockIndexMethod = '/api/getblockhash?index='
 getBlockwithHashMethod = '/api/getblock?hash='
 getTx = '/api/getrawtransaction?txid='
@@ -40,4 +40,4 @@ fileForMarketCap="assetMarketCap.json"
 fileForPrice="assetPrice.json"
 fileForVolume="assetVolume.json"
 
-daemonCli = "adeptio-cli"
+daemonCli = "vitae-cli"
