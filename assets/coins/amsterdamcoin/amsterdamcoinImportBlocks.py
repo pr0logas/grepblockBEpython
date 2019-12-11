@@ -27,7 +27,7 @@ if MC.checkIfBlocksColEmpty(collectionForBlocks) == "Empty":
 currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Check last Explorer block:
-currentExplBlock = int(EX.getLastBlockSolarisDirty())
+currentExplBlock = int(EX.getLastBlockAmsterdamCoinDirty())
 currentExplBlock -= 2
 
 # Set how much blocks we want to sync from current point +- ~99

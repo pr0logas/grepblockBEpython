@@ -90,6 +90,16 @@ class iquidusExplorer():
 			print (timeSet + " Can't get last block? Exit code: 5")
 			sys.exit(1)
 
+	def getLastBlockAmsterdamCoinDirty(self):
+		result = subprocess.check_output("curl -s https://www.amsterdamblockchain.info/ | grep 'row rows' | head -1 | grep -o '[0-9]*'", shell=True).strip()
+		t = any(char.isdigit() for char in result)
+		if t == True:
+			return result
+		else:
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print (timeSet + " Can't get last block? Exit code: 6")
+			sys.exit(1)
+
 
 class insightExplorer(iquidusExplorer):
 	def __init__ (self, chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx):
