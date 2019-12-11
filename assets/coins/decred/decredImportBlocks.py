@@ -24,7 +24,7 @@ if MC.checkIfBlocksColEmpty(collectionForBlocks) == "Empty":
 	MC.insertInitValueForBlocks(collectionForBlocks)
 
 # Set current progress;
-currentLastBlock = MC.findLastBlock(collectionForBlocks)
+currentLastBlock = MC.getLastBlockAlternative(collectionForBlocks)
 
 # Check last Explorer block:
 currentExplBlock = int(EX.getLastBlock())
