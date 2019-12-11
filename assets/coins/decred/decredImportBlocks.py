@@ -24,10 +24,10 @@ if MC.checkIfBlocksColEmpty(collectionForBlocks) == "Empty":
 	MC.insertInitValueForBlocks(collectionForBlocks)
 
 # Set current progress;
-currentLastBlock = MC.getLastBlockAlternative(collectionForBlocks)
+currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Check last Explorer block:
-currentExplBlock = int(EX.getLastBlock())
+currentExplBlock = int(EX.getLastBlockAlternative())
 currentExplBlock -= 2
 
 # Set how much blocks we want to sync from current point +- ~99
