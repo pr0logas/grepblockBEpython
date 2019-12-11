@@ -38,6 +38,10 @@ class aggregateBlocksData():
 			if 'valuePools' in firstObj:
 				firstObj['valuePools'] = str("null")
 
+			# Html coin
+			if 'minedBy' in firstObj:
+				firstObj['minedBy'] = str(firstObj['minedBy'])
+
 			return json.dumps(firstObj)
 		else:
 			print "FAIL! Looks like we can't aggregate Block Number!?"
