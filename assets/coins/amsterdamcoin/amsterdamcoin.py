@@ -6,7 +6,7 @@
 
 # Defaults
 database = 'amsterdamcoin'
-assetTicker = 'XLR'
+assetTicker = 'AMS'
 assetName = 'amsterdamcoin'
 genesisBlock = 1502133318
 coinGeckoStartUnixTime = 1440115200
