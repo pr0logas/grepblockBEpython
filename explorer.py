@@ -193,4 +193,4 @@ class insightExplorer(iquidusExplorer):
 		content = page.read()
 		firstObj = json.loads(content)
 		findBlockNum = int(firstObj['blocks'])
-		return findBlockNum
+		return int(findBlockNum)
