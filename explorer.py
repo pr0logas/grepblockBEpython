@@ -177,3 +177,20 @@ class insightExplorer(iquidusExplorer):
 		content2 = page2.read()
 		secObj = json.loads(content2)
 		return int(secObj['height'])
+
+	def getLastBlockDecredOnly(self):
+		url = (self.chainProvider+'api/status?q=getInfo')
+		req = self.u.Request(url, headers=self.header)
+		try:
+			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
+		except:
+			page = self.u.urlopen(req, timeout=self.timeout, context=self.context)
+			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+			print(timeSet + " Can't get last block? Exit code: 8")
+			print(page)
+			sys.exit(1)
+
+		content = page.read()
+		firstObj = json.loads(content)
+		findBlockNum = int(firstObj['blocks'])
+		return findBlockNum
