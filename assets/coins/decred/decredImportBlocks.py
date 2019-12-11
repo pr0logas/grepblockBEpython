@@ -79,7 +79,10 @@ else:
 		bH = EX.getBlockHash(str(whileprogress))
 		#time.sleep(1) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
-		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
+		firstObj = json.loads(bD)
+		preAggregateData = firstObj[0]
+		result = json.dumps(preAggregateData)
+		aggregatedBlockData = AG.aggregateInsertBlockNumber(result)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
