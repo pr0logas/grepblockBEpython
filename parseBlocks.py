@@ -13,6 +13,7 @@ class aggregateBlocksData():
 	def aggregateInsertBlockNumber(self, blockData):
 		originalData = blockData
 		firstObj = json.loads(blockData)
+		print firstObj
 		findBlockNum = int(firstObj['height'])
 		check = isinstance(findBlockNum, (int, long))
 
