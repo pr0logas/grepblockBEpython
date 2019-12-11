@@ -51,8 +51,10 @@ if (int(diff) >= 100):
 		bH = EX.getBlockHash(str(whileprogress))
 		#time.sleep(1) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
-		blockDataWithoutList = bD[0]
-		aggregatedBlockData = AG.aggregateInsertBlockNumber(blockDataWithoutList)
+		firstObj = json.loads(bD)
+		preAggregateData = firstObj[0]
+		result = json.dumps(preAggregateData)
+		aggregatedBlockData = AG.aggregateInsertBlockNumber(result)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
@@ -77,8 +79,7 @@ else:
 		bH = EX.getBlockHash(str(whileprogress))
 		#time.sleep(1) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
-		blockDataWithoutList = bD[0]
-		aggregatedBlockData = AG.aggregateInsertBlockNumber(blockDataWithoutList)
+		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
