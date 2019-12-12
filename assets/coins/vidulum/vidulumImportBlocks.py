@@ -28,6 +28,7 @@ currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Check last Explorer block:
 currentExplBlock = int(EX.getLastBlock())
+print(currentExplBlock)
 currentExplBlock -= 2
 
 # Set how much blocks we want to sync from current point +- ~99
@@ -49,6 +50,7 @@ if (int(diff) >= 100):
 	while whileprogress < parsingBlocksInRange:
 		setProcStart = int(round(time.time() * 1000))
 		bH = EX.getBlockHash(str(whileprogress))
+		print(bH)
 		time.sleep(1) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
 		time.sleep(1) # Sleep otherwise rate-limit occur
