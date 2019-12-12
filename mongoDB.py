@@ -47,7 +47,6 @@ class mongoConnection():
 	def findLastBlock(self, fromCollection):
 		searchLastBlock = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
 		lastBlock = searchLastBlock[0]['block']
-		print(lastBlock)
 		return int(lastBlock)
 
 	@autoreconnect_retry
