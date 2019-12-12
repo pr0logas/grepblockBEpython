@@ -48,6 +48,7 @@ class iquidusExplorer():
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " No new Blocks found. Exit code: 2 Sleeping...")
 			page = self.u.urlopen(req, timeout=self.timeout, context=self.context)
+			print(req)
 			print(page)
 			sys.exit(0)
 
