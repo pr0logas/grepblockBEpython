@@ -18,7 +18,7 @@ rpcpassword = "tothemoon"
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://explorer.giantpay.network'
+chainProvider = 'http://explorer.birake.com/'
 getBlockIndexMethod = '/api/getblockhash?index='
 getBlockwithHashMethod = '/api/getblock?hash='
 getTx = '/api/getrawtransaction?txid='
