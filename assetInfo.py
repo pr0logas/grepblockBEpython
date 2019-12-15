@@ -19,9 +19,9 @@ file.close()
 assetName = (MC.findAssetName(col))
 assetType = (MC.findAssetType(col))
 assetTicker = (MC.findAssetTicker(col))
-print(MC.findAssetMineable(col))
-print(MC.findAssetMasternode(col))
-print(MC.findAssetSourceCode(col))
+assetMineable = print(MC.findAssetMineable(col))
+assetMasternode = (MC.findAssetMasternode(col))
+assetSourceCode = (MC.findAssetSourceCode(col))
 print(MC.findAssetBlockTime(col))
 print(MC.findAssetMaxSupply(col))
 print(MC.findAssetBlockSize(col))
@@ -49,12 +49,8 @@ content = file.read()
 cjson = json.loads(content)
 
 
-cjson = assetName[0]
-result = (json.dumps(cjson))
-file = open(fullPath, "w")
-file.write(str(result))
-cjson = assetType[0]
-result = (json.dumps(cjson))
+apendedJson = cjson.append(assetName)
+result = (json.dumps(apendedJson))
 file = open(fullPath, "w")
 file.write(str(result))
 
