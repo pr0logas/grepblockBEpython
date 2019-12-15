@@ -1,5 +1,5 @@
 from mongoDB import mongoConnection
-from assets.coins.memetic import memetic
+from assets.coins.memetic.memetic import memetic
 
 MC = mongoConnection(mongoAuth, database, 'basicInfo')
 
