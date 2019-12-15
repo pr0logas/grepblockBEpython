@@ -49,7 +49,7 @@ content = file.read()
 cjson = json.loads(content)
 
 
-apendedJson = cjson.append(str(assetName))
+apendedJson = cjson['assetName'].append(assetName)
 result = (json.dumps(apendedJson))
 file = open(fullPath, "w")
 file.write(str(result))
