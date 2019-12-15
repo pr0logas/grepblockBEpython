@@ -2,7 +2,7 @@ from mongoDB import *
 import os, json
 
 asset = 'memetic'
-assetTicker = 'MEME'
+assetTickerPath = 'MEME'
 jsonPath = 'assets/coins/' + asset + '/JSON/'
 jsonFile = 'assetInfo.json'
 fullPath = (jsonPath+jsonFile)
@@ -20,9 +20,9 @@ def writeToFile(data):
 
 def copyFileToWebsiteFE():
     instancePath = '/usr/share/nginx/grepblockcom/apidata/'
-    makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + str(assetTicker) + '/"'
+    makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + str(assetTickerPath) + '/"'
     print makeDir
-    command = 'scp ./' + str(fullPath) + ' root@websiteHostIP:' + instancePath + str(assetTicker) + '/' + str(jsonFile)
+    command = 'scp ./' + str(fullPath) + ' root@websiteHostIP:' + instancePath + str(assetTickerPath) + '/' + str(jsonFile)
     print command
     try:
         subprocess.check_output(makeDir, shell=True).strip()
