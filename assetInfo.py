@@ -48,5 +48,5 @@ print assetName
 print assetName[0]
 resJson = json.dumps(assetName[0])
 print resJson
-cjson.append(resJson)
+cjson[0].append(resJson)
 print(json.dumps(cjson))
