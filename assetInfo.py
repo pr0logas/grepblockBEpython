@@ -1,5 +1,6 @@
 from mongoDB import *
-import os, json
+import json
+import random, time
 
 asset = 'memetic'
 assetTickerPath = 'MEME'
