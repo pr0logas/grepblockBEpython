@@ -1,7 +1,7 @@
 from mongoDB import *
 from assets.coins.memetic import memetic
 
-col = 'basicInfo''
+col = 'basicInfo'
 
 MC = mongoConnection(mongoAuth, database, col)
 
