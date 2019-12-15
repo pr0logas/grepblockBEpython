@@ -381,7 +381,7 @@ class mongoConnection():
 	@autoreconnect_retry
 	def findAssetMasternode(self, fromCollection):
 		res = list(self.mongoDB[fromCollection].find({"masternode" : {"$exists":True}},{ "_id": 0, "masternode" : 1}).limit(1))
-		return res
+		return res[0]
 
 	@autoreconnect_retry
 	def findAssetSourceCode(self, fromCollection):
@@ -406,7 +406,7 @@ class mongoConnection():
 	@autoreconnect_retry
 	def findAssetWalletPrefix(self, fromCollection):
 		res = list(self.mongoDB[fromCollection].find({"walletPrefix" : {"$exists":True}},{ "_id": 0, "walletPrefix" : 1}).limit(1))
-		return res
+		return res[0]
 
 	@autoreconnect_retry
 	def findAssetExplorer(self, fromCollection):
