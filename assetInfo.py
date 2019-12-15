@@ -1,5 +1,6 @@
 from mongoDB import *
 import json
+import subprocess
 import random, time
 
 asset = 'memetic'
