@@ -365,7 +365,7 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findAssetType(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "assetType" : 1}))
+		res = list(self.mongoDB[fromCollection].find({"assetType" : {"$exists":True}},{ "_id": 0, "assetType" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
