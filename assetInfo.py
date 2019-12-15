@@ -6,7 +6,7 @@ jsonPath = 'assets/coins/' + asset + '/JSON/'
 jsonFile = 'assetInfo.json'
 fullPath = (jsonPath+jsonFile)
 col = 'basicInfo'
-initJsonText = '{}'
+initJsonText = '[]'
 
 # Init Mongo
 MC = mongoConnection(mongoAuth, asset, col)
@@ -49,7 +49,7 @@ content = file.read()
 cjson = json.loads(content)
 
 
-apendedJson = cjson['assetName'].append(assetName)
+apendedJson = cjson.append(assetName)
 result = (json.dumps(apendedJson))
 file = open(fullPath, "w")
 file.write(str(result))
