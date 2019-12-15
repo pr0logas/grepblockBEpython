@@ -40,12 +40,8 @@ file = open((jsonPath+jsonFile), "w")
 file.write(str(initJsonText))
 file.close()
 
-try:
-    file = open((jsonPath+jsonFile), "r")
-    content = (file.read())
-    cjson = json.loads(content)
-    cjson.append(assetName[0])
-    return json.dumps(cjson)
- except:
-    print "FATAL! Failed to append the data to asset Info graph!"
-    sys.exit(1)
+file = open((jsonPath+jsonFile), "r")
+content = (file.read())
+cjson = json.loads(content)
+cjson.append(assetName[0])
+print(json.dumps(cjson))
