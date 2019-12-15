@@ -56,16 +56,31 @@ result = (json.dumps(assetName))
 res = (init + result)
 writeToFile(res)
 result = (json.dumps(assetType))
-res = (result + ', ')
+res = (', ' + result + ', ')
+writeToFile(res)
+result = (json.dumps(assetTicker))
+res = (', ' + result + ', ')
+writeToFile(res)
+result = (json.dumps(assetMineable))
+res = (', ' + result + ', ')
+writeToFile(res)
+result = (json.dumps(assetMasternode))
+res = (', ' + result + ', ')
+writeToFile(res)
+result = (json.dumps(assetSourceCode))
+res = (', ' + result + ', ')
+writeToFile(res)
+result = (json.dumps(assetBlockTime))
+res = (', ' + result + ', ')
+writeToFile(res)
+result = (json.dumps(assetMaxSupply))
+res = (', ' + result + ', ')
+writeToFile(res)
+result = (json.dumps(assetBlockSize))
+res = (', ' + result + ', ')
+writeToFile(res)
+result = (json.dumps(assetWalletPrefix))
+res = (', ' + result + ', ')
 writeToFile(res)
 
 
-
-
-
-
-
-
-
-
-file.close()
