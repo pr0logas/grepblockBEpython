@@ -7,6 +7,7 @@ MC = mongoConnection(mongoAuth, memetic.database, col)
 
 print(MC.findAssetName(col))
 print(MC.findAssetType(col))
+print(MC.findAssetTicker(col))
 print(MC.findAssetMineable(col))
 print(MC.findAssetMasternode(col))
 print(MC.findAssetSourceCode(col))
