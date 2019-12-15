@@ -21,11 +21,10 @@ def writeToFile(data):
 def copyFileToWebsiteFE():
     instancePath = '/usr/share/nginx/grepblockcom/apidata/'
     makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + str(assetTickerPath) + '/"'
-    print makeDir
     command = 'scp ./' + str(fullPath) + ' root@websiteHostIP:' + instancePath + str(assetTickerPath) + '/' + str(jsonFile)
-    print command
     try:
         subprocess.check_output(makeDir, shell=True).strip()
+        time.sleep(random.randint(1, 3))  # Sleep, ssh too many sessions are mean in failure
         subprocess.check_output(command, shell=True).strip()
     except:
         print("FATAL! Failed to copy JSON to FE websiteHostIP")
