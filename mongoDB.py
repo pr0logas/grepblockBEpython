@@ -360,7 +360,7 @@ class mongoConnection():
 ###########################   Basic asset info methods #############################
 	@autoreconnect_retry
 	def findAssetName(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "assetName" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"assetName" : {"$exists":True}},{ "_id": 0, "assetName" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
@@ -370,12 +370,12 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findAssetTicker(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "assetTicker" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"assetTicker" : {"$exists":True}},{ "_id": 0, "assetTicker" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetMineable(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "mineable" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"mineable" : {"$exists":True}},{ "_id": 0, "mineable" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
