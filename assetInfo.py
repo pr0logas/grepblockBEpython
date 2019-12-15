@@ -52,12 +52,10 @@ print(MC.findAssetWhitepaper(col))
 print(MC.findAssetFirstBlock(col))
 
 init = '['
-apendedJson = cjson.append(assetName)
-result = (json.dumps(apendedJson))
+result = (json.dumps(assetName))
 res = (init + result)
 writeToFile(res)
-apendedJson = cjson.append(assetType)
-result = (json.dumps(apendedJson))
+result = (json.dumps(assetType))
 res = (result + ', ')
 writeToFile(res)
 
