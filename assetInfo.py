@@ -36,6 +36,7 @@ print(MC.findAssetDeveloperFee(col))
 print(MC.findAssetWhitepaper(col))
 print(MC.findAssetFirstBlock(col))
 
+print((jsonPath+jsonFile))
 file = open((jsonPath+jsonFile), "w")
 file.write(str(initJsonText))
 file.close()
