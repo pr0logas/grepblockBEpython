@@ -6,15 +6,23 @@ jsonPath = 'assets/coins/' + asset + '/JSON/'
 jsonFile = 'assetInfo.json'
 fullPath = (jsonPath+jsonFile)
 col = 'basicInfo'
-initJsonText = '[]'
+initJsonText = '{}'
 
 # Init Mongo
 MC = mongoConnection(mongoAuth, asset, col)
 
 # WriteEmpty File
+'''
 file = open(fullPath, "w")
 file.write(str(initJsonText))
 file.close()
+'''
+
+def writeToFile(data):
+    file = open(fullPath, "a")
+    file.write(str(data))
+    file.close()
+
 
 assetName = (MC.findAssetName(col))
 assetType = (MC.findAssetType(col))
@@ -23,9 +31,9 @@ assetMineable = (MC.findAssetMineable(col))
 assetMasternode = (MC.findAssetMasternode(col))
 assetSourceCode = (MC.findAssetSourceCode(col))
 assetBlockTime = (MC.findAssetBlockTime(col))
-print(MC.findAssetMaxSupply(col))
-print(MC.findAssetBlockSize(col))
-print(MC.findAssetWalletPrefix(col))
+assetMaxSupply = (MC.findAssetMaxSupply(col))
+assetBlockSize = (MC.findAssetBlockSize(col))
+assetWalletPrefix = (MC.findAssetWalletPrefix(col))
 print(MC.findAssetExplorer(col))
 print(MC.findAssetExplorer2(col))
 print(MC.findAssetExplorer3(col))
@@ -44,15 +52,8 @@ print(MC.findAssetWhitepaper(col))
 print(MC.findAssetFirstBlock(col))
 
 
-file = open(fullPath, "r")
-content = file.read()
-cjson = json.loads(content)
-
-
-apendedJson = cjson.append(assetName)
-result = (json.dumps(apendedJson))
-file = open(fullPath, "w")
-file.write(str(result))
+writeToFile(assetName)
+writeToFile(assetType)
 
 
 
@@ -63,6 +64,3 @@ file.write(str(result))
 
 
 
-
-
-file.close()
