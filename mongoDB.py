@@ -380,52 +380,52 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findAssetMasternode(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "masternode" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"masternode" : {"$exists":True}},{ "_id": 0, "masternode" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetSourceCode(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "sourceCode" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"sourceCode" : {"$exists":True}},{ "_id": 0, "sourceCode" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetBlockTime(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "blockTime" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"blockTime" : {"$exists":True}},{ "_id": 0, "blockTime" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetMaxSupply(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "maxSupply" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"maxSupply" : {"$exists":True}},{ "_id": 0, "maxSupply" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetBlockSize(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "blockSize" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"blockSize" : {"$exists":True}},{ "_id": 0, "blockSize" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetWalletPrefix(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "walletPrefix" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"walletPrefix" : {"$exists":True}},{ "_id": 0, "walletPrefix" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetExplorer(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "explorer" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"explorer" : {"$exists":True}},{ "_id": 0, "explorer" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetExplorer2(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "explorer2" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"explorer2" : {"$exists":True}},{ "_id": 0, "explorer2" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetExplorer3(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "explorer3" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"explorer3" : {"$exists":True}},{ "_id": 0, "explorer3" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
 	def findAssetWebsite(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "website" : 1}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({"website" : {"$exists":True}},{ "_id": 0, "website" : 1}).limit(1))
 		return res
 
 	@autoreconnect_retry
