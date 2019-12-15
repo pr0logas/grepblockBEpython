@@ -6,23 +6,16 @@ jsonPath = 'assets/coins/' + asset + '/JSON/'
 jsonFile = 'assetInfo.json'
 fullPath = (jsonPath+jsonFile)
 col = 'basicInfo'
-initJsonText = '{}'
+
+print('Writing to path: ' + str(fullPath))
 
 # Init Mongo
 MC = mongoConnection(mongoAuth, asset, col)
-
-# WriteEmpty File
-'''
-file = open(fullPath, "w")
-file.write(str(initJsonText))
-file.close()
-'''
 
 def writeToFile(data):
     file = open(fullPath, "a")
     file.write(str(data))
     file.close()
-
 
 assetName = (MC.findAssetName(col))
 assetType = (MC.findAssetType(col))
@@ -130,3 +123,5 @@ writeToFile(res)
 result = (json.dumps(assetFirstBlock))
 res = (result + ']')
 writeToFile(res)
+
+print('All tasks were successful')
