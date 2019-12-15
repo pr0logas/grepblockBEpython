@@ -44,6 +44,9 @@ file.close()
 file = open((jsonPath+jsonFile), "r")
 content = (file.read())
 cjson = json.loads(content)
+print assetName
+print assetName[0]
 resJson = json.dumps(assetName[0])
+print resJson
 cjson.append(resJson)
 print(json.dumps(cjson))
