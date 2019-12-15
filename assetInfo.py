@@ -1,7 +1,9 @@
 from mongoDB import *
 from assets.coins import *
 
-MC = mongoConnection(mongoAuth, database, 'basicInfo')
+db = database
+
+MC = mongoConnection(mongoAuth, db, 'basicInfo')
 
 
 print(MC.findAssetName('basicInfo'))
