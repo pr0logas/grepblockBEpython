@@ -359,5 +359,5 @@ class mongoConnection():
 
 	@autoreconnect_retry
 	def findAssetName(self, fromCollection):
-		res = list(self.mongoDB[fromCollection].find({}, {"assetName" : 1, "id" : 0}).limit(1))
+		res = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "assetName": 1}).sort([( '$natural', -1 )] ).limit(1))
 		return res
