@@ -1,3 +1,7 @@
+#:: By GrepBlock.com developers // pr0logas
+#:: Modified date: 2019-12-15
+#:: Description: This file is a crap. Legacy bash code with python hybrid. Most problematic thing is one line JSON requirement
+
 from mongoDB import *
 import json
 import subprocess
@@ -17,22 +21,32 @@ print('Writing to path: ' + str(fullPath))
 MC = mongoConnection(mongoAuth, asset, col)
 
 def writeToFile(data):
-    file = open((fullPath + str('tmp')), "a")
+    file = open(fullPath, "a")
     file.write(str(data))
     file.close()
 
-def writeFinalOneLine():
-    f = open((fullPath + str('tmp')), "r")
-    paragraph = " ".join(map(lambda s: s.rstrip('\n'), f.readlines()))
-    f1 = open(fullPath, "w")
-    f1.write(paragraph)
-    os.remove((fullPath + str('tmp')))
-
 def copyFileToWebsiteFE():
+    sedCommand1 = "sed -i 's@{@@g'" + './' + str(fullPath)
+    sedCommand2 = "sed -i 's@}@@g'" + './' + str(fullPath)
+    sedCommand3 = "sed -i '$ d'" + './' + str(fullPath)
+    sedCommand4 = "sed -i '1i\{'" + './' + str(fullPath)
+    sedCommand5 = "sed -i '\$a\}'" + './' + str(fullPath)
+    sedCommand6 = "sed -i '1i\['" + './' + str(fullPath)
+    sedCommand7 = "sed -i '\$a\]'" + './' + str(fullPath)
+    sedCommand8 = "sed -i '/^[[:space:]]*$/d'" + './' + str(fullPath)
+
     instancePath = '/usr/share/nginx/grepblockcom/apidata/'
     makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + str(assetTickerPath) + '/"'
     command = 'scp ./' + str(fullPath) + ' root@websiteHostIP:' + instancePath + str(assetTickerPath) + '/' + str(jsonFile)
     try:
+        subprocess.check_output(sedCommand1, shell=True).strip()
+        subprocess.check_output(sedCommand2, shell=True).strip()
+        subprocess.check_output(sedCommand3, shell=True).strip()
+        subprocess.check_output(sedCommand4, shell=True).strip()
+        subprocess.check_output(sedCommand5, shell=True).strip()
+        subprocess.check_output(sedCommand6, shell=True).strip()
+        subprocess.check_output(sedCommand7, shell=True).strip()
+        subprocess.check_output(sedCommand8, shell=True).strip()
         subprocess.check_output(makeDir, shell=True).strip()
         time.sleep(random.randint(1, 3))  # Sleep, ssh too many sessions are mean in failure
         subprocess.check_output(command, shell=True).strip()
@@ -150,7 +164,6 @@ result = (json.dumps(assetFirstBlock))
 res = (result + ']')
 writeToFile(res)
 
-writeFinalOneLine()
 copyFileToWebsiteFE()
 
 print('All tasks were successful')
