@@ -51,16 +51,23 @@ print(MC.findAssetDeveloperFee(col))
 print(MC.findAssetWhitepaper(col))
 print(MC.findAssetFirstBlock(col))
 
-
-writeToFile(assetName)
-writeToFile(assetType)
-
-
-
-
-
-
-
-
+init = '['
+apendedJson = cjson.append(assetName)
+result = (json.dumps(apendedJson))
+res = (init + result)
+writeToFile(res)
+apendedJson = cjson.append(assetType)
+result = (json.dumps(apendedJson))
+res = (result + ', ')
+writeToFile(res)
 
 
+
+
+
+
+
+
+
+
+file.close()
