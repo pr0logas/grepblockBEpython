@@ -5,5 +5,5 @@ col = 'basicInfo'
 
 MC = mongoConnection(mongoAuth, memetic.database, col)
 
-
+print(col)
 print(MC.findAssetName(col))
