@@ -2,6 +2,7 @@ from mongoDB import *
 import os, json
 
 asset = 'memetic'
+assetTicker = 'MEME'
 jsonPath = 'assets/coins/' + asset + '/JSON/'
 jsonFile = 'assetInfo.json'
 fullPath = (jsonPath+jsonFile)
@@ -16,6 +17,17 @@ def writeToFile(data):
     file = open(fullPath, "a")
     file.write(str(data))
     file.close()
+
+def copyFileToWebsiteFE():
+    instancePath = '/usr/share/nginx/grepblockcom/apidata/'
+    makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + assetTicker + '/"'
+    command = 'scp ./' + fullPath + ' root@websiteHostIP:' + instancePath + assetTicker + '/' + jsonFile
+    try:
+        subprocess.check_output(makeDir, shell=True).strip()
+        subprocess.check_output(command, shell=True).strip()
+    except:
+        print("FATAL! Failed to copy JSON to FE websiteHostIP")
+        sys.exit(1)
 
 assetName = (MC.findAssetName(col))
 assetType = (MC.findAssetType(col))
@@ -123,5 +135,7 @@ writeToFile(res)
 result = (json.dumps(assetFirstBlock))
 res = (result + ']')
 writeToFile(res)
+
+copyFileToWebsiteFE()
 
 print('All tasks were successful')
