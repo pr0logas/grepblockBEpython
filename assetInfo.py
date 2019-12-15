@@ -2,7 +2,7 @@ from mongoDB import *
 import os, json
 
 asset = 'memetic'
-jsonPath = 'assets/coins/' + asset + '/'
+jsonPath = 'assets/coins/' + asset + '/JSON/'
 col = 'basicInfo'
 jsonFile = 'assetInfo.json'
 initJsonText = '{}'
@@ -44,5 +44,6 @@ file.close()
 file = open((jsonPath+jsonFile), "r")
 content = (file.read())
 cjson = json.loads(content)
-cjson.append(assetName[0])
+resJson = json.dumps(assetName[0])
+cjson.append(resJson)
 print(json.dumps(cjson))
