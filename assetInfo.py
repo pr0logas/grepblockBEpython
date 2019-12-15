@@ -1,9 +1,12 @@
 from mongoDB import *
-from assets.coins.memetic import memetic
 
+asset = 'memetic'
+jsonPath = 'assets/coins/' + asset + '/'
 col = 'basicInfo'
+jsonFile = 'assetInfo'
+MC = mongoConnection(mongoAuth, asset, col)
 
-MC = mongoConnection(mongoAuth, memetic.database, col)
+
 
 print(MC.findAssetName(col))
 print(MC.findAssetType(col))
