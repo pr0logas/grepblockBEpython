@@ -28,6 +28,9 @@ def copyFileToWebsiteFE():
         time.sleep(random.randint(1, 3))  # Sleep, ssh too many sessions are mean in failure
         subprocess.check_output(command, shell=True).strip()
     except:
+        subprocess.check_output(makeDir, shell=True).strip()
+        time.sleep(random.randint(1, 3))  # Sleep, ssh too many sessions are mean in failure
+        subprocess.check_output(command, shell=True).strip()
         print("FATAL! Failed to copy JSON to FE websiteHostIP")
         sys.exit(1)
 
