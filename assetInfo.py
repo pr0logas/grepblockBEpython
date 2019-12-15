@@ -3,7 +3,7 @@ from assets.coins.memetic import memetic
 
 col = 'basicInfo'
 
-MC = mongoConnection(mongoAuth, database, col)
+MC = mongoConnection(mongoAuth, memetic.database, col)
 
 
 print(MC.findAssetName(col))
