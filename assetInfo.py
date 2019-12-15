@@ -21,7 +21,9 @@ def writeToFile(data):
 def copyFileToWebsiteFE():
     instancePath = '/usr/share/nginx/grepblockcom/apidata/'
     makeDir = 'ssh root@websiteHostIP "mkdir -p /usr/share/nginx/grepblockcom/apidata/' + str(assetTicker) + '/"'
+    print makeDir
     command = 'scp ./' + str(fullPath) + ' root@websiteHostIP:' + instancePath + str(assetTicker) + '/' + str(jsonFile)
+    print command
     try:
         subprocess.check_output(makeDir, shell=True).strip()
         subprocess.check_output(command, shell=True).strip()
