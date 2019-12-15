@@ -3,15 +3,22 @@ import os, json
 
 asset = 'memetic'
 jsonPath = 'assets/coins/' + asset + '/JSON/'
-col = 'basicInfo'
 jsonFile = 'assetInfo.json'
+fullPath = (jsonPath+jsonFile)
+col = 'basicInfo'
 initJsonText = '{}'
 
+# Init Mongo
 MC = mongoConnection(mongoAuth, asset, col)
 
+# WriteEmpty File
+file = open(fullPath, "w")
+file.write(str(initJsonText))
+file.close()
+
 assetName = (MC.findAssetName(col))
-print(MC.findAssetType(col))
-print(MC.findAssetTicker(col))
+assetType = (MC.findAssetType(col))
+assetTicker = (MC.findAssetTicker(col))
 print(MC.findAssetMineable(col))
 print(MC.findAssetMasternode(col))
 print(MC.findAssetSourceCode(col))
@@ -36,17 +43,30 @@ print(MC.findAssetDeveloperFee(col))
 print(MC.findAssetWhitepaper(col))
 print(MC.findAssetFirstBlock(col))
 
-print((jsonPath+jsonFile))
-file = open((jsonPath+jsonFile), "w")
-file.write(str(initJsonText))
-file.close()
 
-file = open((jsonPath+jsonFile), "r")
-content = (file.read())
+file = open(fullPath, "r")
+content = file.read()
 cjson = json.loads(content)
-print assetName
-print assetName[0]
-resJson = json.dumps(assetName[0])
-print resJson
-cjson = resJson
-print(json.dumps(cjson))
+
+
+cjson = assetName[0]
+result = (json.dumps(cjson))
+file = open(fullPath, "w")
+file.write(str(result))
+cjson = assetType[0]
+result = (json.dumps(cjson))
+file = open(fullPath, "w")
+file.write(str(result))
+
+
+
+
+
+
+
+
+
+
+
+
+file.close()
