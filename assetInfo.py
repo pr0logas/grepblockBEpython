@@ -142,6 +142,11 @@ result = (json.dumps(assetFirstBlock))
 res = (result + ']')
 writeToFile(res)
 
+f = open(fullPath, "r")
+paragraph = " ".join(map(lambda s: s.rstrip('\n'), f.readlines()))
+f1 = open("b.txt","w")
+f1.write(paragraph)
+
 copyFileToWebsiteFE()
 
 print('All tasks were successful')
