@@ -1,6 +1,7 @@
-from mongo import mongoConnection
+from mongoDB import mongoConnection
+from assets.coins.memetic import memetic
+
+MC = mongoConnection(mongoAuth, database, 'basicInfo')
 
 
-#MC = mongoConnection(mongoAuth)
-
-#findBasicInfo
+print(MC.findAssetName('basicInfo'))
