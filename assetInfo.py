@@ -1,14 +1,15 @@
 from mongoDB import *
+import os, json
 
 asset = 'memetic'
 jsonPath = 'assets/coins/' + asset + '/'
 col = 'basicInfo'
-jsonFile = 'assetInfo'
+jsonFile = 'assetInfo.json'
+initJsonText = '{}'
+
 MC = mongoConnection(mongoAuth, asset, col)
 
-
-
-print(MC.findAssetName(col))
+assetName = (MC.findAssetName(col))
 print(MC.findAssetType(col))
 print(MC.findAssetTicker(col))
 print(MC.findAssetMineable(col))
@@ -35,8 +36,16 @@ print(MC.findAssetDeveloperFee(col))
 print(MC.findAssetWhitepaper(col))
 print(MC.findAssetFirstBlock(col))
 
+file = open((jsonPath+jsonFile), "w")
+file.write(str(initJsonText))
+file.close()
 
-
-
-
-
+try:
+    file = open((jsonPath+jsonFile), "r")
+    content = (file.read())
+    cjson = json.loads(content)
+    cjson.append(assetName[0])
+    return json.dumps(cjson)
+ except:
+    print "FATAL! Failed to append the data to asset Info graph!"
+    sys.exit(1)
