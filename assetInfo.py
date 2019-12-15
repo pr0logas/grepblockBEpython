@@ -2,6 +2,7 @@ from mongoDB import *
 import json
 import subprocess
 import random, time
+import os
 
 asset = 'memetic'
 assetTickerPath = 'MEME'
@@ -16,9 +17,16 @@ print('Writing to path: ' + str(fullPath))
 MC = mongoConnection(mongoAuth, asset, col)
 
 def writeToFile(data):
-    file = open(fullPath, "a")
+    file = open((fullPath + str('tmp')), "a")
     file.write(str(data))
     file.close()
+
+def writeFinalOneLine():
+    f = open((fullPath + str('tmp')), "r")
+    paragraph = " ".join(map(lambda s: s.rstrip('\n'), f.readlines()))
+    f1 = open(fullPath, "w")
+    f1.write(paragraph)
+    os.remove((fullPath + str('tmp')))
 
 def copyFileToWebsiteFE():
     instancePath = '/usr/share/nginx/grepblockcom/apidata/'
@@ -142,11 +150,7 @@ result = (json.dumps(assetFirstBlock))
 res = (result + ']')
 writeToFile(res)
 
-f = open(fullPath, "r")
-paragraph = " ".join(map(lambda s: s.rstrip('\n'), f.readlines()))
-f1 = open("b.txt","w")
-f1.write(paragraph)
-
+writeFinalOneLine()
 copyFileToWebsiteFE()
 
 print('All tasks were successful')
