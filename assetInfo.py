@@ -1,9 +1,9 @@
 from mongoDB import *
-from assets.coins import *
+from assets.coins.memetic import memetic
 
-db = database
+col = 'basicInfo''
 
-MC = mongoConnection(mongoAuth, db, 'basicInfo')
+MC = mongoConnection(mongoAuth, database, col)
 
 
-print(MC.findAssetName('basicInfo'))
+print(MC.findAssetName(col))
