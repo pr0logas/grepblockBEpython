@@ -58,6 +58,8 @@ class iquidusExplorer():
 		try:
 			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
+			page = self.u.urlopen(req, timeout=self.timeout, context=self.context)
+			print(page)
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 			print(timeSet + " No new TXids found. Exit code: 3 Sleeping...")
 			sys.exit(0)

@@ -57,7 +57,3 @@ createJob(assetName, 'graph-assetTransactions', Methods.assetTransactions())
 createJob(assetName, 'graph-marketcap', Methods.marketcap())
 createJob(assetName, 'graph-price', Methods.price())
 createJob(assetName, 'graph-volume', Methods.volume())
-
-
-
-
