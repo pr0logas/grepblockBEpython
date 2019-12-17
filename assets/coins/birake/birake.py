@@ -3,12 +3,12 @@
 #:: Description: This file contains default values of the asset
 
 # Defaults
-database = "giant"
-assetTicker="GIC"
-assetName = "giant"
-genesisBlock = 1525748357
-coinGeckoStartUnixTime = 1530403200
-blockTime = 120
+database = "birake"
+assetTicker="BIR"
+assetName = "birake"
+genesisBlock = 1533729487
+coinGeckoStartUnixTime = 1537228800
+blockTime = 60
 
 # RPC
 rpcconnect = "10.10.100.201"
@@ -18,7 +18,7 @@ rpcpassword = "tothemoon"
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://explorer.giantpay.network'
+chainProvider = 'http://explorer.birake.com'
 getBlockIndexMethod = '/api/getblockhash?index='
 getBlockwithHashMethod = '/api/getblock?hash='
 getTx = '/api/getrawtransaction?txid='
@@ -40,4 +40,4 @@ fileForMarketCap="assetMarketCap.json"
 fileForPrice="assetPrice.json"
 fileForVolume="assetVolume.json"
 
-daemonCli = "giant-cli"
+daemonCli = "birake-cli"
