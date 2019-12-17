@@ -58,6 +58,7 @@ class iquidusExplorer():
 		try:
 			page = self.u.urlopen(req, timeout = self.timeout, context=self.context)
 		except:
+			print(url)
 			page = self.u.urlopen(req, timeout=self.timeout, context=self.context)
 			print(page)
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
