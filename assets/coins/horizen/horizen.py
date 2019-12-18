@@ -18,7 +18,7 @@ rpcpassword = "grepblocktothemoon"
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://explorer.horizen.cc'
+chainProvider = 'https://explorer.zensystem.io/'
 getBlockIndexMethod = 'api/block-index/'
 getBlockwithHashMethod = 'api/block/'
 getTx = 'api/tx/'
