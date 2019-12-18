@@ -3,9 +3,9 @@
 #:: Description: This file contains default values of the asset
 
 # Defaults
-database = "telos"
+database = "teloscoin"
 assetTicker="TELOS"
-assetName = "telos"
+assetName = "teloscoin"
 genesisBlock = 1531879390
 coinGeckoStartUnixTime = 1537401600
 blockTime = 66

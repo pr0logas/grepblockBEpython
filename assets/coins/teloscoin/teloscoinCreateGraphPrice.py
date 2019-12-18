@@ -5,7 +5,7 @@
 import sys, time
 from datetime import datetime, timedelta
 from time import gmtime, strftime
-from telos import *
+from teloscoin import *
 sys.path.append('../../../')
 from mongoDB import *
 from parseGraphs import parseGraph

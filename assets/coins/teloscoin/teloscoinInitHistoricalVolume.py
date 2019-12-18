@@ -5,7 +5,7 @@
 import sys, time
 from datetime import datetime, timedelta
 from time import gmtime, strftime
-from telos import *
+from teloscoin import *
 sys.path.append('../../../')
 from mongoDB import *
 from parseGraphs import parseGraph
@@ -14,7 +14,7 @@ db = database
 collectionForHistoricalPrices = "historicalPriceData"
 
 # Init Classes;
-PG = parseGraph(assetTicker, fileForMarketCap, genesisBlock)
+PG = parseGraph(assetTicker, fileForVolume, genesisBlock)
 MC = mongoConnection(mongoAuth, db, collectionForHistoricalPrices)
 
 # Find Last unixTime value in a working json file;
@@ -38,12 +38,12 @@ while True:
 		break
 	else:
 		printTime = (datetime.fromtimestamp(unixTime)).strftime('%Y-%m-%d')
-		price = MC.findLastMarketCap(collectionForHistoricalPrices, unixTime)
+		price = MC.findLastVolume(collectionForHistoricalPrices, unixTime)
 		resJSON = PG.appendNewContentToPriceGraph(float(price), unixTime)
 		resWrite = PG.writeJSONtoFile(resJSON)
 		if resWrite == 'OK':
 			timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-			print timeSet + " Found historical MarketCap: " + str(price) + " // We at " + str(printTime)
+			print(timeSet + " Found historical Volume: " + str(price) + " // We at " + str(printTime))
 		else:
 			print("FATAL!")
 			sys.exit(1)
