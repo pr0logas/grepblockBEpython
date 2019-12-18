@@ -16,7 +16,7 @@ rpcport = 9078
 rpcuser = "grepblock"
 rpcpassword = "tothemoon"
 
-parseBlocksInRangeFor = 99
+parseBlocksInRangeFor = 999
 
 chainProvider = 'http://159.69.33.243:3001'
 getBlockIndexMethod = '/api/getblockhash?index='
