@@ -7,7 +7,7 @@ database = "telos"
 assetTicker="TELOS"
 assetName = "telos"
 genesisBlock = 1531879390
-coinGeckoStartUnixTime = 1535241600
+coinGeckoStartUnixTime = 1537401600
 blockTime = 66
 
 # RPC
