@@ -34,7 +34,7 @@ class parseGraph():
 				file.close()
 				return "FileWasEmpty!"
 			except:
-				print "FATAL failed to write to the file init data!"
+				print("FATAL failed to write to the file init data!")
 				sys.exit(1)
 
 	def parseTransactionsFindLastValue(self):
@@ -57,7 +57,7 @@ class parseGraph():
 				file.close()
 				return "FileWasEmpty!"
 			except:
-				print "FATAL failed to write to the file init data!"
+				print("FATAL failed to write to the file init data!")
 				sys.exit(1)
 
 	def parseDifficultyFindLastValue(self):
@@ -80,7 +80,7 @@ class parseGraph():
 				file.close()
 				return "FileWasEmpty!"
 			except:
-				print "FATAL failed to write to the file init data!"
+				print("FATAL failed to write to the file init data!")
 				sys.exit(1)
 
 	def parseActiveWalletsFindLastValue(self):
@@ -103,7 +103,7 @@ class parseGraph():
 				file.close()
 				return "FileWasEmpty!"
 			except:
-				print "FATAL failed to write to the file init data!"
+				print("FATAL failed to write to the file init data!")
 				sys.exit(1)
 
 	def parseBlockchainSizeFindLastValueTime(self):
@@ -126,7 +126,7 @@ class parseGraph():
 				file.close()
 				return "FileWasEmpty!"
 			except:
-				print "FATAL failed to write to the file init data!"
+				print("FATAL failed to write to the file init data!")
 				sys.exit(1)
 
 	def parsePriceFindLastValue(self, coinGeckoStartUnixTime):
@@ -149,7 +149,7 @@ class parseGraph():
 				file.close()
 				return "FileWasEmpty!"
 			except:
-				print "FATAL failed to write to the file init data!"
+				print("FATAL failed to write to the file init data!")
 				sys.exit(1)
 
 	def parseBlockchainSizeFindLastValueSize(self):
@@ -168,7 +168,7 @@ class parseGraph():
 			cjson['values'].append(new)
 			return json.dumps(cjson)
 		except:
-			print "FATAL! Failed to append the data to blocks graph!"
+			print("FATAL! Failed to append the data to blocks graph!")
 			sys.exit(1)
 
 	def appendNewContentToDifficultyGraph(self, difficulty, unixTime):
@@ -180,7 +180,7 @@ class parseGraph():
 			cjson['values'].append(new)
 			return json.dumps(cjson)
 		except:
-			print "FATAL! Failed to append the data to difficulty graph!"
+			print("FATAL! Failed to append the data to difficulty graph!")
 			sys.exit(1)
 
 	def appendNewContentToPriceGraph(self, price, unixTime):
@@ -192,7 +192,7 @@ class parseGraph():
 			cjson.append(new)
 			return json.dumps(cjson)
 		except:
-			print "FATAL! Failed to append the data to price graph!"
+			print("FATAL! Failed to append the data to price graph!")
 			sys.exit(1)
 
 	def appendNewContentToTxsGraph(self, sumTxs, unixTime):
@@ -204,7 +204,7 @@ class parseGraph():
 			cjson['values'].append(new)
 			return json.dumps(cjson)
 		except:
-			print "FATAL! Failed to append the data to Txs graph!"
+			print("FATAL! Failed to append the data to Txs graph!")
 			sys.exit(1)
 
 	def appendNewContentToBlockchainSizeGraph(self, sumBytes, unixTime):
@@ -216,7 +216,7 @@ class parseGraph():
 			cjson['values'].append(new)
 			return json.dumps(cjson)
 		except:
-			print "FATAL! Failed to append the data to BlockchainSize graph!"
+			print("FATAL! Failed to append the data to BlockchainSize graph!")
 			sys.exit(1)
 
 
@@ -227,7 +227,7 @@ class parseGraph():
 			file.close()
 			return "OK"
 		except:
-			print "FATAL failed to write blocks graph to the JSON file."
+			print("FATAL failed to write blocks graph to the JSON file.")
 			sys.exit(1)
 
 	def sendJSONtoFronend(self):
