@@ -73,8 +73,9 @@ else:
 
 	while whileprogress < currentExplBlock:
 		setProcStart = int(round(time.time() * 1000))
+		time.sleep(1) # Sleep otherwise rate-limit occur
 		bH = EX.getBlockHash(str(whileprogress))
-		#time.sleep(1) # Sleep otherwise rate-limit occur
+		time.sleep(1) # Sleep otherwise rate-limit occur
 		bD = EX.getBlockContentByHash(bH)
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
