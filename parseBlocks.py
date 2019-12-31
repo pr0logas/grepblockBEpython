@@ -55,6 +55,8 @@ class aggregatePlatformBlocksData():
 
 		if check == True:
 			# ETH hex to string conversion
+			print(int(firstObj['difficulty'][0], 16))
+			print(int(firstObj['difficulty'], 16))
 			if 'difficulty' in firstObj:
 				firstObj['difficulty'] = int(firstObj['difficulty'][0], 16)
 			if 'gasLimit' in firstObj:
@@ -78,7 +80,6 @@ class aggregatePlatformBlocksData():
 			firstObj['block'] = int(firstObj['number'])
 			firstObj['time'] = int(firstObj['timestamp'])
 
-			print(firstObj)
 			return json.dumps(firstObj)
 		else:
 			print("FAIL! Looks like we can't aggregate platform block data from HEX to decimal?")
