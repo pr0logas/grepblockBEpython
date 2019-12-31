@@ -64,19 +64,21 @@ class aggregatePlatformBlocksData():
 			if 'nonce' in firstObj:
 				firstObj['nonce'] = int(firstObj['nonce'], 16)
 			if 'number' in firstObj:
-				firstObj['number'] = int(firstObj['number'], 16)
+				firstObj['number'] = int(firstObj['number'])
 			if 'size' in firstObj:
 				firstObj['size'] = int(firstObj['size'], 16)
 			if 'timestamp' in firstObj:
-				firstObj['timestamp'] = int(firstObj['timestamp'], 16)
+				firstObj['timestamp'] = int(firstObj['timestamp'])
 			if 'totalDifficulty' in firstObj:
 				firstObj['totalDifficulty'] = int(firstObj['totalDifficulty'], 16)
+			if 'transactions' in firstObj:
+				firstObj['transactions'] = (firstObj['tx'])
 
 			# Too long to store, no real value to keep
 			firstObj['logsBloom'] = str("null")
 
-			firstObj['block'] = int(firstObj['number'])
-			firstObj['time'] = int(firstObj['timestamp'])
+			firstObj['block'] = int(firstObj['number'], 16)
+			firstObj['time'] = int(firstObj['timestamp'], 16)
 
 			return json.dumps(firstObj)
 		else:
