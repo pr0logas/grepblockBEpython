@@ -63,12 +63,14 @@ class aggregatePlatformBlocksData():
 				firstObj['gasUsed'] = int(firstObj['gasUsed'], 16)
 			if 'nonce' in firstObj:
 				firstObj['nonce'] = int(firstObj['nonce'], 16)
+				firstObj['nonce'] = str(firstObj['nonce'])
 			if 'size' in firstObj:
 				firstObj['size'] = int(firstObj['size'], 16)
 			if 'totalDifficulty' in firstObj:
 				firstObj['totalDifficulty'] = int(firstObj['totalDifficulty'], 16)
 			if 'transactions' in firstObj:
 				firstObj['tx'] = (firstObj['transactions'])
+				firstObj['transactions'] = str("forwardedTo>tx")
 
 			# Too long to store, no real value to keep
 			firstObj['logsBloom'] = str("null")
