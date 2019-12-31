@@ -209,7 +209,9 @@ class ethereumHTTPnode():
 		postData = {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":[hexBlockNum, False],"id":1}
 		response = self.r.post(self.chainProvider, json=postData)
 		firstObj = json.loads(response.content)
-		print(str(firstObj['result']))
+		result = (firstObj['result'])
+		aggregated = json.dumps(result)
+		print(aggregated)
 
 	def getLastBlock(self):
 		# Here goes the post data to ETH node with HEX params.
