@@ -8,7 +8,7 @@ from ethereum import *
 sys.path.append('../../../')
 from mongoDB import *
 from explorer import ethereumHTTPnode
-from parseBlocks import aggregateBlocksData
+from parseBlocks import aggregatePlatformBlocksData
 
 db = database
 collectionForBlocks = "blocks"
@@ -50,7 +50,7 @@ if (int(diff) >= 100):
 	while whileprogress < parsingBlocksInRange:
 		setProcStart = int(round(time.time() * 1000))
 		bD = EX.getBlockContentByBlockNum(str(whileprogress))
-		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
+		aggregatedBlockData = AG.aggregatePlatformData(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
@@ -73,7 +73,7 @@ else:
 	while whileprogress < currentExplBlock:
 		setProcStart = int(round(time.time() * 1000))
 		bD = EX.getBlockContentByBlockNum(str(whileprogress))
-		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
+		aggregatedBlockData = AG.aggregatePlatformData(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
