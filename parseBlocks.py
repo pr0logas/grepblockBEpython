@@ -56,21 +56,21 @@ class aggregatePlatformBlocksData():
 		if check == True:
 			# ETH hex to string conversion
 			if 'difficulty' in firstObj:
-				firstObj['difficulty'] = int(firstObj['mediantime'], 16)
+				firstObj['difficulty'] = int(firstObj['mediantime'][0], 16)
 			if 'gasLimit' in firstObj:
-				firstObj['gasLimit'] = int(firstObj['gasLimit'], 16)
+				firstObj['gasLimit'] = int(firstObj['gasLimit'][0], 16)
 			if 'gasUsed' in firstObj:
-				firstObj['gasUsed'] = int(firstObj['gasUsed'], 16)
+				firstObj['gasUsed'] = int(firstObj['gasUsed'][0], 16)
 			if 'nonce' in firstObj:
-				firstObj['nonce'] = int(firstObj['nonce'], 16)
+				firstObj['nonce'] = int(firstObj['nonce'][0], 16)
 			if 'number' in firstObj:
-				firstObj['number'] = int(firstObj['number'], 16)
+				firstObj['number'] = int(firstObj['number'][0], 16)
 			if 'size' in firstObj:
-				firstObj['size'] = int(firstObj['size'], 16)
+				firstObj['size'] = int(firstObj['size'][0], 16)
 			if 'timestamp' in firstObj:
-				firstObj['timestamp'] = int(firstObj['timestamp'], 16)
+				firstObj['timestamp'] = int(firstObj['timestamp'][0], 16)
 			if 'totalDifficulty' in firstObj:
-				firstObj['totalDifficulty'] = int(firstObj['totalDifficulty'], 16)
+				firstObj['totalDifficulty'] = int(firstObj['totalDifficulty'][0], 16)
 
 			# Too long to store, no real value to keep
 			firstObj['logsBloom'] = str("null")
