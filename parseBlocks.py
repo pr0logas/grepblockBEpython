@@ -57,6 +57,7 @@ class aggregatePlatformBlocksData():
 			# ETH hex to string conversion
 			if 'difficulty' in firstObj:
 				firstObj['difficulty'] = int(firstObj['difficulty'], 16)
+				firstObj['difficulty'] = str(firstObj['difficulty'])
 			if 'gasLimit' in firstObj:
 				firstObj['gasLimit'] = int(firstObj['gasLimit'], 16)
 			if 'gasUsed' in firstObj:
@@ -68,6 +69,7 @@ class aggregatePlatformBlocksData():
 				firstObj['size'] = int(firstObj['size'], 16)
 			if 'totalDifficulty' in firstObj:
 				firstObj['totalDifficulty'] = int(firstObj['totalDifficulty'], 16)
+				firstObj['totalDifficulty'] = str(firstObj['totalDifficulty'])
 			if 'transactions' in firstObj:
 				firstObj['tx'] = (firstObj['transactions'])
 				firstObj['transactions'] = str("forwardedTo>tx")
