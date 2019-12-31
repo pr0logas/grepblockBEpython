@@ -50,8 +50,8 @@ class aggregatePlatformBlocksData():
 
 	def aggregatePlatformData(self, blockData):
 		firstObj = json.loads(blockData)
-		findBlockNum = int(firstObj['number'])
-		check = isinstance(findBlockNum, (hex, long))
+		findBlockNum = int(firstObj['number'][0], 16)
+		check = isinstance(findBlockNum, (int, long))
 
 		if check == True:
 			# ETH hex to string conversion
