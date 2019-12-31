@@ -28,7 +28,6 @@ currentLastBlock = MC.findLastBlock(collectionForBlocks)
 
 # Check last Explorer block:
 currentExplBlock = int(EX.getLastBlock())
-print("node block: " + str(currentExplBlock)) # Testing
 currentExplBlock -= 2
 
 # Set how much blocks we want to sync from current point +- ~99
