@@ -212,6 +212,7 @@ class ethereumHTTPnode():
 		result = (firstObj['result'])
 		aggregated = json.dumps(result)
 		print(aggregated)
+		return(aggregated)
 
 	def getLastBlock(self):
 		# Here goes the post data to ETH node with HEX params.
