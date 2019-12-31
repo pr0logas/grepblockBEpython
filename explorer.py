@@ -216,4 +216,4 @@ class ethereumHTTPnode():
 		response = self.r.post(self.chainProvider, json=postData)
 		firstObj = json.loads(response.content)
 		findBlockNum = str(firstObj['result'])
-		return hex(findBlockNum)
+		return int(findBlockNum, 16) # Return valid decimal
