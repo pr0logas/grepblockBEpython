@@ -2,9 +2,7 @@
 #:: Modified date: 2019-12-31
 #:: Description: This file contains block aggregation methods.
 
-import json, fileinput
-from explorer import iquidusExplorer
-import os
+import json
 
 class aggregateBlocksData():
 	def __init__(self):
