@@ -3,7 +3,7 @@
 #:: Description: This file contains all explorer related methods (getting the raw data) from foreign sources.
 
 import sys, time, re
-import urllib2, cookielib, json
+import urllib2, cookielib, json, requests
 import subprocess
 import ssl
 from time import gmtime, strftime
@@ -196,3 +196,24 @@ class insightExplorer(iquidusExplorer):
 		firstObj = json.loads(content)
 		findBlockNum = int(firstObj['blocks'])
 		return int(findBlockNum)
+
+class ethereumHTTPnode():
+	def __self__(self, chainProvider):
+		self.chainProvider = chainProvider
+		self.r = requests
+
+	def getBlockContentByBlockNum(self, blockNum):
+		hexBlockNum = hex(int(blockNum))
+		# Here goes the post data to ETH node with HEX params. Boolean is for full tx data or not. //
+		postData = {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":[hexBlockNum, False],"id":1}
+		response = r.post(self.chainProvider, json=postData)
+		print(response.content)
+
+	def getLastBlock(self):
+		# Here goes the post data to ETH node with HEX params. Boolean is for full tx data or not. //
+		postData = {"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1}
+		response = r.post(self.chainProvider, json=postData)
+		content = response.content.read()
+		firstObj = json.loads(content)
+		findBlockNum = int(firstObj['result'])
+		print(findBlockNum)

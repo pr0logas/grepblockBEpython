@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas
-#:: Modified date: 2019-11-30
+#:: Modified date: 2019-12-31
 #:: Description: This file is a workspace for block importation.
 
 import sys, time
@@ -7,7 +7,7 @@ from time import gmtime, strftime
 from ethereum import *
 sys.path.append('../../../')
 from mongoDB import *
-from explorer import iquidusExplorer
+from explorer import ethereumHTTPnode
 from parseBlocks import aggregateBlocksData
 
 db = database
@@ -15,12 +15,12 @@ collectionForBlocks = "blocks"
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
-EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
+EX = ethereumHTTPnode(chainProvider)
 AG = aggregateBlocksData()
 
 # Check if blocks col empty or not?
 if MC.checkIfBlocksColEmpty(collectionForBlocks) == "Empty":
-	print "Warning! We found an empty blocks collection. Starting from zero."
+	print("Warning! We found an empty blocks collection. Starting from zero.")
 	MC.insertInitValueForBlocks(collectionForBlocks)
 
 # Set current progress;
@@ -36,7 +36,7 @@ parsingBlocksInRange = parseBlocksInRangeFor + currentLastBlock
 # Check if our progress is near by Explorer blocks?
 diff = str(currentExplBlock - currentLastBlock)
 
-# We have two choises here, parse the blocks in range for +- ~100 blocks (last block too far anyway) or until last Explorer block -2 //
+# We have two choices here, parse the blocks in range for +- ~100 blocks (last block too far anyway) or until last Explorer block -2 //
 # We don't wanna to parse up to last block in case of wrong chain.
 
 # Start Parsing blocks ::in range:: and push to MongoDB;
@@ -48,8 +48,7 @@ if (int(diff) >= 100):
 
 	while whileprogress < parsingBlocksInRange:
 		setProcStart = int(round(time.time() * 1000))
-		bH = EX.getBlockHash(str(whileprogress))
-		bD = EX.getBlockContentByHash(bH)
+		bD = EX.getBlockContentByBlockNum(str(whileprogress))
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
@@ -58,10 +57,10 @@ if (int(diff) >= 100):
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 		if str(status) != 'None':
-			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
+			print(timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms')
 
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-	print timeSet + " No new blocks found, last one: " + str(parsingBlocksInRange)
+	print(timeSet + " No new blocks found, last one: " + str(parsingBlocksInRange))
 
 # Start Parsing blocks until last Explorer block -2 and push to MongoDB;
 else: 
@@ -72,8 +71,7 @@ else:
 
 	while whileprogress < currentExplBlock:
 		setProcStart = int(round(time.time() * 1000))
-		bH = EX.getBlockHash(str(whileprogress))
-		bD = EX.getBlockContentByHash(bH)
+		bD = EX.getBlockContentByBlockNum(str(whileprogress))
 		aggregatedBlockData = AG.aggregateInsertBlockNumber(bD)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
@@ -82,7 +80,7 @@ else:
 		performanceResult = str(setProcEnd - setProcStart)
 		timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 		if str(status) != 'None':
-			print timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms'
+			print(timeSet + " Block finished: " + str(status) + ' // ' + (performanceResult) + ' ms')
 
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-	print timeSet + " No new blocks found, last one: " + str(currentExplBlock)
+	print(timeSet + " No new blocks found, last one: " + str(currentExplBlock))
