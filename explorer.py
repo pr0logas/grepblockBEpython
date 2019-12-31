@@ -215,5 +215,5 @@ class ethereumHTTPnode():
 		postData = {"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1}
 		response = self.r.post(self.chainProvider, json=postData)
 		firstObj = json.loads(response.content)
-		findBlockNum = int(firstObj['result'])
+		findBlockNum = str(firstObj['result'])
 		print(findBlockNum)
