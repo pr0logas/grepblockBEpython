@@ -52,7 +52,6 @@ if (int(diff) >= 100):
 		bD = EX.getBlockContentByBlockNum(str(whileprogress))
 		aggregatedBlockData = AG.aggregatePlatformData(bD)
 		print(aggregatedBlockData)
-		sys.exit(1)
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
