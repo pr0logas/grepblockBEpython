@@ -78,6 +78,7 @@ class aggregatePlatformBlocksData():
 			firstObj['block'] = int(firstObj['number'])
 			firstObj['time'] = int(firstObj['timestamp'])
 
+			print(firstObj)
 			return json.dumps(firstObj)
 		else:
 			print("FAIL! Looks like we can't aggregate platform block data from HEX to decimal?")
