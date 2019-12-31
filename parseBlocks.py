@@ -56,7 +56,7 @@ class aggregatePlatformBlocksData():
 		if check == True:
 			# ETH hex to string conversion
 			if 'difficulty' in firstObj:
-				firstObj['difficulty'] = int(firstObj['mediantime'][0], 16)
+				firstObj['difficulty'] = int(firstObj['difficulty'][0], 16)
 			if 'gasLimit' in firstObj:
 				firstObj['gasLimit'] = int(firstObj['gasLimit'][0], 16)
 			if 'gasUsed' in firstObj:
