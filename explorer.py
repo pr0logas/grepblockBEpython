@@ -208,10 +208,11 @@ class ethereumHTTPnode():
 		# Here goes the post data to ETH node with HEX params. Boolean is for full tx data or not. //
 		postData = {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":[hexBlockNum, False],"id":1}
 		response = self.r.post(self.chainProvider, json=postData)
-		print(response.content)
+		firstObj = json.loads(response.content)
+		print(str(firstObj['result']))
 
 	def getLastBlock(self):
-		# Here goes the post data to ETH node with HEX params. Boolean is for full tx data or not. //
+		# Here goes the post data to ETH node with HEX params.
 		postData = {"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1}
 		response = self.r.post(self.chainProvider, json=postData)
 		firstObj = json.loads(response.content)
