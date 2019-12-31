@@ -68,7 +68,7 @@ class aggregatePlatformBlocksData():
 			if 'totalDifficulty' in firstObj:
 				firstObj['totalDifficulty'] = int(firstObj['totalDifficulty'], 16)
 			if 'transactions' in firstObj:
-				firstObj['transactions'] = (firstObj['tx'])
+				firstObj['tx'] = (firstObj['transactions'])
 
 			# Too long to store, no real value to keep
 			firstObj['logsBloom'] = str("null")
