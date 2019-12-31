@@ -18,7 +18,7 @@ rpcpassword = 'grepblocktothemoon'
 
 parseBlocksInRangeFor = 99
 
-chainProvider = 'https://blockdozer.com/'
+chainProvider = 'https://bch.coin.space/'
 getBlockIndexMethod = 'api/block-index/'
 getBlockwithHashMethod = 'api/block/'
 getTx = 'api/tx/'
