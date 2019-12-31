@@ -199,7 +199,7 @@ class insightExplorer(iquidusExplorer):
 
 __metaclass__ = type
 class ethereumHTTPnode():
-	def __self__(self, chainProvider):
+	def __init__(self, chainProvider):
 		self.chainProvider = chainProvider
 		self.r = requests
 
