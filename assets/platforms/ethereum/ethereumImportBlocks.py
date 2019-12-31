@@ -15,7 +15,7 @@ collectionForBlocks = "blocks"
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, db, collectionForBlocks)
-EX = ethereumHTTPnode()
+EX = ethereumHTTPnode(chainProvider)
 AG = aggregateBlocksData()
 
 # Check if blocks col empty or not?
