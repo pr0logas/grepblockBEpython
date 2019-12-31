@@ -50,7 +50,7 @@ if (int(diff) >= 100):
 		setProcStart = int(round(time.time() * 1000))
 		bD = EX.getBlockContentByBlockNum(str(whileprogress))
 		aggregatedBlockData = AG.aggregatePlatformData(bD)
-		print(aggregatedBlockData)
+		#print(aggregatedBlockData) # Testing to see aggregated data
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
@@ -74,6 +74,7 @@ else:
 		setProcStart = int(round(time.time() * 1000))
 		bD = EX.getBlockContentByBlockNum(str(whileprogress))
 		aggregatedBlockData = AG.aggregatePlatformData(bD)
+		#print(aggregatedBlockData) # Testing to see aggregated data
 		status = MC.insertBlocksData(collectionForBlocks, aggregatedBlockData)
 		whileprogress += 1
 
