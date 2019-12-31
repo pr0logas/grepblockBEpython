@@ -197,6 +197,7 @@ class insightExplorer(iquidusExplorer):
 		findBlockNum = int(firstObj['blocks'])
 		return int(findBlockNum)
 
+__metaclass__ = type
 class ethereumHTTPnode():
 	def __self__(self, chainProvider):
 		self.chainProvider = chainProvider
@@ -206,7 +207,7 @@ class ethereumHTTPnode():
 		hexBlockNum = hex(int(blockNum))
 		# Here goes the post data to ETH node with HEX params. Boolean is for full tx data or not. //
 		postData = {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":[hexBlockNum, False],"id":1}
-		response = r.post(self.chainProvider, json=postData)
+		response = self.r.post(self.chainProvider, json=postData)
 		print(response.content)
 
 	def getLastBlock(self):
