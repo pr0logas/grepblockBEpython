@@ -2,7 +2,7 @@
 #:: Modified date: 2019-12-31
 #:: Description: This file contains block aggregation methods.
 
-import json
+import json, sys
 
 class aggregateBlocksData():
 	def __init__(self):
@@ -79,7 +79,6 @@ class aggregatePlatformBlocksData():
 			firstObj['time'] = int(firstObj['timestamp'])
 
 			print(firstObj)
-			sys.exit(1)
 			return json.dumps(firstObj)
 		else:
 			print("FAIL! Looks like we can't aggregate platform block data from HEX to decimal?")
