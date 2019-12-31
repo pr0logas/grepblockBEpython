@@ -214,7 +214,6 @@ class ethereumHTTPnode():
 		# Here goes the post data to ETH node with HEX params. Boolean is for full tx data or not. //
 		postData = {"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1}
 		response = self.r.post(self.chainProvider, json=postData)
-		content = response.content.read()
-		firstObj = json.loads(content)
+		firstObj = json.loads(response.content)
 		findBlockNum = int(firstObj['result'])
 		print(findBlockNum)
