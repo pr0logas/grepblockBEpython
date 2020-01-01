@@ -56,7 +56,6 @@ while whileprogress<currentLastBlock:
 		if randomWlts != []:
 			if randomWlts is not None:
 				uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
-				print(uniqWlts)
 				for uw in uniqWlts:
 					createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 					result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
