@@ -8,7 +8,7 @@ from ethereum import *
 sys.path.append('../../../')
 from mongoDB import *
 from explorer import ethereumHTTPnode
-from parseBlocks import aggregatePlatformBlocksData
+from parseWallets import aggregateWalletsData
 
 collectionTxidProgress = "txidsProgress"
 collectionForBlocks = "blocks"
@@ -17,7 +17,7 @@ collectionForWallets = "wallets"
 # Init Classes;
 MC = mongoConnection(mongoAuth, database, collectionTxidProgress)
 EX = ethereumHTTPnode(chainProvider)
-AG = aggregatePlatformBlocksData()
+AG = aggregateWalletsData()
 
 # Check if txidProgress col empty or not?
 if MC.checkIfTxidProgressColEmpty(collectionTxidProgress) == "Empty":
