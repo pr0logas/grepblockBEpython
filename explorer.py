@@ -229,4 +229,5 @@ class ethereumHTTPnode():
 		firstObj = json.loads(response.content)
 		result = (firstObj['result'])
 		aggregated = json.dumps(result)
+		print(aggregated)
 		return(aggregated)

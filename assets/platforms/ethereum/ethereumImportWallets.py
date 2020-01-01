@@ -52,12 +52,11 @@ while whileprogress<currentLastBlock:
 	blockNumber = blockData['block']
 	for txid in blockData['tx']:
 		getTxData = EX.getTxContentByTxid(txid)
-		print(getTxData)
-		sys.exit(1)
 		randomWlts = AG.findAllPlatformsWalletsAddr(getTxData)
 		if randomWlts != []:
 			if randomWlts is not None:
 				uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
+				print(uniqWlts)
 				for uw in uniqWlts:
 					createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 					result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
