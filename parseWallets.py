@@ -29,12 +29,12 @@ class aggregateWalletsData():
 		try:
 			resultList.append(fromAddr)
 		except KeyError:
-			continue
+			pass
 
 		try:
 			resultList.append(toAddr)
 		except KeyError:
-			continue
+			pass
 
 		return(resultList)
 
