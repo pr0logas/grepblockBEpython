@@ -26,15 +26,11 @@ class aggregateWalletsData():
 		fromAddr  = firstObj['from']
 		toAddr = firstObj['to']
 		resultList = []
-		try:
+		if fromAddr != None:
 			resultList.append(fromAddr)
-		except KeyError:
-			pass
 
-		try:
+		if toAddr != None:
 			resultList.append(toAddr)
-		except KeyError:
-			pass
 
 		return(resultList)
 
