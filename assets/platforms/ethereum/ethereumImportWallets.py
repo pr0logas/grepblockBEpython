@@ -21,7 +21,7 @@ AG = aggregatePlatformBlocksData()
 
 # Check if txidProgress col empty or not?
 if MC.checkIfTxidProgressColEmpty(collectionTxidProgress) == "Empty":
-	print "Warning! We found an empty txidProgress collection. Starting from zero."
+	print("Warning! We found an empty txidProgress collection. Starting from zero.")
 	MC.insertInitValueForWalletsProgress(collectionTxidProgress)
 
 # Set current progress;
@@ -35,7 +35,7 @@ if currentLastTxidProgress != 0:
 		print ("FAIL: Unable to decrease lastblock value in txidsProgress!")
 		sys.exit(1)
 	else:
-		print ("OK: txidsProgress value succesfully decreased to:" + ' ' + str(MC.findLastTxidProgress(collectionTxidProgress)))
+		print("OK: txidsProgress value succesfully decreased to:" + ' ' + str(MC.findLastTxidProgress(collectionTxidProgress)))
 
 if currentLastTxidProgress == 0:
 	currentLastTxidProgress += 1
@@ -54,7 +54,7 @@ while whileprogress<currentLastBlock:
 		getTxData = EX.getTxContentByTxid(txid)
 		print(getTxData)
 		sys.exit(1)
-		randomWlts = AG.findAllWalletsAddr(getTxData)
+		randomWlts = AG.findAllPlatformsWalletsAddr(getTxData)
 		if randomWlts != []:
 			if randomWlts is not None:
 				uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
@@ -71,7 +71,7 @@ while whileprogress<currentLastBlock:
 		if str(status) != '':
 			print(timeSet + " Wallet inserted : " + str(status))
 		else:
-			print(timeSet + " Warning! Txid don't have any vout Wallets!")
+			print(timeSet + " Warning! Txid don't have any from/to Wallets!")
 	
 	print(timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms')
 

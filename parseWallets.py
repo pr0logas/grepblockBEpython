@@ -1,9 +1,7 @@
 #:: By GrepBlock.com developers // pr0logas, mrNemo
-#:: Modified date: 2019-11-30
+#:: Modified date: 2020-01-01
 #:: Description: This file contains wallets aggregation methods.
 
-import json
-from mongoDB import mongoAuth, mongoConnection
 from explorer import *
 
 class aggregateWalletsData():
@@ -22,6 +20,23 @@ class aggregateWalletsData():
 				continue
 
 			return resultList
+
+	def findAllPlatformsWalletsAddr(self, data):
+		firstObj = json.loads(data)
+		fromAddr  = firstObj['from']
+		toAddr = firstObj['to']
+		resultList = []
+		try:
+			resultList.append(fromAddr)
+		except KeyError:
+			continue
+
+		try:
+			resultList.append(toAddr)
+		except KeyError:
+			continue
+
+		return(resultList)
 
 	def aggregateOnlyUniqueWallets(self, wallets):
 		output = set()
