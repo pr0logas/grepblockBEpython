@@ -220,3 +220,13 @@ class ethereumHTTPnode():
 		firstObj = json.loads(response.content)
 		findBlockNum = str(firstObj['result'])
 		return int(findBlockNum, 16) # Return valid decimal
+
+	def getTxContentByTxid(self, txid):
+		txID = (str(txid))
+		# Here goes the post data to ETH node with HEX params.
+		postData = {"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":[txID],"id":1}
+		response = self.r.post(self.chainProvider, json=postData)
+		firstObj = json.loads(response.content)
+		result = (firstObj['result'])
+		aggregated = json.dumps(result)
+		return(aggregated)

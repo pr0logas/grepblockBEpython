@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas
-#:: Modified date: 2019-11-30
+#:: Modified date: 2020-01-01
 #:: Description: This file is a workspace for wallets importation.
 
 import sys, time
@@ -7,8 +7,8 @@ from time import gmtime, strftime
 from ethereum import *
 sys.path.append('../../../')
 from mongoDB import *
-from explorer import iquidusExplorer
-from parseWallets import aggregateWalletsData
+from explorer import ethereumHTTPnode
+from parseBlocks import aggregatePlatformBlocksData
 
 collectionTxidProgress = "txidsProgress"
 collectionForBlocks = "blocks"
@@ -16,8 +16,8 @@ collectionForWallets = "wallets"
 
 # Init Classes;
 MC = mongoConnection(mongoAuth, database, collectionTxidProgress)
-EX = iquidusExplorer(chainProvider, getBlockIndexMethod, getBlockwithHashMethod, getTx)
-AG = aggregateWalletsData()
+EX = ethereumHTTPnode(chainProvider)
+AG = aggregatePlatformBlocksData()
 
 # Check if txidProgress col empty or not?
 if MC.checkIfTxidProgressColEmpty(collectionTxidProgress) == "Empty":
@@ -49,9 +49,11 @@ while whileprogress<currentLastBlock:
 	setProcStart = int(round(time.time() * 1000))
 	blockData = MC.findByBlock(collectionForBlocks, whileprogress)
 	blockTime = blockData['time']
-	blockNumber = blockData['height']
+	blockNumber = blockData['block']
 	for txid in blockData['tx']:
 		getTxData = EX.getTxContentByTxid(txid)
+		print(getTxData)
+		sys.exit(1)
 		randomWlts = AG.findAllWalletsAddr(getTxData)
 		if randomWlts != []:
 			if randomWlts is not None:
@@ -67,11 +69,11 @@ while whileprogress<currentLastBlock:
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 	if str(status) != 'None':
 		if str(status) != '':
-			print timeSet + " Wallet inserted : " + str(status)
+			print(timeSet + " Wallet inserted : " + str(status))
 		else:
-			print timeSet + " Warning! Txid don't have any vout Wallets!"
+			print(timeSet + " Warning! Txid don't have any vout Wallets!")
 	
-	print timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
+	print(timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms')
 
 	# Increase txidsProgress to move forward;
 	MC.updateLastTxidProgressPlusOne(collectionTxidProgress, whileprogress)
