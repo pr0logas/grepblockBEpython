@@ -1,4 +1,4 @@
-import jenkins
+import jenkins, time
 from methods import jenkinsJobs
 from asset import assetName
 
@@ -47,36 +47,75 @@ def showViewJobs(viewName):
 try:
     deleteJob(assetName+'-'+'coingecko-parseHistoricalPrice')
 except:
+    time.sleep(10)
     pass
 
 try:
     deleteJob(assetName+'-'+'coingecko-parsePrice')
 except:
+    time.sleep(10)
     pass
 
 try:
     deleteJob(assetName+'-'+'daemon-parseBlocks')
 except:
+    time.sleep(10)
     pass
 
 try:
     deleteJob(assetName+'-'+'daemon-parseWallets')
 except:
+    time.sleep(10)
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-assetActiveWallets')
 except:
+    time.sleep(10)
     pass
 
+try:
+    deleteJob(assetName+'-'+'graph-assetBlockchainSize')
+except:
+    time.sleep(10)
+    pass
 
-deleteJob(assetName+'-'+'graph-assetBlockchainSize')
-deleteJob(assetName+'-'+'graph-assetBlocks')
-deleteJob(assetName+'-'+'graph-assetDifficulty')
-deleteJob(assetName+'-'+'graph-assetTransactions')
-deleteJob(assetName+'-'+'graph-marketcap')
-deleteJob(assetName+'-'+'graph-price')
-deleteJob(assetName+'-'+'graph-volume')
+try:
+    deleteJob(assetName+'-'+'graph-assetBlocks')
+except:
+    time.sleep(10)
+    pass
+
+try:
+    deleteJob(assetName+'-'+'graph-assetDifficulty')
+except:
+    time.sleep(10)
+    pass
+
+try:
+    deleteJob(assetName+'-'+'graph-assetTransactions')
+except:
+    time.sleep(10)
+    pass
+
+try:
+    deleteJob(assetName+'-'+'graph-marketcap')
+except:
+    time.sleep(10)
+    pass
+
+try:
+    deleteJob(assetName+'-'+'graph-price')
+except:
+    time.sleep(10)
+    pass
+
+try:
+    deleteJob(assetName+'-'+'graph-volume')
+except:
+    time.sleep(10)
+    pass
+
 
 createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
 createJob(assetName, 'coingecko-parsePrice', Methods.coingeckoParsePrice())
