@@ -47,13 +47,13 @@ def showViewJobs(viewName):
 try:
     deleteJob(assetName+'-'+'coingecko-parseHistoricalPrice')
 except:
-    time.sleep(10)
+    time.sleep(20)
     pass
 
 try:
     deleteJob(assetName+'-'+'coingecko-parsePrice')
 except:
-    time.sleep(10)
+    time.sleep(20)
     pass
 
 try:
@@ -71,49 +71,49 @@ except:
 try:
     deleteJob(assetName+'-'+'graph-assetActiveWallets')
 except:
-    time.sleep(10)
+    time.sleep(2)
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-assetBlockchainSize')
 except:
-    time.sleep(10)
+    time.sleep(2)
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-assetBlocks')
 except:
-    time.sleep(10)
+    time.sleep(2)
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-assetDifficulty')
 except:
-    time.sleep(10)
+    time.sleep(2)
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-assetTransactions')
 except:
-    time.sleep(10)
+    time.sleep(2)
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-marketcap')
 except:
-    time.sleep(10)
+    time.sleep(20)
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-price')
 except:
-    time.sleep(10)
+    time.sleep(20)
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-volume')
 except:
-    time.sleep(10)
+    time.sleep(20)
     pass
 
 
