@@ -46,31 +46,31 @@ def showViewJobs(viewName):
 
 try:
     deleteJob(assetName+'-'+'coingecko-parseHistoricalPrice')
-except NotFoundException:
+except:
     pass
 
 try:
     deleteJob(assetName+'-'+'coingecko-parsePrice')
-except NotFoundException:
+except:
     pass
 
 try:
     deleteJob(assetName+'-'+'daemon-parseBlocks')
-except NotFoundException:
+except:
     pass
 
 try:
     deleteJob(assetName+'-'+'daemon-parseWallets')
-except NotFoundException:
+except:
     pass
 
 try:
     deleteJob(assetName+'-'+'graph-assetActiveWallets')
-except NotFoundException:
+except:
     pass
-    deleteJob(assetName+'-'+'graph-assetBlockchainSize')
 
 
+deleteJob(assetName+'-'+'graph-assetBlockchainSize')
 deleteJob(assetName+'-'+'graph-assetBlocks')
 deleteJob(assetName+'-'+'graph-assetDifficulty')
 deleteJob(assetName+'-'+'graph-assetTransactions')
