@@ -12,7 +12,7 @@ class jenkinsJobs():
           <properties>
             <jenkins.model.BuildDiscarderProperty>
               <strategy class="hudson.tasks.LogRotator">
-                <daysToKeep>90</daysToKeep>
+                <daysToKeep>7</daysToKeep>
                 <numToKeep>-1</numToKeep>
                 <artifactDaysToKeep>-1</artifactDaysToKeep>
                 <artifactNumToKeep>-1</artifactNumToKeep>
@@ -55,7 +55,7 @@ python ./${asset}ImportHistoricalPrices.py</command>
               <properties>
                 <jenkins.model.BuildDiscarderProperty>
                   <strategy class="hudson.tasks.LogRotator">
-                    <daysToKeep>90</daysToKeep>
+                    <daysToKeep>7</daysToKeep>
                     <numToKeep>-1</numToKeep>
                     <artifactDaysToKeep>-1</artifactDaysToKeep>
                     <artifactNumToKeep>-1</artifactNumToKeep>
@@ -98,7 +98,7 @@ python ./${asset}CreateGraphActiveWallets.py </command>
                   <properties>
                     <jenkins.model.BuildDiscarderProperty>
                       <strategy class="hudson.tasks.LogRotator">
-                        <daysToKeep>90</daysToKeep>
+                        <daysToKeep>7</daysToKeep>
                         <numToKeep>-1</numToKeep>
                         <artifactDaysToKeep>-1</artifactDaysToKeep>
                         <artifactNumToKeep>-1</artifactNumToKeep>
@@ -141,7 +141,7 @@ python ./${asset}CreateGraphBlockchainSize.py</command>
                       <properties>
                         <jenkins.model.BuildDiscarderProperty>
                           <strategy class="hudson.tasks.LogRotator">
-                            <daysToKeep>90</daysToKeep>
+                            <daysToKeep>7</daysToKeep>
                             <numToKeep>-1</numToKeep>
                             <artifactDaysToKeep>-1</artifactDaysToKeep>
                             <artifactNumToKeep>-1</artifactNumToKeep>
@@ -184,7 +184,7 @@ python ./${asset}CreateGraphBlocks.py</command>
                           <properties>
                             <jenkins.model.BuildDiscarderProperty>
                               <strategy class="hudson.tasks.LogRotator">
-                                <daysToKeep>90</daysToKeep>
+                                <daysToKeep>7</daysToKeep>
                                 <numToKeep>-1</numToKeep>
                                 <artifactDaysToKeep>-1</artifactDaysToKeep>
                                 <artifactNumToKeep>-1</artifactNumToKeep>
@@ -227,7 +227,7 @@ python ./${asset}CreateGraphDifficulty.py</command>
                               <properties>
                                 <jenkins.model.BuildDiscarderProperty>
                                   <strategy class="hudson.tasks.LogRotator">
-                                    <daysToKeep>90</daysToKeep>
+                                    <daysToKeep>7</daysToKeep>
                                     <numToKeep>-1</numToKeep>
                                     <artifactDaysToKeep>-1</artifactDaysToKeep>
                                     <artifactNumToKeep>-1</artifactNumToKeep>
@@ -270,7 +270,7 @@ python ./${asset}CreateGraphTransactions.py</command>
                                   <properties>
                                     <jenkins.model.BuildDiscarderProperty>
                                       <strategy class="hudson.tasks.LogRotator">
-                                        <daysToKeep>90</daysToKeep>
+                                        <daysToKeep>7</daysToKeep>
                                         <numToKeep>-1</numToKeep>
                                         <artifactDaysToKeep>-1</artifactDaysToKeep>
                                         <artifactNumToKeep>-1</artifactNumToKeep>
@@ -313,7 +313,7 @@ python ./${asset}CreateGraphMarketCap.py</command>
                                       <properties>
                                         <jenkins.model.BuildDiscarderProperty>
                                           <strategy class="hudson.tasks.LogRotator">
-                                            <daysToKeep>90</daysToKeep>
+                                            <daysToKeep>7</daysToKeep>
                                             <numToKeep>-1</numToKeep>
                                             <artifactDaysToKeep>-1</artifactDaysToKeep>
                                             <artifactNumToKeep>-1</artifactNumToKeep>
@@ -356,7 +356,7 @@ python ./${asset}CreateGraphPrice.py</command>
                                       <properties>
                                         <jenkins.model.BuildDiscarderProperty>
                                           <strategy class="hudson.tasks.LogRotator">
-                                            <daysToKeep>90</daysToKeep>
+                                            <daysToKeep>7</daysToKeep>
                                             <numToKeep>-1</numToKeep>
                                             <artifactDaysToKeep>-1</artifactDaysToKeep>
                                             <artifactNumToKeep>-1</artifactNumToKeep>
@@ -399,7 +399,7 @@ python ./${asset}CreateGraphVolume.py</command>
           <properties>
             <jenkins.model.BuildDiscarderProperty>
               <strategy class="hudson.tasks.LogRotator">
-                <daysToKeep>90</daysToKeep>
+                <daysToKeep>7</daysToKeep>
                 <numToKeep>-1</numToKeep>
                 <artifactDaysToKeep>-1</artifactDaysToKeep>
                 <artifactNumToKeep>-1</artifactNumToKeep>
@@ -443,7 +443,7 @@ python ./${asset}ImportWallets.py</command>
           <properties>
             <jenkins.model.BuildDiscarderProperty>
               <strategy class="hudson.tasks.LogRotator">
-                <daysToKeep>90</daysToKeep>
+                <daysToKeep>7</daysToKeep>
                 <numToKeep>-1</numToKeep>
                 <artifactDaysToKeep>-1</artifactDaysToKeep>
                 <artifactNumToKeep>-1</artifactNumToKeep>
@@ -486,7 +486,7 @@ python ./${asset}ImportPrices.py</command>
           <properties>
             <jenkins.model.BuildDiscarderProperty>
               <strategy class="hudson.tasks.LogRotator">
-                <daysToKeep>90</daysToKeep>
+                <daysToKeep>7</daysToKeep>
                 <numToKeep>-1</numToKeep>
                 <artifactDaysToKeep>-1</artifactDaysToKeep>
                 <artifactNumToKeep>-1</artifactNumToKeep>
