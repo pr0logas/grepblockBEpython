@@ -45,6 +45,24 @@ def showViewJobs(viewName):
     return server.get_jobs(view_name=viewName)
 
 try:
+    deleteJob(assetName+'-'+'graph-marketcap')
+except:
+    time.sleep(20)
+    pass
+
+try:
+    deleteJob(assetName+'-'+'graph-price')
+except:
+    time.sleep(20)
+    pass
+
+try:
+    deleteJob(assetName+'-'+'graph-volume')
+except:
+    time.sleep(20)
+    pass
+
+try:
     deleteJob(assetName+'-'+'coingecko-parseHistoricalPrice')
 except:
     time.sleep(20)
@@ -96,24 +114,6 @@ try:
     deleteJob(assetName+'-'+'graph-assetTransactions')
 except:
     time.sleep(2)
-    pass
-
-try:
-    deleteJob(assetName+'-'+'graph-marketcap')
-except:
-    time.sleep(20)
-    pass
-
-try:
-    deleteJob(assetName+'-'+'graph-price')
-except:
-    time.sleep(20)
-    pass
-
-try:
-    deleteJob(assetName+'-'+'graph-volume')
-except:
-    time.sleep(20)
     pass
 
 
