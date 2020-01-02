@@ -26,7 +26,7 @@ class jenkinsJobs():
           <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
           <triggers>
             <hudson.triggers.TimerTrigger>
-              <spec>* * * * *</spec>
+              <spec>#* * * * *</spec>
             </hudson.triggers.TimerTrigger>
           </triggers>
           <concurrentBuild>false</concurrentBuild>
