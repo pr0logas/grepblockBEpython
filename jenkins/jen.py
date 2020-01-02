@@ -44,13 +44,33 @@ def deleteJob(jobName):
 def showViewJobs(viewName):
     return server.get_jobs(view_name=viewName)
 
+try:
+    deleteJob(assetName+'-'+'coingecko-parseHistoricalPrice')
+except NotFoundException:
+    pass
 
-deleteJob(assetName+'-'+'coingecko-parseHistoricalPrice')
-deleteJob(assetName+'-'+'coingecko-parsePrice')
-deleteJob(assetName+'-'+'daemon-parseBlocks')
-deleteJob(assetName+'-'+'daemon-parseWallets')
-deleteJob(assetName+'-'+'graph-assetActiveWallets')
-deleteJob(assetName+'-'+'graph-assetBlockchainSize')
+try:
+    deleteJob(assetName+'-'+'coingecko-parsePrice')
+except NotFoundException:
+    pass
+
+try:
+    deleteJob(assetName+'-'+'daemon-parseBlocks')
+except NotFoundException:
+    pass
+
+try:
+    deleteJob(assetName+'-'+'daemon-parseWallets')
+except NotFoundException:
+    pass
+
+try:
+    deleteJob(assetName+'-'+'graph-assetActiveWallets')
+except NotFoundException:
+    pass
+    deleteJob(assetName+'-'+'graph-assetBlockchainSize')
+
+
 deleteJob(assetName+'-'+'graph-assetBlocks')
 deleteJob(assetName+'-'+'graph-assetDifficulty')
 deleteJob(assetName+'-'+'graph-assetTransactions')
