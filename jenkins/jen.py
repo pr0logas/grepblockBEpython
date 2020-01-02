@@ -117,6 +117,9 @@ except:
     pass
 
 
+print("Jobs deletion done. Sleeping for 20 sec. then starting jobs creation...")
+time.sleep(20)
+
 createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
 createJob(assetName, 'coingecko-parsePrice', Methods.coingeckoParsePrice())
 createJob(assetName, 'daemon-parseBlocks', Methods.daemonParseBlocks())
