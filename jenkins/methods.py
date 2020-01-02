@@ -519,3 +519,4 @@ python ./${asset}ImportBlocks.py</command>
                 </project>
                 '''
         return newXml
+

@@ -45,6 +45,19 @@ def showViewJobs(viewName):
     return server.get_jobs(view_name=viewName)
 
 
+deleteJob(assetName+'-'+'coingecko-parseHistoricalPrice')
+deleteJob(assetName+'-'+'coingecko-parsePrice')
+deleteJob(assetName+'-'+'daemon-parseBlocks')
+deleteJob(assetName+'-'+'daemon-parseWallets')
+deleteJob(assetName+'-'+'graph-assetActiveWallets')
+deleteJob(assetName+'-'+'graph-assetBlockchainSize')
+deleteJob(assetName+'-'+'graph-assetBlocks')
+deleteJob(assetName+'-'+'graph-assetDifficulty')
+deleteJob(assetName+'-'+'graph-assetTransactions')
+deleteJob(assetName+'-'+'graph-marketcap')
+deleteJob(assetName+'-'+'graph-price')
+deleteJob(assetName+'-'+'graph-volume')
+
 createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
 createJob(assetName, 'coingecko-parsePrice', Methods.coingeckoParsePrice())
 createJob(assetName, 'daemon-parseBlocks', Methods.daemonParseBlocks())
