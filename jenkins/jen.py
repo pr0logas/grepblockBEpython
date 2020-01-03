@@ -43,7 +43,7 @@ def deleteJob(jobName):
 
 def showViewJobs(viewName):
     return server.get_jobs(view_name=viewName)
-
+'''
 try:
     deleteJob(assetName+'-'+'graph-marketcap')
 except:
@@ -119,6 +119,7 @@ except:
 
 print("Jobs deletion done. Sleeping for 20 sec. then starting jobs creation...")
 time.sleep(20)
+'''
 
 createJob(assetName, 'coingecko-parseHistoricalPrice', Methods.coingeckoParseHistoricalPrice())
 createJob(assetName, 'coingecko-parsePrice', Methods.coingeckoParsePrice())
