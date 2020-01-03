@@ -7,7 +7,7 @@ database = 'bitcoin-sv'
 assetTicker = 'BSV'
 assetName = 'bitcoin-sv'
 genesisBlock = 1231469665
-coinGeckoStartUnixTime = 1501718400
+coinGeckoStartUnixTime = 1541808000
 blockTime = 600
 
 # RPC
