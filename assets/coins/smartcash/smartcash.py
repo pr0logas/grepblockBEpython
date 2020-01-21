@@ -11,7 +11,7 @@ coinGeckoStartUnixTime =
 blockTime =
 
 # RPC
-rpcconnect = "10.10.100.201"
+rpcconnect = "mongoHostIP"
 rpcport = 8888
 rpcuser = "grepblock"
 rpcpassword = "tothemoon"
