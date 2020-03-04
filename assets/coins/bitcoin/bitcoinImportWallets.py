@@ -58,8 +58,6 @@ while whileprogress<currentLastBlock:
 				uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
 				for uw in uniqWlts:
 					checkIfWltExists = MC.findWallet(collectionForWallets, uw)
-					print(uw)
-					print(checkIfWltExists)
 
 					if checkIfWltExists != []:
 						timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
