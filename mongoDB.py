@@ -52,6 +52,7 @@ class mongoConnection():
 	@autoreconnect_retry
 	def findWallet(self, fromCollection, wallet):
 		searchWlt = list(self.mongoDB[fromCollection].find({'wallet' : wallet}))
+		print(searchWlt)
 		return searchWlt
 
 	@autoreconnect_retry
