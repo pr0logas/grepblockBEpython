@@ -62,7 +62,9 @@ while whileprogress<currentLastBlock:
 
 					if checkIfWltExists != []:
 						timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-						print(timeSet + " MongoDB dup wlt, skip2")
+						print(timeSet + " MongoDB dup wlt, skip")
+						t = int(round(time.time() * 1000))
+						setProcEnd = t
 					else:
 						print("2", uw)
 						createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
@@ -70,7 +72,6 @@ while whileprogress<currentLastBlock:
 						status = result
 						t = int(round(time.time() * 1000))
 						setProcEnd = t
-						sys.exit(0)
 
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
@@ -78,7 +79,7 @@ while whileprogress<currentLastBlock:
 		if str(status) != '':
 			print timeSet + " Wallet inserted : " + str(status)
 		else:
-			print timeSet + " Warning! Txid don't have any vout Wallets!"
+			print timeSet + " Warning! Txid(s) don't have any new unique vout Wallets!"
 	
 	print timeSet + " Block finished: " + str(blockNumber) + ' // ' + (performanceResult) + ' ms'
 
