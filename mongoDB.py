@@ -1,5 +1,5 @@
 #:: By GrepBlock.com developers // pr0logas, mrNemo
-#:: Modified date: 2019-12-03
+#:: Modified date: 2019-12-03 - 2020-03-04
 #:: Description: This file contains all MongoDB core methods - find / insert / update / check / assigning mongodb indexes.
 
 import pymongo
@@ -48,6 +48,11 @@ class mongoConnection():
 		searchLastBlock = list(self.mongoDB[fromCollection].find({},{ "_id": 0, "block": 1}).sort([( '$natural', -1 )] ).limit(1))
 		lastBlock = searchLastBlock[0]['block']
 		return int(lastBlock)
+
+	@autoreconnect_retry
+	def findWallet(self, fromCollection, wallet):
+		searchWlt = list(self.mongoDB[fromCollection].find({'wallet' : wallet}))
+		return searchWlt
 
 	@autoreconnect_retry
 	def findLastTxidProgress(self, fromCollection):
