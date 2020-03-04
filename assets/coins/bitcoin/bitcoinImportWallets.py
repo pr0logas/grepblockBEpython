@@ -62,8 +62,6 @@ while whileprogress<currentLastBlock:
 					if checkIfWltExists != []:
 						timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 						print(timeSet + " MongoDB dup wlt, skip")
-						t = int(round(time.time() * 1000))
-						setProcEnd = t
 					else:
 						createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
 						result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
