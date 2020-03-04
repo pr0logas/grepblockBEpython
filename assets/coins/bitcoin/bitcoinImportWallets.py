@@ -57,11 +57,19 @@ while whileprogress<currentLastBlock:
 			if randomWlts is not None:
 				uniqWlts = AG.aggregateOnlyUniqueWallets(randomWlts)
 				for uw in uniqWlts:
-					createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
-					result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
-					status = result
-					t = int(round(time.time() * 1000))
-					setProcEnd = t
+					checkIfWltExists = MC.findWallet(collectionForWallets, uw)
+					print(uw)
+					print(checkIfWltExists)
+
+					if checkIfWltExists != []:
+						timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+						print(timeSet + " MongoDB dup wlt, skip2")
+					else:
+						createJSON = AG.createJsonForWallet(str(blockNumber), str(blockTime), uw)
+						result = MC.upsertUniqueWallets(collectionForWallets, createJSON)
+						status = result
+						t = int(round(time.time() * 1000))
+						setProcEnd = t
 
 	performanceResult = str(setProcEnd - setProcStart)
 	timeSet = strftime("%Y-%m-%d %H:%M:%S", gmtime())
