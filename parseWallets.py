@@ -35,12 +35,6 @@ class aggregateWalletsData():
 		return(resultList)
 
 	def aggregateOnlyUniqueWallets(self, wallets):
-		output = set()
-		for x in wallets:
-			output.add(x)
-		return output
-
-	def aggregateOnlyUniqueWalletsFaster(self, wallets):
 		return list(set(wallets))
 
 	# Works only data from Explorer
