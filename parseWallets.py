@@ -40,6 +40,9 @@ class aggregateWalletsData():
 			output.add(x)
 		return output
 
+	def aggregateOnlyUniqueWalletsFaster(self, wallets):
+		return list(set(wallets))
+
 	# Works only data from Explorer
 	def aggregateOnlyTxidHashes(self, blockData):
 		firstObj = json.loads(blockData)
